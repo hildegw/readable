@@ -32,28 +32,21 @@ const posts = (state=defaultData, action) => {
         ...state,
         editingPostId: editingPostId,
       }
-  case ADD_POST:
-  console.log(id)
-  console.log(state)
-  const newState = Object.assign({}, state, id) //adding new post to existing posts
-    return newState
-
-  case REMOVE_POST:
-    return {
-      ...state,
-      [id]: null,
-    }
-  default:
+    case ADD_POST:
+      const stateAfterAdded = Object.assign({}, state, id) //adding new post to existing posts
+      return stateAfterAdded
+    case REMOVE_POST:
+      const postToRemove = Object.keys(id)[0]
+      const stateAfterDelete = Object.assign({}, state) //copy state
+      delete stateAfterDelete[postToRemove]
+      return stateAfterDelete
+    default:
       return state
-
   }
-
 }
 
 const category = (state= {}, action) => {
   return state
 }
-
-
 
 export default combineReducers({posts, category})

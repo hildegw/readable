@@ -23,6 +23,7 @@ class App extends Component {
     const idKey = Object.keys(idDemoComment)[0]
     console.log(this.props.posts)
 
+
     return (
       <div className="App">
         <div className="App-header">
@@ -34,6 +35,7 @@ class App extends Component {
         </p>
         <button onClick={()=>{this.props.openPostEdit({editingPostId: idKey})}}>Click!</button>
         <button onClick={()=>{this.props.addPost({id: idDemoComment})}}>Click!</button>
+        <button onClick={()=>{this.props.removePost({id: idDemoComment})}}>Click!</button>
 
       </div>
     )
