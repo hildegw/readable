@@ -21,7 +21,8 @@ class App extends Component {
         parentDeleted: false
     }}
     const idKey = Object.keys(idDemoComment)[0]
-    console.log(this.props.posts)
+    const catDemo = 'React'
+    console.log(this.props.category)
 
 
     return (
@@ -33,9 +34,10 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <button onClick={()=>{this.props.openPostEdit({editingPostId: idKey})}}>Click!</button>
-        <button onClick={()=>{this.props.addPost({id: idDemoComment})}}>Click!</button>
-        <button onClick={()=>{this.props.removePost({id: idDemoComment})}}>Click!</button>
+        <button onClick={()=>{this.props.openPostEdit({editingPostId: idKey})}}>Open!</button>
+        <button onClick={()=>{this.props.addPost({id: idDemoComment})}}>Add!</button>
+        <button onClick={()=>{this.props.removePost({id: idDemoComment})}}>Remove!</button>
+        <button onClick={()=>{this.props.selectCategory({categorySelected: catDemo})}}>category!</button>
 
       </div>
     )

@@ -46,7 +46,17 @@ const posts = (state=defaultData, action) => {
 }
 
 const category = (state= {}, action) => {
+  const { categorySelected } = action
+  switch (action.type) {
+    case SELECT_CATEGORY:
+      return {
+        ...state,
+        categorySelected: categorySelected,
+      }
+    default:
+      return state
   return state
+  }
 }
 
 export default combineReducers({posts, category})
