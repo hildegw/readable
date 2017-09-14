@@ -20,10 +20,10 @@ export const removePost = (({id}) => {
   }
 })
 
-export const openPostEdit = (({editingPostID}) => {
+export const openPostEdit = (({editingPostId}) => {
   return {
     type: OPEN_POST_EDIT,
-    editingPostID,
+    editingPostId,
   }
 })
 

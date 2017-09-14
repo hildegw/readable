@@ -25,24 +25,25 @@ const defaultData = {
 }
 
 const posts = (state=defaultData, action) => {
+  const { editingPostId, id } = action
   switch (action.type) {
     case OPEN_POST_EDIT:
-      const { editingPostID } = action
       return {
         ...state,
-        editingPostID: editingPostID
+        editingPostId: editingPostId,
       }
   case ADD_POST:
+  console.log(id)
+  console.log(state)
+  const newState = Object.assign({}, state, id) //adding new post to existing posts
+    return newState
 
-    return {
-
-    }
   case REMOVE_POST:
-
     return {
-
+      ...state,
+      [id]: null,
     }
-    default:
+  default:
       return state
 
   }

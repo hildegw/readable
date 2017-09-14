@@ -9,9 +9,8 @@ class App extends Component {
 
 
   render() {
-    console.log(this.props.posts)
     const idDemoComment = {
-      "894tuq4ut84ut8v4t8wun89g": {
+      "904tuq4ut84ut8v4t8wun89g": {
         id: '894tuq4ut84ut8v4t8wun89g',
         parentId: "8xf0y6ziyjabvozdd253nd",
         timestamp: 1468166872634,
@@ -21,9 +20,8 @@ class App extends Component {
         deleted: false,
         parentDeleted: false
     }}
-    console.log(Object.keys(idDemoComment)[0])
     const idKey = Object.keys(idDemoComment)[0]
-
+    console.log(this.props.posts)
 
     return (
       <div className="App">
@@ -34,8 +32,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <button onClick={()=>{this.props.openPostEdit({editingPostID: idKey})}}>Click!</button>
-
+        <button onClick={()=>{this.props.openPostEdit({editingPostId: idKey})}}>Click!</button>
+        <button onClick={()=>{this.props.addPost({id: idDemoComment})}}>Click!</button>
 
       </div>
     )
