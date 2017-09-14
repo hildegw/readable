@@ -34,7 +34,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <button onClick={()=>{this.props.addPost({id: idKey})}}>Click!</button>
+        <button onClick={()=>{this.props.openPostEdit({editingPostID: idKey})}}>Click!</button>
 
 
       </div>

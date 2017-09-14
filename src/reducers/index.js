@@ -30,7 +30,7 @@ const posts = (state=defaultData, action) => {
       const { editingPostID } = action
       return {
         ...state,
-        [editingPostID]: editingPostID
+        editingPostID: editingPostID
       }
   case ADD_POST:
 
