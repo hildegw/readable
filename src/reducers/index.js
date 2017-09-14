@@ -21,7 +21,17 @@ const defaultData = {
     category: 'redux',
     voteScore: -5,
     deleted: false
-  }
+  },
+  "99999y6ziyjabvozdd253nd": {
+    id: '99999y6ziyjabvozdd253nd',
+    timestamp: 1467166872634,
+    title: 'xxx is the best place to learn React',
+    body: 'Everyone says so after all.',
+    author: 'four',
+    category: 'react',
+    voteScore: 6,
+    deleted: false
+  },
 }
 
 const posts = (state=defaultData, action) => {
@@ -55,7 +65,6 @@ const category = (state= {}, action) => {
       }
     default:
       return state
-  return state
   }
 }
 

@@ -3,22 +3,77 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 60px;
+  margin: 20px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  display: flex;
+  justify-content: center;
+  background-color: #FFF;
+  padding: 10px;
+  color: #000;
+  border-bottom: 1px solid #d5d8df;
+}
+
+/* Posts */
+.post {
+  text-align: center;
+  font-size: medium;
+  display: flex;
+
+}
+
+.post-list {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+}
+.post-list-item {
   padding: 20px;
-  color: white;
+  padding-left: 60px;
+  padding-right: 60px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #d5d8df;
 }
 
-.App-intro {
-  font-size: large;
+.post-details {
+  padding-left: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.post-details p {
+  margin: 3px;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.post-author {
+  font-style: oblique;
+  font-size: small;
+}
+
+.post-remove {
+  padding-left: 20px;
+  align-self: center;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  background-image: url('./../icons/cancel.svg');
+  background-size: 100% 100%;
+  border: 0;
+  color: black;
+  font-size: 0;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: none;
 }
