@@ -34,7 +34,9 @@ const defaultData = {
   },
 }
 
-const posts = (state=defaultData, action) => {
+//TODO adapt reducers to data fetched from Server
+
+const posts = (state={}, action) => {
   const { editingPostId, id } = action
   switch (action.type) {
     case OPEN_POST_EDIT:

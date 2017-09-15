@@ -22,7 +22,7 @@ class ShowPosts extends Component {
     const idKey = Object.keys(idDemoComment)[0]
     const catDemo = 'React'
     const posts = Object.entries(this.props.posts)
-    console.log(Object.entries(this.props.posts))
+    console.log(this.props.posts)
 
     return (
       <div>

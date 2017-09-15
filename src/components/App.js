@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import { connect } from 'react-redux'
-import { addPost, removePost, openPostEdit, selectCategory } from '../actions'
+import { fetchPosts, addPost, removePost, openPostEdit, selectCategory } from '../actions'
 import ShowPosts from './ShowPosts'
-import { fetchPosts } from '../utils/api'
 
 class App extends Component {
-  componentDidMount(){ fetchPosts().then((data) => console.log(data)) }
+componentDidMount(){ this.props.fetchPosts().then((data) => {
+    console.log(data)
+  }) }
 
   render() {
 
@@ -37,6 +38,7 @@ const mapStateToProps = ({ posts, category }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchPosts: () => dispatch(fetchPosts()),
     addPost: (data) => dispatch(addPost(data)),
     removePost: (data) => dispatch(removePost(data)),
     openPostEdit: (data) => dispatch(openPostEdit(data)),
