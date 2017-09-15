@@ -1,4 +1,4 @@
-import { ADD_POST, REMOVE_POST, OPEN_POST_EDIT, SELECT_CATEGORY } from '../actions'
+import { RECEIVE_POSTS, ADD_POST, REMOVE_POST, OPEN_POST_EDIT, SELECT_CATEGORY } from '../actions'
 import { combineReducers } from 'redux'
 
 const defaultData = {
@@ -34,11 +34,18 @@ const defaultData = {
   },
 }
 
+
 //TODO adapt reducers to data fetched from Server
 
+
 const posts = (state={}, action) => {
-  const { editingPostId, id } = action
+  const { posts, editingPostId, id } = action
+  console.log(state)
+
   switch (action.type) {
+    case RECEIVE_POSTS:
+      const statePostsFetched = posts.map((post)=>Object.assign({}, post))
+      return statePostsFetched
     case OPEN_POST_EDIT:
       return {
         ...state,
