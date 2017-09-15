@@ -4,9 +4,10 @@ import './App.css'
 import { connect } from 'react-redux'
 import { addPost, removePost, openPostEdit, selectCategory } from '../actions'
 import ShowPosts from './ShowPosts'
+import { fetchPosts } from '../utils/api'
 
 class App extends Component {
-
+  componentDidMount(){ fetchPosts().then((data) => console.log(data)) }
 
   render() {
 
