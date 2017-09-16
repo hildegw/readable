@@ -4,6 +4,8 @@ import './App.css'
 import { connect } from 'react-redux'
 import { fetchPosts, addPost, removePost, openPostEdit, selectCategory } from '../actions'
 import ShowPosts from './ShowPosts'
+import AddPost from './AddPost'
+
 
 class App extends Component {
 componentDidMount(){ this.props.fetchPosts() }
@@ -17,29 +19,28 @@ componentDidMount(){ this.props.fetchPosts() }
           <h1>Discussion Board</h1>
         </container>
 
-        <div>
+        <container className="Show-posts">
           <ShowPosts />
-        </div>
+        </container>
+
+        <container className="Sidebar">
+          <AddPost />
+        </container>
+
       </div>
     )
   }
 }
 
 const mapStateToProps = ({ posts, category }) => {
-  //const postType = ['oPost', 'comment']  //TODO map correct type
   return {
     posts: posts,
-    category: category,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
-    addPost: (data) => dispatch(addPost(data)),
-    removePost: (data) => dispatch(removePost(data)),
-    openPostEdit: (data) => dispatch(openPostEdit(data)),
-    selectCategory: (data) => dispatch(selectCategory(data)),
   }
 }
 

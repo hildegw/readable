@@ -16,7 +16,12 @@
   border-bottom: 1px solid #d5d8df;
 }
 
-/* Posts */
+/* Show Posts */
+.Show-posts {
+  display: flex;
+  justify-content: center;
+}
+
 .post {
   text-align: center;
   font-size: medium;
