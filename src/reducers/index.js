@@ -34,14 +34,8 @@ const defaultData = {
   },
 }
 
-
-//TODO adapt reducers to data fetched from Server
-
-
 const posts = (state={}, action) => {
   const { posts, editingPostId, id } = action
-  console.log(state)
-
   switch (action.type) {
     case RECEIVE_POSTS:
       const statePostsFetched = posts.map((post)=>Object.assign({}, post))

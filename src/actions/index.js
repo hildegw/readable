@@ -6,17 +6,18 @@ export const REMOVE_POST = "REMOVE_POST"
 export const OPEN_POST_EDIT = "OPEN_POST_EDIT"
 export const SELECT_CATEGORY = "SELECT_CATEGORY"
 
-//action creator functions
+//fetch data from DB
+//thunk middleware for asynchronous call to fetch posts
+export const fetchPosts = () => dispatch => (
+  PostsApi.fetchPosts().then((data) => {
+    dispatch(receivePosts(data))}))
+//action creator functions being called when posts have been fetched
 export const receivePosts = (posts) => ({
   type: RECEIVE_POSTS,
   posts,
 });
 
-//thunk middleware for asynchronous call
-export const fetchPosts = () => dispatch => (
-  PostsApi.fetchPosts().then((data) => {
-    console.log(data)
-    dispatch(receivePosts(data))}))
+
 
 export const addPost = (({id}) => {
   return {
@@ -25,6 +26,13 @@ export const addPost = (({id}) => {
   }
 })
 
+//remove data from DB and from store
+//thunk
+export const deletePost = (id) => dispatch => {
+  dispatch(removePost({id}))
+  PostsApi.deletePost(id)  //does not return value
+}
+//action
 export const removePost = (({id}) => {
   return {
     type: REMOVE_POST,

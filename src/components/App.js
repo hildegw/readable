@@ -6,9 +6,7 @@ import { fetchPosts, addPost, removePost, openPostEdit, selectCategory } from '.
 import ShowPosts from './ShowPosts'
 
 class App extends Component {
-componentDidMount(){ this.props.fetchPosts().then((data) => {
-    console.log(data)
-  }) }
+componentDidMount(){ this.props.fetchPosts() }
 
   render() {
 
@@ -26,7 +24,6 @@ componentDidMount(){ this.props.fetchPosts().then((data) => {
     )
   }
 }
-
 
 const mapStateToProps = ({ posts, category }) => {
   //const postType = ['oPost', 'comment']  //TODO map correct type

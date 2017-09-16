@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { addPost, removePost, openPostEdit, selectCategory } from '../actions'
+import { addPost, deletePost, openPostEdit, selectCategory } from '../actions'
 
 
 class ShowPosts extends Component {
@@ -33,9 +33,10 @@ class ShowPosts extends Component {
               <div className="post-details">
                 <p className="post-author">{post[1].author}</p>
                 <p>{post[1].title}</p>
+                <p className="post-author">{post[1].id}</p>
               </div>
               <button onClick={()=>
-                { this.props.removePost({id: post}) }}
+                { this.props.deletePost(post[1].id) }}
                 className="post-remove">
                 Remove
               </button>
@@ -47,7 +48,7 @@ class ShowPosts extends Component {
       <div>
         <button onClick={()=>{this.props.openPostEdit({editingPostId: idKey})}}>Open!</button>
         <button onClick={()=>{this.props.addPost({id: idDemoComment})}}>Add!</button>
-        <button onClick={()=>{this.props.removePost({id: idDemoComment})}}>Remove!</button>
+        <button onClick={()=>{this.props.deletePost({id: idDemoComment})}}>Remove!</button>
         <button onClick={()=>{this.props.selectCategory({categorySelected: catDemo})}}>category!</button>
       </div>
       </div>
@@ -68,7 +69,7 @@ const mapStateToProps = ({ posts, category }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addPost: (data) => dispatch(addPost(data)),
-    removePost: (data) => dispatch(removePost(data)),
+    deletePost: (data) => dispatch(deletePost(data)),
     openPostEdit: (data) => dispatch(openPostEdit(data)),
     selectCategory: (data) => dispatch(selectCategory(data)),
   }
