@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, addPost, removePost, openPostEdit, selectCategory } from '../actions'
+import {Route} from "react-router-dom"
+import { fetchPosts, } from '../actions'
 import ShowPosts from './ShowPosts'
 import AddPost from './AddPost'
+import SidebarMenu from './SidebarMenu'
 
 
 class App extends Component {
@@ -19,13 +21,16 @@ componentDidMount(){ this.props.fetchPosts() }
           <h1>Discussion Board</h1>
         </container>
 
-        <container className="Show-posts">
+        <container className="Sidebar-show-posts" >
+          <SidebarMenu />
           <ShowPosts />
         </container>
 
-        <container className="Sidebar">
-          <AddPost />
-        </container>
+        <Route path="/add" render={({history})=>(
+          <container className="Add-post">
+            <AddPost />
+          </container>
+        )}/>
 
       </div>
     )
