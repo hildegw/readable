@@ -2,36 +2,26 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { addPost, deletePost, openPostEdit, selectCategory } from '../actions'
-import {Link} from "react-router-dom"
+import {Link, Redirect} from "react-router-dom"
 import serializeForm from "form-serialize"
+import uuid from "uuid"
 
 
 class AddPosts extends Component {
-
-  getNewId = () => {
-    var dt = new Date().getTime();
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = (dt + Math.random()*16)%16 | 0;
-        dt = Math.floor(dt/16);
-        return (c==='x' ? r :(r&0x3|0x8)).toString(16);
-    })
-    return uuid
-  }
+  state = { formDone: false }
 
   //hand over new post in format {id: {author: xxx, body: xxx, id: xxx}}
   handleSubmit = (event)=>{
     event.preventDefault()
     const newPost = serializeForm(event.target, {hash: true})
-    const id = this.getNewId()
+    const id = uuid()
     Object.assign(newPost, {id: id})
-    newPost[id] = newPost
-    console.log(newPost)
     this.props.addPost(newPost)
+    this.setState({ formDone: true })
   }
 
   render() {
-    console.log(this.getNewId())
-
+    console.log(this.state)
 
     return (
       <div>
@@ -46,6 +36,7 @@ class AddPosts extends Component {
         </form>
         <Link to="/" className="close-add">Discard</Link>
       </container>
+      { this.state.formDone && (<Redirect to='/' />)}
       </div>
     )
   }

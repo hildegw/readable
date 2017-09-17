@@ -17,10 +17,17 @@ export const receivePosts = (posts) => ({
   posts,
 });
 
-export const addPost = (({id}) => {
+//add a post to DB and state
+//thunk
+export const addPost = (post) => dispatch => {
+  dispatch(newPost(post))
+  PostsApi.addPost(post)
+}
+//action
+export const newPost = ((post) => {
   return {
     type: ADD_POST,
-    id,
+    post,
   }
 })
 
