@@ -24,6 +24,7 @@ class AddPosts extends Component {
 
     return (
       <div>
+        <Link to="/" className="close-create-contact"/>
 
         <button
           className='new-post-button'

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import { connect } from 'react-redux'
-import {Route} from "react-router-dom"
+import {Route, withRouter} from "react-router-dom"
 import { fetchPosts, } from '../actions'
 import ShowPosts from './ShowPosts'
 import AddPost from './AddPost'
@@ -23,14 +23,20 @@ componentDidMount(){ this.props.fetchPosts() }
 
         <container className="Sidebar-show-posts" >
           <SidebarMenu />
-          <ShowPosts />
+          <Route exact path="/" render={()=>(
+            <ShowPosts />)}/>
+
+            <Route path="/add" render={({history})=>(
+              <container className="Add-post">
+                <div>
+                <AddPost />
+                {console.log("add-post")}
+                </div>
+              </container>
+            )}/>
         </container>
 
-        <Route path="/add" render={({history})=>(
-          <container className="Add-post">
-            <AddPost />
-          </container>
-        )}/>
+
 
       </div>
     )
@@ -49,7 +55,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(App)
+)(App))

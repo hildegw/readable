@@ -47,7 +47,7 @@ export const openPostEdit = (({editingPostId}) => {
   }
 })
 
-export const selectCategory = (({categorySelected}) => {
+export const selectCategory = ((categorySelected) => {
   return {
     type: SELECT_CATEGORY,
     categorySelected,
