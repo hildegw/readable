@@ -12,19 +12,22 @@ export const fetchPosts = () => dispatch => (
   PostsApi.fetchPosts().then((data) => {
     dispatch(receivePosts(data))}))
 //action creator functions being called when posts have been fetched
-export const receivePosts = (posts) => ({
-  type: RECEIVE_POSTS,
-  posts,
-});
+export const receivePosts = ((posts) => {
+  console.log("receivePosts")
+  return {
+    type: RECEIVE_POSTS,
+    posts,
+  }
+})
 
 //add a post to DB and state
 //thunk
 export const addPost = (post) => dispatch => {
-  dispatch(newPost(post))
-  PostsApi.addPost(post)
+  PostsApi.addPost(post).then(dispatch(newPost(post)))
 }
 //action
 export const newPost = ((post) => {
+  console.log('addPost')
   return {
     type: ADD_POST,
     post,
@@ -33,15 +36,16 @@ export const newPost = ((post) => {
 
 //remove data from DB and from store
 //thunk
-export const deletePost = (id) => dispatch => {
-  dispatch(removePost({id}))
-  PostsApi.deletePost(id)  //does not return value
+export const deletePost = (post) => dispatch => {
+  console.log(post[1].id)
+  PostsApi.deletePost(post[1].id).then(dispatch(removePost(post)))
 }
 //action
-export const removePost = (({id}) => {
+export const removePost = ((post) => {
+  console.log("removePost")
   return {
     type: REMOVE_POST,
-    id,
+    post,
   }
 })
 

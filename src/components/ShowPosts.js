@@ -22,6 +22,7 @@ class ShowPosts extends Component {
     const idKey = Object.keys(idDemoComment)[0]
     const catDemo = 'React'
     const posts = Object.entries(this.props.posts)
+    console.log(posts)
 
     return (
       <div>
@@ -35,7 +36,7 @@ class ShowPosts extends Component {
                 <p className="post-author">{post[1].id}</p>
               </div>
               <button onClick={()=>
-                { this.props.deletePost(post[1].id) }}
+                { this.props.deletePost(post) }}
                 className="post-remove">
                 Remove
               </button>
