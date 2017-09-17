@@ -17,8 +17,6 @@ export const receivePosts = (posts) => ({
   posts,
 });
 
-
-
 export const addPost = (({id}) => {
   return {
     type: ADD_POST,

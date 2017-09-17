@@ -46,7 +46,7 @@ const posts = (state={}, action) => {
         editingPostId: editingPostId,
       }
     case ADD_POST:
-      const stateAfterAdded = Object.assign({}, state, id) //adding new post to existing posts
+      const stateAfterAdded = Object.assign({}, state) //adding new post to existing posts
       return stateAfterAdded
     case REMOVE_POST:
       const postToRemove = Object.keys(id)[0]

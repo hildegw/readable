@@ -28,10 +28,7 @@ componentDidMount(){ this.props.fetchPosts() }
 
             <Route path="/add" render={({history})=>(
               <container className="Add-post">
-                <div>
                 <AddPost />
-                {console.log("add-post")}
-                </div>
               </container>
             )}/>
         </container>

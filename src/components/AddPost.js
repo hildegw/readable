@@ -3,6 +3,7 @@ import './App.css'
 import { connect } from 'react-redux'
 import { addPost, deletePost, openPostEdit, selectCategory } from '../actions'
 import {Link} from "react-router-dom"
+import serializeForm from "form-serialize"
 
 
 class AddPosts extends Component {
@@ -17,6 +18,16 @@ class AddPosts extends Component {
     return uuid
   }
 
+  //hand over new post in format {id: {author: xxx, body: xxx, id: xxx}}
+  handleSubmit = (event)=>{
+    event.preventDefault()
+    const newPost = serializeForm(event.target, {hash: true})
+    const id = this.getNewId()
+    Object.assign(newPost, {id: id})
+    newPost[id] = newPost
+    console.log(newPost)
+    this.props.addPost(newPost)
+  }
 
   render() {
     console.log(this.getNewId())
@@ -29,17 +40,13 @@ class AddPosts extends Component {
           <div className="add-details">
             <input type="text" name="author" placeholder="Your name"/>
             <input type="text" name="title" placeholder="Subject"/>
-            <input type="text" name="body" placeholder="Message"/>
-
+            <textarea className="add-text-area" name="body" placeholder="Message"></textarea>
+            <button className='add-discussion'>Add discussion</button>
           </div>
         </form>
-        <button className='add-discussion'>Add discussion</button>
         <Link to="/" className="close-add">Discard</Link>
-
       </container>
       </div>
-
-
     )
   }
 }
