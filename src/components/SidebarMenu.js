@@ -3,7 +3,6 @@ import './App.css'
 import { connect } from 'react-redux'
 import { addPost, selectCategory } from '../actions'
 import {Link} from "react-router-dom"
-import AddPost from "./AddPost"
 
 class SidebarMenu extends Component {
 

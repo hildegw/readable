@@ -13,7 +13,7 @@
   background-color: #FFF;
   padding: 10px;
   color: #000;
-  border-bottom: 1px solid #d5d8df;
+  border-bottom: 1px solid #ccc;
 }
 
 
@@ -61,21 +61,20 @@
   cursor: pointer;
   color: #676767;
   text-decoration: none;
-  border-bottom: 1px solid #d5d8df;
-  border-top: 1px solid #d5d8df;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
 }
 
 
 /* Show Posts */
 .Show-posts {
-
 }
 
 .post {
   text-align: center;
   font-size: medium;
   display: flex;
-  border-left: 1px solid #d5d8df;
+  border-left: 1px solid #ccc;
 
 }
 
@@ -87,7 +86,7 @@
   background: white;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #d5d8df;
+  border-bottom: 1px solid #ccc;
 }
 
 .post-details {
@@ -129,5 +128,67 @@
 /* Add Post */
 .Add-post {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  border-left: 1px solid #ccc;
+
+}
+
+.add-form {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.add-details {
+  margin-left: 40px;
+}
+
+.add-details input {
+  width: 100%;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  font-size: medium;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: 0;
+}
+
+.add-discussion {
+  display: flex;
+  justify-content: flex-start;
+  background-color: transparent;
+  background-image: url('./../icons/plus.svg');
+  background-repeat: no-repeat;
+  background-position: center left;
+  margin-left: 70px;
+  padding-right: 8px;
+  padding-left: 40px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  cursor: pointer;
+  color: #676767;
+  font-size: medium;
+  text-decoration: none;
+  border: none;
+}
+
+.close-add {
+display: flex;
+justify-content: flex-start;
+background-color: transparent;
+background-image: url('./../icons/arrow-back.svg');
+background-repeat: no-repeat;
+background-position: center left;
+margin-left: 70px;
+padding-right: 8px;
+padding-left: 40px;
+padding-bottom: 20px;
+padding-top: 20px;
+cursor: pointer;
+color: #676767;
+font-size: medium;
+text-decoration: none;
+border: none;
 }

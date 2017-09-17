@@ -24,14 +24,19 @@ class AddPosts extends Component {
 
     return (
       <div>
-        <Link to="/" className="close-create-contact"/>
+      <container className='Add-post'>
+        <form onSubmit={this.handleSubmit} className="add-form">
+          <div className="add-details">
+            <input type="text" name="author" placeholder="Your name"/>
+            <input type="text" name="title" placeholder="Subject"/>
+            <input type="text" name="body" placeholder="Message"/>
 
-        <button
-          className='new-post-button'
-          onClick={()=> { this.props.addPost(this.getNewId()) }}>
-          New Post goes here
-        </button>
+          </div>
+        </form>
+        <button className='add-discussion'>Add discussion</button>
+        <Link to="/" className="close-add">Discard</Link>
 
+      </container>
       </div>
 
 
