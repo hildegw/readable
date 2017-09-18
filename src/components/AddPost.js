@@ -21,16 +21,37 @@ class AddPosts extends Component {
   }
 
   render() {
-    console.log(this.props.editPost)
+    const postToEdit = this.props.editPost
+    const postExists = postToEdit.hasOwnProperty('editPost')
+    let postValues = []
+    if (postExists) postValues = postToEdit['editPost']
 
     return (
       <div>
       <container className='Add-post'>
         <form onSubmit={this.handleSubmit} className="add-form">
           <div className="add-details">
-            <input type="text" name="author" placeholder="Your name" required />
-            <input type="text" name="title" placeholder="Subject" required />
-            <textarea type='text' className="add-text-area" name="body" placeholder="Message" required></textarea>
+            { postExists && (
+              <div>
+                <input type="text" name="author" placeholder="Your name" required
+                  defaultValue={ postValues[1].author }  />
+                <input type="text" name="title" placeholder="Subject" required
+                  defaultValue={ postValues[1].title }  />
+                <textarea type='text' className="add-text-area" name="body"
+                  placeholder="Message" required
+                  defaultValue={ postValues[1].body } ></textarea>
+              </div>
+            )}
+
+            { !postExists && (
+              <div>
+                <input type="text" name="author" placeholder="Your name" required />
+                <input type="text" name="title" placeholder="Subject" required />
+                <textarea type='text' className="add-text-area" name="body"
+                  placeholder="Message" required ></textarea>
+              </div>
+            )}
+
             <button className='add-discussion'>Add discussion</button>
           </div>
         </form>
@@ -44,11 +65,7 @@ class AddPosts extends Component {
 
 const mapStateToProps = ({ posts, category, editPost }) => {
   //const postType = ['oPost', 'comment']  //TODO map correct type
-  return {
-    posts: posts,
-    category: category,
-    editPost: editPost,
-  }
+  return { posts, category, editPost }
 }
 
 const mapDispatchToProps = (dispatch) => {

@@ -53,11 +53,7 @@ class ShowPosts extends Component {
 
 const mapStateToProps = ({ posts, category, editPost }) => {
   //const postType = ['oPost', 'comment']  //TODO map correct type
-  return {
-    posts: posts,
-    category: category,
-    editPost: editPost,
-  }
+  return { posts, category, editPost }
 }
 
 const mapDispatchToProps = (dispatch) => {
