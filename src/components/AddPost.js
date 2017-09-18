@@ -12,12 +12,17 @@ class AddPosts extends Component {
 
   //hand over new post in format {id: {author: xxx, body: xxx, id: xxx}}
   handleSubmit = (event)=>{
-    event.preventDefault()
-    const newPost = serializeForm(event.target, {hash: true})
-    const id = uuid()
-    Object.assign(newPost, {id: id})
-    this.props.addPost(newPost)
-    this.setState({ formDone: true })
+    const postExists = this.props.editPost.hasOwnProperty('editPost')
+    if (postExists) {
+      //TODO `PUT /posts/:id` title and body
+    } else {
+      event.preventDefault()
+      const newPost = serializeForm(event.target, {hash: true})
+      const id = uuid()
+      Object.assign(newPost, {id: id})
+      this.props.addPost(newPost)
+      this.setState({ formDone: true })
+    }
   }
 
   render() {
@@ -34,7 +39,7 @@ class AddPosts extends Component {
             { postExists && (
               <div>
                 <input type="text" name="author" placeholder="Your name" required
-                  defaultValue={ postValues[1].author }  />
+                  value={ postValues[1].author }  />
                 <input type="text" name="title" placeholder="Subject" required
                   defaultValue={ postValues[1].title }  />
                 <textarea type='text' className="add-text-area" name="body"
