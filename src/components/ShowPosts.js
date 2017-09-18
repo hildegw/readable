@@ -2,27 +2,15 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { addPost, deletePost, openPostEdit, selectCategory } from '../actions'
+import {Link} from "react-router-dom"
 
 
 class ShowPosts extends Component {
 
   render() {
-    const idDemoComment = {
-      "8888y6ziyjabvozdd253nd": {
-        id: '8888y6ziyjabvozdd253nd',
-        timestamp: 1467166872634,
-        title: 'ABCD is the best place to learn React',
-        body: 'Everyone says so after all.',
-        author: '123',
-        category: 'react',
-        voteScore: 6,
-        deleted: false
-    }}
 
-    const idKey = Object.keys(idDemoComment)[0]
-    const catDemo = 'React'
+    const catDemo = 'React' //TODO
     const posts = Object.entries(this.props.posts)
-    console.log(posts)
 
     return (
       <div>
@@ -35,20 +23,25 @@ class ShowPosts extends Component {
                 <p>{post[1].title}</p>
                 <p className="post-author">{post[1].id}</p>
               </div>
+
+              <Link onClick={()=>
+                { this.props.openPostEdit(post) }}
+                to={ {pathname: `/edit/${post[1].id}`} }
+                className='post-edit'>
+              </Link>
+
               <button onClick={()=>
                 { this.props.deletePost(post) }}
                 className="post-remove">
                 Remove
               </button>
+
             </li>
           )}
         </ol>
       </div>
 
       <div>
-        <button onClick={()=>{this.props.openPostEdit({editingPostId: idKey})}}>Open!</button>
-        <button onClick={()=>{this.props.addPost({id: idDemoComment})}}>Add!</button>
-        <button onClick={()=>{this.props.deletePost({id: idDemoComment})}}>Remove!</button>
         <button onClick={()=>{this.props.selectCategory({categorySelected: catDemo})}}>category!</button>
       </div>
       </div>
@@ -58,11 +51,12 @@ class ShowPosts extends Component {
 }
 
 
-const mapStateToProps = ({ posts, category }) => {
+const mapStateToProps = ({ posts, category, editPost }) => {
   //const postType = ['oPost', 'comment']  //TODO map correct type
   return {
     posts: posts,
     category: category,
+    editPost: editPost,
   }
 }
 

@@ -30,9 +30,10 @@ class SidebarMenu extends Component {
 
         <div>
           <Link
-            to="/add"
+            to="/edit"
             className='add-post'>
-            New Discussion</Link>
+            New Discussion
+          </Link>
         </div>
 
       </div>

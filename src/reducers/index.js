@@ -2,23 +2,18 @@ import { RECEIVE_POSTS, ADD_POST, REMOVE_POST, OPEN_POST_EDIT, SELECT_CATEGORY }
 import { combineReducers } from 'redux'
 
 const posts = (state={}, action) => {
-  const { posts, editingPostId, id, post } = action
+  const { posts, post } = action
   switch (action.type) {
     case RECEIVE_POSTS:
       return posts
-      
-    case OPEN_POST_EDIT:
-      return {
-        ...state,
-        editingPostId: editingPostId,
-      }
+
     case ADD_POST:
       state.push(post) //adding new post to existing posts
       return state
 
     case REMOVE_POST:
       const exclude = state.splice([post[0]], 1)
-      const newState = state.filter((item) =>  item.id != exclude[0].id)
+      const newState = state.filter((item) =>  item.id !== exclude[0].id)
       return newState
 
     default:
@@ -39,4 +34,18 @@ const category = (state= {}, action) => {
   }
 }
 
-export default combineReducers({posts, category})
+const editPost = (state= {}, action) => {
+  const { editPost } = action
+  switch (action.type) {
+    case OPEN_POST_EDIT:
+      console.log(editPost[1].id)
+      return {
+        ...state,
+        editPost: editPost,
+      }
+    default:
+      return state
+  }
+}
+
+export default combineReducers({posts, category, editPost})

@@ -54,6 +54,8 @@
   background-image: url('./../icons/plus.svg');
   background-repeat: no-repeat;
   background-position: center left;
+  width: 25px;
+  height: 25px;
   padding-right: 8px;
   padding-left: 40px;
   padding-bottom: 20px;
@@ -71,7 +73,6 @@
 }
 
 .post {
-  text-align: center;
   font-size: medium;
   display: flex;
   border-left: 1px solid #ccc;
@@ -79,12 +80,12 @@
 
 .post-list {
   list-style-type: none;
+  max-width: 500px;
+
 }
 .post-list-item {
   padding: 10px;
   background: white;
-  display: flex;
-  justify-content: space-between;
   border-bottom: 1px solid #ccc;
 }
 
@@ -110,10 +111,9 @@
 }
 
 .post-remove {
-  padding-left: 80px;
-  align-self: center;
-  width: 32px;
-  height: 32px;
+  padding-left: 40px;
+  width: 25px;
+  height: 25px;
   background-color: transparent;
   background-image: url('./../icons/cancel.svg');
   background-size: 100% 100%;
@@ -123,6 +123,21 @@
   cursor: pointer;
   outline: none;
 }
+
+.post-edit {
+  padding-left: 60px;
+  width: 23px;
+  height: 23px;
+  background-color: transparent;
+  background-image: url('./../icons/edit.svg');
+  background-size: 100% 100%;
+  border: 0;
+  color: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  outline: none;
+}
+
 
 /* Add Post */
 .Add-post {
@@ -154,6 +169,10 @@
   outline: 0;
 }
 
+.add-details input:invalid {
+  border-bottom: 1px dashed #ccc;
+}
+
 .add-text-area {
   width: 100%;
   padding: 5px 10px;
@@ -164,6 +183,10 @@
   border: none;
   border-bottom: 1px solid #ccc;
   outline: 0;
+}
+
+.add-text-area input:invalid {
+  border-bottom: 12px dashed #ccc;
 }
 
 .add-discussion {

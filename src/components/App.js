@@ -26,15 +26,12 @@ componentDidMount(){ this.props.fetchPosts() }
           <Route exact path="/" render={()=>(
             <ShowPosts />)}/>
 
-            <Route path="/add" render={({history})=>(
+            <Route path="/edit" render={({history})=>(
               <container className="Add-post">
                 <AddPost />
               </container>
             )}/>
         </container>
-
-
-
       </div>
     )
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { addPost, deletePost, openPostEdit, selectCategory } from '../actions'
+import { addPost } from '../actions'
 import {Link, Redirect} from "react-router-dom"
 import serializeForm from "form-serialize"
 import uuid from "uuid"
@@ -21,16 +21,16 @@ class AddPosts extends Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.props.editPost)
 
     return (
       <div>
       <container className='Add-post'>
         <form onSubmit={this.handleSubmit} className="add-form">
           <div className="add-details">
-            <input type="text" name="author" placeholder="Your name"/>
-            <input type="text" name="title" placeholder="Subject"/>
-            <textarea className="add-text-area" name="body" placeholder="Message"></textarea>
+            <input type="text" name="author" placeholder="Your name" required />
+            <input type="text" name="title" placeholder="Subject" required />
+            <textarea type='text' className="add-text-area" name="body" placeholder="Message" required></textarea>
             <button className='add-discussion'>Add discussion</button>
           </div>
         </form>
@@ -42,21 +42,18 @@ class AddPosts extends Component {
   }
 }
 
-
-const mapStateToProps = ({ posts, category }) => {
+const mapStateToProps = ({ posts, category, editPost }) => {
   //const postType = ['oPost', 'comment']  //TODO map correct type
   return {
     posts: posts,
     category: category,
+    editPost: editPost,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addPost: (data) => dispatch(addPost(data)),
-    deletePost: (data) => dispatch(deletePost(data)),
-    openPostEdit: (data) => dispatch(openPostEdit(data)),
-    selectCategory: (data) => dispatch(selectCategory(data)),
   }
 }
 
