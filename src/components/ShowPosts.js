@@ -8,7 +8,6 @@ import {Link} from "react-router-dom"
 class ShowPosts extends Component {
 
   render() {
-
     const catDemo = 'React' //TODO
     const posts = Object.entries(this.props.posts)
 
@@ -45,11 +44,9 @@ class ShowPosts extends Component {
         <button onClick={()=>{this.props.selectCategory({categorySelected: catDemo})}}>category!</button>
       </div>
       </div>
-
     )
   }
 }
-
 
 const mapStateToProps = ({ posts, category, editPost }) => {
   //const postType = ['oPost', 'comment']  //TODO map correct type

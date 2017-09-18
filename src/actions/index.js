@@ -45,6 +45,12 @@ export const removePost = ((post) => {
   }
 })
 
+//update edited post in DB and store
+//thunk to update DB
+export const updatePostInDb = (id, title, body, editPost) => dispatch => {
+  PostsApi.updatePost(id, title, body).then(dispatch(openPostEdit(editPost)))
+}
+////action to set state keeping the post to be edited
 export const openPostEdit = ((editPost) => {
   return {
     type: OPEN_POST_EDIT,

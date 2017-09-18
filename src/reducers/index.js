@@ -38,7 +38,6 @@ const editPost = (state= {}, action) => {
   const { editPost } = action
   switch (action.type) {
     case OPEN_POST_EDIT:
-      console.log(editPost[1].id)
       return {
         ...state,
         editPost: editPost,

@@ -1,9 +1,6 @@
 const api = 'http://localhost:3001'
 
 
-
-
-
 export const fetchPosts = () => {
   const headersGet = {
     headers: { 'Authorization': 'hildegwUdacityReadable' }
@@ -34,6 +31,18 @@ export const addPost = (post) => {
          'Authorization': 'hildegwUdacityReadable',
        }
    };
-   console.log(headersAdd.body)
    return fetch(`${api}/posts`, headersAdd,)
+}
+
+//Update a post: `PUT /posts/:id` title and body
+export const updatePost = (id, title, body) => {
+   const headersUpdate = {
+       method: 'POST',
+       body: JSON.stringify(title, body),
+       headers: {
+         'Content-Type': 'application/json',
+         'Authorization': 'hildegwUdacityReadable',
+       }
+   };
+   return fetch(`${api}/posts/$(id)`, headersUpdate,)
 }
