@@ -27,7 +27,7 @@ const category = (state= {}, action) => {
     case SELECT_CATEGORY:
       return {
         ...state,
-        categorySelected: categorySelected,
+        categorySelected,
       }
     default:
       return state

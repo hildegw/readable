@@ -20,7 +20,7 @@ class ShowPosts extends Component {
               <div className="post-details">
                 <p className="post-author">{post[1].author}</p>
                 <p>{post[1].title}</p>
-                <p className="post-author">{post[1].id}</p>
+                <p className="post-author">{post[1].category}</p>
               </div>
 
               <Link onClick={()=>

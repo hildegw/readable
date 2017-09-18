@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { addPost, openPostEdit, updatePostInDb } from '../actions'
+import { addPost, openPostEdit, updatePostInDb, selectCategory } from '../actions'
 import {Link, Redirect} from "react-router-dom"
 import serializeForm from "form-serialize"
 import uuid from "uuid"
 
+//TODO investigate Link versus Redirect
 
 class AddPosts extends Component {
   state = {
     formDone: false,
     postExists: false,
+    category: 'none',
    }
 
-  componentDidMount(){ this.setPostExistState() }
+  componentDidMount(){
+    this.setPostExistState()
+  }
 
   setPostExistState = () => {
     const postValues = this.props.editPost['editPost']
@@ -24,8 +28,13 @@ class AddPosts extends Component {
       this.setState({ postExists: false })
   }}
 
+  checkCategory = (event) => {
+    event.preventDefault()
+    this.setState({ category: event.target.value})
+  }
+
   //hand over post to store and DB
-  handleSubmit = (event)=>{
+  handleSubmit = (event) => {
     event.preventDefault()
     //edited post
     if (this.state.postExists) {
@@ -35,7 +44,7 @@ class AddPosts extends Component {
       const id = postValues[1].id
       const title = newPost.title
       const body = newPost.body
-      Object.assign(editPost, {title: title}, {body: body})
+      Object.assign(editPost, {title: title}, {body: body},)
       this.props.updatePostInDb(id, title, body, editPost)
       this.setState({ postExists: false })
     //new post
@@ -44,14 +53,15 @@ class AddPosts extends Component {
       const id = uuid()
       Object.assign(newPost, {id: id})
       this.props.addPost(newPost)
+      //this.props.selectCategory(newPost.category) TODO needed?
     }
     this.setState({ formDone: true })
   }
 
   render() {
+    const categories = ['React', 'Redux', 'Udacity']  //TODO fetch from DB instead
     const postValues = this.props.editPost['editPost']
-    console.log(postValues)
-
+    console.log(this.state.category)
     return (
       <div>
       { this.state.formDone && (<Redirect to='/' />)}
@@ -77,10 +87,21 @@ class AddPosts extends Component {
                 <input type="text" name="title" placeholder="Subject" required />
                 <textarea type='text' className="add-text-area" name="body"
                   placeholder="Message" required ></textarea>
+
+                <div className='add-radio' >
+                {categories.map((cat) =>
+                  <label key={cat}><input type="radio" name='category' value={cat}
+                    onClick={this.checkCategory} required />
+                    <span className={ this.state.category===cat ? 'add-radio-checked' : '' }>{cat}</span>
+                  </label>
+                )}
+                </div>
+
               </div>
             )}
 
-            <button className='add-discussion'>Add discussion</button>
+
+            <button className='add-discussion'>Add</button>
           </div>
         </form>
         <Link to="/" className="close-add">Discard</Link>
@@ -90,7 +111,7 @@ class AddPosts extends Component {
   }
 }
 
-const mapStateToProps = ({ posts, category, editPost }) => {
+const mapStateToProps = ({ posts, category, editPost, }) => {
   //const postType = ['oPost', 'comment']  //TODO map correct type
   return { posts, category, editPost }
 }
@@ -100,6 +121,7 @@ const mapDispatchToProps = (dispatch) => {
     addPost: (data) => dispatch(addPost(data)),
     openPostEdit: (data) => dispatch(openPostEdit(data)),
     updatePostInDb: (id, title, body, postEdit) => dispatch(updatePostInDb(id, title, body, postEdit)),
+    selectCategory: (data) => dispatch(selectCategory(data)),
   }
 }
 
