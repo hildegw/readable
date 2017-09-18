@@ -8,21 +8,32 @@ import uuid from "uuid"
 
 
 class AddPosts extends Component {
-  state = { formDone: false }
+  state = {
+    formDone: false,
+    postExists: false,
+   }
 
-  //hand over new post in format {id: {author: xxx, body: xxx, id: xxx}}
+  componentDidMount(){ this.setPostExistState() }
+
+  setPostExistState = () => {
+    const postValues = this.props.editPost['editPost']
+    try {
+      postValues[1].hasOwnProperty('id')
+      this.setState({ postExists: true })
+    } catch (e) {
+      this.setState({ postExists: false })
+  }}
+
+  //hand over post to store and DB
   handleSubmit = (event)=>{
     event.preventDefault()
-    //const postToEdit = this.props.editPost
-    //const postExists = postToEdit.hasOwnProperty('editPost')
-    const postValues = this.props.editPost['editPost']
-    const postExists = postValues.hasOwnProperty('id')
-
-    if (postExists) {
-      //let postValues = postToEdit['editPost']
+    //edited post
+    if (this.state.postExists) {
+      const postValues = this.props.editPost['editPost']
       this.props.updatePostInDb(postValues[1].id, postValues[1].title,
-        postValues[1].body, postValues)
-
+        postValues[1].body, this.props.postEdit)
+      this.setState({ postExists: false })
+    //new post
     } else {
       const newPost = serializeForm(event.target, {hash: true})
       const id = uuid()
@@ -33,20 +44,8 @@ class AddPosts extends Component {
   }
 
   render() {
-    console.log(this.props.editPost)
-    //const postToEdit = this.props.editPost
-    //const postExists = postToEdit.hasOwnProperty('editPost')
-    //let postValues = postToEdit['editPost']
     const postValues = this.props.editPost['editPost']
     console.log(postValues)
-    console.log(postValues.hasOwnProperty())
-    let postExists = false
-    try {
-      postValues[1].hasOwnProperty('id')
-      postExists = true
-    } catch (e) {
-      postExists = false
-    }
 
     return (
       <div>
@@ -55,7 +54,7 @@ class AddPosts extends Component {
       <container className='Add-post'>
         <form onSubmit={this.handleSubmit} className="add-form">
           <div className="add-details">
-            { postExists && (
+            { this.state.postExists && (
               <div>
                 <input type="text" name="author" placeholder="Your name" readOnly
                   value={ postValues[1].author }  />
@@ -67,7 +66,7 @@ class AddPosts extends Component {
               </div>
             )}
 
-            { !postExists && (
+            { !this.state.postExists && (
               <div>
                 <input type="text" name="author" placeholder="Your name" required />
                 <input type="text" name="title" placeholder="Subject" required />
@@ -95,7 +94,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addPost: (data) => dispatch(addPost(data)),
     openPostEdit: (data) => dispatch(openPostEdit(data)),
-    updatePostInDb: (data) => dispatch(updatePostInDb(data)),
+    updatePostInDb: (id, title, body, postEdit) => dispatch(updatePostInDb(id, title, body, postEdit)),
   }
 }
 

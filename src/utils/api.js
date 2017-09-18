@@ -36,13 +36,17 @@ export const addPost = (post) => {
 
 //Update a post: `PUT /posts/:id` title and body
 export const updatePost = (id, title, body) => {
+  const data = {title, body}
+  console.log(JSON.stringify(data))
+  console.log(`${api}/posts/${id}`)
    const headersUpdate = {
-       method: 'POST',
-       body: JSON.stringify(title, body),
+       method: 'PUT',
+       body: JSON.stringify(data),
        headers: {
+         'Accept': 'application/json',
          'Content-Type': 'application/json',
          'Authorization': 'hildegwUdacityReadable',
        }
    };
-   return fetch(`${api}/posts/$(id)`, headersUpdate,)
+   return fetch(`${api}/posts/${id}`, headersUpdate,)
 }
