@@ -29,9 +29,14 @@ class AddPosts extends Component {
     event.preventDefault()
     //edited post
     if (this.state.postExists) {
+      const newPost = serializeForm(event.target, {hash: true})
       const postValues = this.props.editPost['editPost']
-      this.props.updatePostInDb(postValues[1].id, postValues[1].title,
-        postValues[1].body, this.props.postEdit)
+      const editPost = postValues[1]
+      const id = postValues[1].id
+      const title = newPost.title
+      const body = newPost.body
+      Object.assign(editPost, {title: title}, {body: body})
+      this.props.updatePostInDb(id, title, body, editPost)
       this.setState({ postExists: false })
     //new post
     } else {
