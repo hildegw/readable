@@ -1,20 +1,27 @@
 import { RECEIVE_POSTS, RECEIVE_CATEGORIES, ADD_POST, REMOVE_POST, OPEN_POST_EDIT, SELECT_CATEGORY } from '../actions'
 import { combineReducers } from 'redux'
 
+
 const posts = (state={}, action) => {
   const { posts, post } = action
   switch (action.type) {
     case RECEIVE_POSTS:
-      return posts
-
+      return  {
+        ...state,
+        posts,
+      }
     case ADD_POST:
-      state.push(post) //TODO review
-      return state
+      return {
+        ...state,
+        [posts]: post,
+      }
 
     case REMOVE_POST:
-      const exclude = state.splice([post[0]], 1)
-      const newState = state.filter((item) =>  item.id !== exclude[0].id)
-      return newState
+      const newStatePosts = state.posts.filter((item) => item.id !== post.id)
+      return {
+        ...state,
+        posts: newStatePosts,
+      }
 
     default:
       return state
@@ -25,6 +32,7 @@ const categories = (state= {}, action) => {
   const { categories, categorySelected } = action
   switch (action.type) {
     case RECEIVE_CATEGORIES:
+    console.log(categories)
       return {
         ...state,
         categories

@@ -50,7 +50,7 @@ export const newPost = ((post) => {
 //remove data from DB and from store
 //thunk
 export const deletePost = (post) => dispatch => {
-  PostsApi.deletePost(post[1].id).then(dispatch(removePost(post)))
+  PostsApi.deletePost(post['id']).then(dispatch(removePost(post)))
 }
 //action
 export const removePost = ((post) => {
@@ -66,7 +66,6 @@ export const updatePostInDb = (id, title, body, editPost) => dispatch => {
   PostsApi.updatePost(id, title, body)
   .then(
     (data) => {
-    console.log(data)
     dispatch(openPostEdit(editPost))
   })
 }

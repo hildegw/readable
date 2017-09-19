@@ -15,7 +15,7 @@ export const fetchCategories = () => {
   }
   return fetch( `${api}/categories`,  headersGet )
   .then(result => result.json())
-  .then(data => data.categories)     
+  .then(data => data.categories)
 }
 
 export const deletePost = (id) => {
@@ -46,16 +46,14 @@ export const addPost = (post) => {
 //Update a post: `PUT /posts/:id` title and body
 export const updatePost = (id, title, body) => {
   const data = {title, body}
-  console.log(JSON.stringify(data))
-  console.log(`${api}/posts/${id}`)
-   const headersUpdate = {
-       method: 'PUT',
-       body: JSON.stringify(data),
-       headers: {
-         'Accept': 'application/json',
-         'Content-Type': 'application/json',
-         'Authorization': 'hildegwUdacityReadable',
-       }
-   };
+  const headersUpdate = {
+     method: 'PUT',
+     body: JSON.stringify(data),
+     headers: {
+       'Accept': 'application/json',
+       'Content-Type': 'application/json',
+       'Authorization': 'hildegwUdacityReadable',
+     }
+   }
    return fetch(`${api}/posts/${id}`, headersUpdate,)
 }

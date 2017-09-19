@@ -10,23 +10,24 @@ class ShowPosts extends Component {
   componentDidMount(){ this.props.fetchPosts() }
 
   render() {
-    const posts = Object.entries(this.props.posts)
+    const { posts } = this.props.posts
 
     return (
       <div>
+        { posts!==undefined && (
         <div className="post">
           <ol className="post-list">
             {posts.map((post)=>
-              <li key={post[1].id} className="post-list-item">
+              <li key={post['id']} className="post-list-item">
                 <div className="post-details">
-                  <p className="post-author">{post[1].author}</p>
-                  <p>{post[1].title}</p>
-                  <p className="post-author">{post[1].category}</p>
+                  <p className="post-author">{post['author']}</p>
+                  <p>{post['title']}</p>
+                  <p className="post-author">{post['category']}</p>
                 </div>
 
                 <Link onClick={()=>
                   { this.props.openPostEdit(post) }}
-                  to={ {pathname: `/edit/${post[1].id}`} }
+                  to={ {pathname: `/edit/${post['id']}`} }
                   className='post-edit'>
                 </Link>
 
@@ -39,7 +40,8 @@ class ShowPosts extends Component {
               </li>
             )}
           </ol>
-        </div>
+        </div>)}
+
       </div>
     )
   }

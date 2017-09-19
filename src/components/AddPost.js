@@ -23,7 +23,6 @@ class AddPosts extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const newPost = serializeForm(event.target, {hash: true})
-    console.log(newPost)
     const id = uuid()
     Object.assign(newPost, {id: id}, {category: this.state.category})
     this.props.addPost(newPost)
