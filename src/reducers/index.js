@@ -32,7 +32,6 @@ const categories = (state= {}, action) => {
   const { categories, categorySelected } = action
   switch (action.type) {
     case RECEIVE_CATEGORIES:
-    console.log(categories)
       return {
         ...state,
         categories

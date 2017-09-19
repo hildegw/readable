@@ -18,16 +18,16 @@ class ShowPosts extends Component {
         <div className="post">
           <ol className="post-list">
             {posts.map((post)=>
-              <li key={post['id']} className="post-list-item">
+              <li key={post.id} className="post-list-item">
                 <div className="post-details">
-                  <p className="post-author">{post['author']}</p>
-                  <p>{post['title']}</p>
-                  <p className="post-author">{post['category']}</p>
+                  <p className="post-author">{post.author}</p>
+                  <p>{post.title}</p>
+                  <p className="post-author">{post.category}</p>
                 </div>
 
                 <Link onClick={()=>
                   { this.props.openPostEdit(post) }}
-                  to={ {pathname: `/edit/${post['id']}`} }
+                  to={ {pathname: `/edit/${post.id}`} }
                   className='post-edit'>
                 </Link>
 

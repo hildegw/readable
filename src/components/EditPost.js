@@ -16,9 +16,8 @@ class EditPosts extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const newPost = serializeForm(event.target, {hash: true})
-    const postValues = this.props.editPost['editPost']
-    const editPost = postValues[1]
-    const id = postValues[1].id
+    const { editPost } = this.props.editPost
+    const id = editPost.id
     const title = newPost.title
     const body = newPost.body
     Object.assign(editPost, {title: title}, {body: body},)
@@ -27,7 +26,8 @@ class EditPosts extends Component {
   }
 
   render() {
-    const postValues = this.props.editPost['editPost']
+    const { editPost } = this.props.editPost
+
     return (
       <div>
       { this.state.formDone && (<Redirect to='/' />)}
@@ -37,12 +37,12 @@ class EditPosts extends Component {
           <div className="add-details">
               <div>
                 <input type="text" name="author" placeholder="Your name" readOnly
-                  value={ postValues[1].author }  />
+                  value={ editPost.author }  />
                 <input type="text" name="title" placeholder="Subject" required
-                  defaultValue={ postValues[1].title }  />
+                  defaultValue={ editPost.title }  />
                 <textarea type='text' className="add-text-area" name="body"
                   placeholder="Message" required
-                  defaultValue={ postValues[1].body } ></textarea>
+                  defaultValue={ editPost.body } ></textarea>
               </div>
             <button className='add-discussion'>Add</button>
           </div>
