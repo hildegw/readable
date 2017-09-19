@@ -6,7 +6,7 @@ import {Link, Redirect} from "react-router-dom"
 import serializeForm from "form-serialize"
 
 //TODO investigate Link versus Redirect, adjust Add-Button visibility: formDone state
-
+//TODO fetch posts if no state exists
 class EditPosts extends Component {
   state = {
     formDone: false,
@@ -31,7 +31,7 @@ class EditPosts extends Component {
     return (
       <div>
       { this.state.formDone && (<Redirect to='/' />)}
-
+      { editPost!==undefined && (
       <container className='Add-post'>
         <form onSubmit={this.handleSubmit} className="add-form">
           <div className="add-details">
@@ -48,7 +48,7 @@ class EditPosts extends Component {
           </div>
         </form>
         <Link to="/" className="close-add">Discard</Link>
-      </container>
+      </container>)}
       </div>
     )
   }

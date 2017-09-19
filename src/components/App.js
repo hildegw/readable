@@ -7,8 +7,9 @@ import ShowPosts from './ShowPosts'
 import AddPost from './AddPost'
 import SidebarMenu from './SidebarMenu'
 import EditPost from './EditPost'
+import ShowCategoryPosts from './ShowCategoryPosts'
 
-
+//TODO home button
 class App extends Component {
 
   render() {
@@ -34,6 +35,8 @@ class App extends Component {
           <Route path="/edit" render={({history})=>(
               <EditPost />
           )}/>
+
+          <Route path="/category/:name" component={ShowCategoryPosts}/>
 
         </container>
       </div>

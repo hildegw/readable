@@ -19,13 +19,13 @@ class SidebarMenu extends Component {
         { categories!==undefined && (
         <div className="cat-list">
           {categories.map((cat)=>
-            <div key={cat['name']}>
+            <div key={cat.name}>
               <ul>
               <Link
-                to={'/' + cat['name']}
+                to={'/category/' + cat.name}
                 className='cat-item'
-                onClick={()=> { this.props.selectCategory(cat['name']) }}>
-                {cat['name']}
+                onClick={()=> { this.props.selectCategory(cat.name) }}>
+                {cat.name}
               </Link>
               </ul>
             </div>
