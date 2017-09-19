@@ -7,11 +7,13 @@ import {Link} from "react-router-dom"
 
 class ShowCategoryPosts extends Component {
 
-  componentDidMount(){ this.props.fetchPosts() } //TODO fetch only if necessary
+  componentDidMount(){
+    if (this.props===undefined || !this.props.posts.hasOwnProperty('posts')) {
+      this.props.fetchPosts()}
+  }
 
   render() {
     const { posts } = this.props.posts
-    const { categories } = this.props.categories
     const category = this.props.match.params.name
 
     return (

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { updatePostInDb, } from '../actions'
+import { updatePostInDb, fetchPosts, openPostEdit } from '../actions'
 import {Link, Redirect} from "react-router-dom"
 import serializeForm from "form-serialize"
 
@@ -11,6 +11,18 @@ class EditPosts extends Component {
   state = {
     formDone: false,
    }
+
+  componentDidMount(){
+    const editPostId = this.props.match.params.id
+    if (this.props===undefined || !this.props.editPost.hasOwnProperty('editPost')) {
+      this.props.fetchPosts()
+        .then(() => {
+          const { posts } = this.props.posts
+          const post = posts.filter((post) => post.id===editPostId)
+          this.props.openPostEdit(post[0])
+        })
+    }
+  }
 
   //hand over post to store and DB
   handleSubmit = (event) => {
@@ -54,13 +66,14 @@ class EditPosts extends Component {
   }
 }
 
-const mapStateToProps = ({ posts, category, editPost, }) => {
-  //const postType = ['oPost', 'comment']  //TODO map correct type
-  return { posts, category, editPost }
+const mapStateToProps = ({ posts, editPost, }) => {
+  return { posts, editPost }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchPosts: () => dispatch(fetchPosts()),
+    openPostEdit: (data) => dispatch(openPostEdit(data)),
     updatePostInDb: (id, title, body, postEdit) => dispatch(updatePostInDb(id, title, body, postEdit)),
   }
 }

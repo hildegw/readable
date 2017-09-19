@@ -32,9 +32,7 @@ class App extends Component {
               <AddPost />
           )}/>
 
-          <Route path="/edit" render={({history})=>(
-              <EditPost />
-          )}/>
+          <Route path="/edit/:id" component={EditPost} />
 
           <Route path="/category/:name" component={ShowCategoryPosts}/>
 

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { fetchCategories, selectCategory, openPostEdit } from '../actions'
 import {Link} from "react-router-dom"
 
+//TODO highlight selection
 class SidebarMenu extends Component {
 
   componentDidMount(){
