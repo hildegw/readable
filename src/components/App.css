@@ -49,7 +49,7 @@
   text-decoration: none;
 }
 
-.add-post {
+.add-post-link {
   background-color: transparent;
   background-image: url('./../icons/plus.svg');
   background-repeat: no-repeat;
@@ -81,7 +81,6 @@
 .post-list {
   list-style-type: none;
   max-width: 500px;
-
 }
 .post-list-item {
   padding: 10px;

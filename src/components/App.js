@@ -7,6 +7,7 @@ import { fetchPosts, } from '../actions'
 import ShowPosts from './ShowPosts'
 import AddPost from './AddPost'
 import SidebarMenu from './SidebarMenu'
+import EditPost from './EditPost'
 
 
 class App extends Component {
@@ -18,19 +19,24 @@ componentDidMount(){ this.props.fetchPosts() }
       <div>
         <container className="App-header" >
           <img src={logo} className="App-logo" alt="Logo Home" />
-          <h1>Discussion Board</h1>
+          <h2>Discussion Board</h2>
         </container>
 
         <container className="Sidebar-show-posts" >
+
           <SidebarMenu />
+
           <Route exact path="/" render={()=>(
             <ShowPosts />)}/>
 
-            <Route path="/edit" render={({history})=>(
-              <container className="Add-post">
-                <AddPost />
-              </container>
-            )}/>
+          <Route path="/add" render={({history})=>(
+              <AddPost />
+          )}/>
+
+          <Route path="/edit" render={({history})=>(
+              <EditPost />
+          )}/>
+
         </container>
       </div>
     )

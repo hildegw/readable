@@ -12,33 +12,32 @@ class ShowPosts extends Component {
 
     return (
       <div>
-      <div className="post">
-        <ol className="post-list">
-          {posts.map((post)=>
-            <li key={post[1].id} className="post-list-item">
-              <div className="post-details">
-                <p className="post-author">{post[1].author}</p>
-                <p>{post[1].title}</p>
-                <p className="post-author">{post[1].category}</p>
-              </div>
+        <div className="post">
+          <ol className="post-list">
+            {posts.map((post)=>
+              <li key={post[1].id} className="post-list-item">
+                <div className="post-details">
+                  <p className="post-author">{post[1].author}</p>
+                  <p>{post[1].title}</p>
+                  <p className="post-author">{post[1].category}</p>
+                </div>
 
-              <Link onClick={()=>
-                { this.props.openPostEdit(post) }}
-                to={ {pathname: `/edit/${post[1].id}`} }
-                className='post-edit'>
-              </Link>
+                <Link onClick={()=>
+                  { this.props.openPostEdit(post) }}
+                  to={ {pathname: `/edit/${post[1].id}`} }
+                  className='post-edit'>
+                </Link>
 
-              <button onClick={()=>
-                { this.props.deletePost(post) }}
-                className="post-remove">
-                Remove
-              </button>
+                <button onClick={()=>
+                  { this.props.deletePost(post) }}
+                  className="post-remove">
+                  Remove
+                </button>
 
-            </li>
-          )}
-        </ol>
-      </div>
-
+              </li>
+            )}
+          </ol>
+        </div>
       </div>
     )
   }
