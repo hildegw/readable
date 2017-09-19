@@ -8,7 +8,6 @@ import {Link} from "react-router-dom"
 class ShowPosts extends Component {
 
   render() {
-    const catDemo = 'React' //TODO
     const posts = Object.entries(this.props.posts)
 
     return (
@@ -40,9 +39,6 @@ class ShowPosts extends Component {
         </ol>
       </div>
 
-      <div>
-        <button onClick={()=>{this.props.selectCategory({categorySelected: catDemo})}}>category!</button>
-      </div>
       </div>
     )
   }
