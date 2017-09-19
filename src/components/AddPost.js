@@ -16,25 +16,26 @@ class AddPosts extends Component {
 
   checkCategory = (event) => {
     event.preventDefault()
-    this.setState({ category: event.target.value})
+    this.setState({ category: event.target.value })
   }
 
   //hand over post to store and DB
   handleSubmit = (event) => {
     event.preventDefault()
     const newPost = serializeForm(event.target, {hash: true})
+    console.log(newPost)
     const id = uuid()
-    Object.assign(newPost, {id: id})
+    Object.assign(newPost, {id: id}, {category: this.state.category})
     this.props.addPost(newPost)
     this.setState({ formDone: true })
   }
 
   render() {
     const categories = ['React', 'Redux', 'Udacity']  //TODO fetch from DB instead
+    console.log(this.state.category)
     return (
       <div>
       { this.state.formDone && (<Redirect to='/' />)}
-
       <container className='Add-post'>
         <form onSubmit={this.handleSubmit} className="add-form">
           <div className="add-details">
@@ -56,10 +57,8 @@ class AddPosts extends Component {
 
               </div>
 
-            {this.state.category!=='none' ?
-              <button className='add-discussion'>Add</button> :
-              <button className='add-discussion-grey'>Add</button>
-            }
+            { this.state.category!=='none' &&
+              <button className='add-discussion'>Add</button> }
           </div>
         </form>
         <Link to="/" className="close-add">Discard</Link>
