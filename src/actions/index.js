@@ -4,7 +4,8 @@ export const RECEIVE_POSTS = "RECEIVE_POSTS"
 export const ADD_POST = "ADD_POST"
 export const REMOVE_POST = "REMOVE_POST"
 export const OPEN_POST_EDIT = "OPEN_POST_EDIT"
-export const SELECT_CATEGORY = "SELECT_CATEGORY"
+export const SELECT_CATEGORY = "SELECT_CATEGORY"  //TODO check if needed
+export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES"
 
 //fetch data from DB
 //thunk middleware for asynchronous call to fetch posts
@@ -18,6 +19,20 @@ export const receivePosts = ((posts) => {
     posts,
   }
 })
+
+//fetch categories from DB
+//thunk middleware for asynchronous call to fetch categories
+export const fetchCategories = () => dispatch => (
+  PostsApi.fetchCategories().then((data) => {
+    dispatch(receiveCategories(data))}))
+//action creator functions being called upon receive
+export const receiveCategories = ((categories) => {
+  return {
+    type: RECEIVE_CATEGORIES,
+    categories,
+  }
+})
+
 
 //add a post to DB and state
 //thunk

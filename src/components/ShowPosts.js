@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { addPost, deletePost, openPostEdit, selectCategory } from '../actions'
+import { fetchPosts, deletePost, openPostEdit } from '../actions'
 import {Link} from "react-router-dom"
 
 
 class ShowPosts extends Component {
+
+  componentDidMount(){ this.props.fetchPosts() }
 
   render() {
     const posts = Object.entries(this.props.posts)
@@ -43,17 +45,16 @@ class ShowPosts extends Component {
   }
 }
 
-const mapStateToProps = ({ posts, category, editPost }) => {
+const mapStateToProps = ({ posts, categories, editPost }) => {
   //const postType = ['oPost', 'comment']  //TODO map correct type
-  return { posts, category, editPost }
+  return { posts, categories, editPost }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addPost: (data) => dispatch(addPost(data)),
+    fetchPosts: () => dispatch(fetchPosts()),
     deletePost: (data) => dispatch(deletePost(data)),
     openPostEdit: (data) => dispatch(openPostEdit(data)),
-    selectCategory: (data) => dispatch(selectCategory(data)),
   }
 }
 

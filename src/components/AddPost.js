@@ -68,9 +68,9 @@ class AddPosts extends Component {
   }
 }
 
-const mapStateToProps = ({ posts, category, editPost, }) => {
+const mapStateToProps = ({ posts, categories, editPost, }) => {
   //const postType = ['oPost', 'comment']  //TODO map correct type
-  return { posts, category, editPost }
+  return { posts, categories, editPost }
 }
 
 const mapDispatchToProps = (dispatch) => {

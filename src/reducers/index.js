@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS, ADD_POST, REMOVE_POST, OPEN_POST_EDIT, SELECT_CATEGORY } from '../actions'
+import { RECEIVE_POSTS, RECEIVE_CATEGORIES, ADD_POST, REMOVE_POST, OPEN_POST_EDIT, SELECT_CATEGORY } from '../actions'
 import { combineReducers } from 'redux'
 
 const posts = (state={}, action) => {
@@ -21,9 +21,14 @@ const posts = (state={}, action) => {
   }
 }
 
-const category = (state= {}, action) => {
-  const { categorySelected } = action
+const categories = (state= {}, action) => {
+  const { categories, categorySelected } = action
   switch (action.type) {
+    case RECEIVE_CATEGORIES:
+      return {
+        ...state,
+        categories
+      }
     case SELECT_CATEGORY:
       return {
         ...state,
@@ -47,4 +52,4 @@ const editPost = (state= {}, action) => {
   }
 }
 
-export default combineReducers({posts, category, editPost})
+export default combineReducers({posts, categories, editPost})

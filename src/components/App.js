@@ -3,7 +3,6 @@ import logo from './logo.svg'
 import './App.css'
 import { connect } from 'react-redux'
 import {Route, withRouter} from "react-router-dom"
-import { fetchPosts, } from '../actions'
 import ShowPosts from './ShowPosts'
 import AddPost from './AddPost'
 import SidebarMenu from './SidebarMenu'
@@ -11,7 +10,6 @@ import EditPost from './EditPost'
 
 
 class App extends Component {
-componentDidMount(){ this.props.fetchPosts() }
 
   render() {
 
@@ -43,7 +41,7 @@ componentDidMount(){ this.props.fetchPosts() }
   }
 }
 
-const mapStateToProps = ({ posts, category }) => {
+/*const mapStateToProps = ({ posts, }) => {
   return {
     posts: posts,
   }
@@ -53,9 +51,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
   }
-}
+}*/
 
 export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps,
 )(App))

@@ -9,6 +9,15 @@ export const fetchPosts = () => {
   .then(result => result.json())
 }
 
+export const fetchCategories = () => {
+  const headersGet = {
+    headers: { 'Authorization': 'hildegwUdacityReadable' }
+  }
+  return fetch( `${api}/categories`,  headersGet )
+  .then(result => result.json())
+  .then(data => data.categories)     
+}
+
 export const deletePost = (id) => {
   const headersDelete = {
     method: 'delete',

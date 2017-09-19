@@ -1,32 +1,36 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { addPost, selectCategory, openPostEdit } from '../actions'
+import { fetchCategories, selectCategory, openPostEdit } from '../actions'
 import {Link} from "react-router-dom"
 
 class SidebarMenu extends Component {
 
+  componentDidMount(){
+    this.props.fetchCategories()
+  }
 
   render() {
-    const categories = ['React', 'Redux', 'Udacity']
+    let categories = this.props.categories.categories
 
     return (
       <div className='Sidebar-menu'>
 
+        { categories!==undefined && (
         <div className="cat-list">
           {categories.map((cat)=>
-            <div key={cat}>
+            <div key={cat['name']}>
               <ul>
               <Link
-                to={'/' + cat}
+                to={'/' + cat['name']}
                 className='cat-item'
-                onClick={()=> { this.props.selectCategory(cat) }}>
-                {cat}
+                onClick={()=> { this.props.selectCategory(cat['name']) }}>
+                {cat['name']}
               </Link>
               </ul>
             </div>
           )}
-        </div>
+        </div>)}
 
         <div>
           <Link
@@ -44,16 +48,16 @@ class SidebarMenu extends Component {
 }
 
 
-const mapStateToProps = ({ posts, category, editPost }) => {
+const mapStateToProps = ({ categories, editPost }) => {
   //const postType = ['oPost', 'comment']  //TODO map correct type
-  return { posts, category, editPost }
+  return { categories, editPost }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addPost: (data) => dispatch(addPost(data)),
     selectCategory: (data) => dispatch(selectCategory(data)),
     openPostEdit: (data) => dispatch(openPostEdit(data)),
+    fetchCategories: () => dispatch(fetchCategories()),
   }
 }
 
