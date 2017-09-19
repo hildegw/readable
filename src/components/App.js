@@ -25,12 +25,9 @@ class App extends Component {
 
           <SidebarMenu />
 
-          <Route exact path="/" render={()=>(
-            <ShowPosts />)}/>
+          <Route exact path="/" component={ShowPosts} />
 
-          <Route path="/add" render={({history})=>(
-              <AddPost />
-          )}/>
+          <Route path="/add" component={AddPost} />
 
           <Route path="/edit/:id" component={EditPost} />
 

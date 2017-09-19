@@ -35,7 +35,10 @@ class EditPosts extends Component {
     Object.assign(editPost, {title: title}, {body: body},)
     this.props.updatePostInDb(id, title, body, editPost)
     this.setState({ formDone: true })
+    this.props.history.goBack()
   }
+
+  justGoBack = (evenet) => { this.props.history.goBack() }
 
   render() {
     const { editPost } = this.props.editPost
@@ -59,7 +62,7 @@ class EditPosts extends Component {
             <button className='add-discussion'>Add</button>
           </div>
         </form>
-        <Link to="/" className="close-add">Discard</Link>
+        <button className="close-add" onClick={this.justGoBack}>Discard</button>
       </container>)}
       </div>
     )

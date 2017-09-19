@@ -15,6 +15,8 @@ class ShowCategoryPosts extends Component {
   render() {
     const { posts } = this.props.posts
     const category = this.props.match.params.name
+    console.log(this.props.history)
+    console.log(this.props)
 
     return (
       <div>
