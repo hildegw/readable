@@ -11,7 +11,7 @@ class SidebarMenu extends Component {
   }
 
   render() {
-    let categories = this.props.categories.categories
+    const categories = this.props.categories.categories
 
     return (
       <div className='Sidebar-menu'>

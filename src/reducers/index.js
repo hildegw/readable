@@ -8,7 +8,7 @@ const posts = (state={}, action) => {
       return posts
 
     case ADD_POST:
-      state.push(post) //adding new post to existing posts
+      state.push(post) //TODO review
       return state
 
     case REMOVE_POST:

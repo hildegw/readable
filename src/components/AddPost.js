@@ -31,8 +31,8 @@ class AddPosts extends Component {
   }
 
   render() {
-    const categories = ['React', 'Redux', 'Udacity']  //TODO fetch from DB instead
-    console.log(this.state.category)
+    const categories = this.props.categories.categories
+
     return (
       <div>
       { this.state.formDone && (<Redirect to='/' />)}
@@ -46,14 +46,15 @@ class AddPosts extends Component {
                 <textarea type='text' className="add-text-area" name="body"
                   placeholder="Message" required ></textarea>
 
+                { categories!==undefined && (
                 <div className='add-radio' >
                 {categories.map((cat) =>
-                  <label key={cat}><input type="radio" name='category' value={cat}
+                  <label key={cat['name']}><input type="radio" name='category' value={cat['name']}
                     onClick={this.checkCategory} />
-                    <span className={ this.state.category===cat ? 'add-radio-checked' : '' }>{cat}</span>
+                    <span className={ this.state.category===cat['name'] ? 'add-radio-checked' : '' }>{cat['name']}</span>
                   </label>
                 )}
-                </div>
+                </div>)}
 
               </div>
 
@@ -65,7 +66,7 @@ class AddPosts extends Component {
       </container>
       </div>
     )
-  }
+  }b
 }
 
 const mapStateToProps = ({ posts, categories, editPost, }) => {
