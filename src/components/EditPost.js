@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { updatePostInDb, fetchPosts, openPostEdit } from '../actions'
-import {Link, Redirect} from "react-router-dom"
 import serializeForm from "form-serialize"
 
 //TODO investigate Link versus Redirect, adjust Add-Button visibility: formDone state
@@ -45,7 +44,6 @@ class EditPosts extends Component {
 
     return (
       <div>
-      { this.state.formDone && (<Redirect to='/' />)}
       { editPost!==undefined && (
       <container className='Add-post'>
         <form onSubmit={this.handleSubmit} className="add-form">

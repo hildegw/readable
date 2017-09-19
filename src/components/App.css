@@ -109,30 +109,37 @@
   font-size: small;
 }
 
-.post-remove {
-  padding-left: 40px;
+.post-tools {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
   width: 25px;
   height: 25px;
+}
+
+.post-remove {
   background-color: transparent;
   background-image: url('./../icons/cancel.svg');
-  background-size: 100% 100%;
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  background-position: center center;
   border: 0;
-  color: black;
-  font-size: 0;
+  color: transparent;
+  font-size: 5spx;;
   cursor: pointer;
   outline: none;
 }
 
 .post-edit {
-  padding-left: 60px;
-  width: 23px;
-  height: 23px;
+  padding-left: 80px;
   background-color: transparent;
   background-image: url('./../icons/edit.svg');
-  background-size: 100% 100%;
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  background-position: center center;
   border: 0;
   color: transparent;
-  font-size: 20px;
+  font-size: 0px;
   cursor: pointer;
   outline: none;
 }

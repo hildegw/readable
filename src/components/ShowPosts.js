@@ -25,17 +25,19 @@ class ShowPosts extends Component {
                   <p className="post-author">{post.category}</p>
                 </div>
 
-                <Link onClick={()=>
-                  { this.props.openPostEdit(post) }}
-                  to={ {pathname: `/edit/${post.id}`} }
-                  className='post-edit'>
-                </Link>
+                <div className='post-tools'>
+                  <Link onClick={()=>
+                    { this.props.openPostEdit(post) }}
+                    to={ {pathname: `/edit/${post.id}`} }
+                    className='post-edit'>
+                  </Link>
 
-                <button onClick={()=>
-                  { this.props.deletePost(post) }}
-                  className="post-remove">
-                  Remove
-                </button>
+                  <button onClick={()=>
+                    { this.props.deletePost(post) }}
+                    className="post-remove">
+                    Remove
+                  </button>
+                </div>
 
               </li>
             )}
