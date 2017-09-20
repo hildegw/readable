@@ -4,15 +4,23 @@ import { connect } from 'react-redux'
 import { fetchCategories, selectCategory, openPostEdit } from '../actions'
 import {Link} from "react-router-dom"
 
-//TODO highlight selection
+
 class SidebarMenu extends Component {
+  state = {
+    cateName: 'none',
+  }
 
   componentDidMount(){
     this.props.fetchCategories()
   }
 
+  handleClick = (catName) => {
+    this.props.selectCategory(catName)
+    this.setState({catName: catName})
+  }
+
   render() {
-    const {categories} = this.props.categories
+    const { categories } = this.props.categories
 
     return (
       <div className='Sidebar-menu'>
@@ -24,8 +32,8 @@ class SidebarMenu extends Component {
               <ul>
               <Link
                 to={'/category/' + cat.name}
-                className='cat-item'
-                onClick={()=> { this.props.selectCategory(cat.name) }}>
+                onClick={()=> { this.handleClick(cat.name) }}
+                className={ this.state.catName===cat.name ? 'cat-item-selected' : 'cat-item' }>
                 {cat.name}
               </Link>
               </ul>
@@ -38,7 +46,7 @@ class SidebarMenu extends Component {
             to="/add"
             className='add-post-link'
             onClick={()=> { this.props.openPostEdit({}) }}>
-            New Discussion
+            new discussion
           </Link>
         </div>
 
@@ -49,9 +57,8 @@ class SidebarMenu extends Component {
 }
 
 
-const mapStateToProps = ({ categories, editPost }) => {
-  //const postType = ['oPost', 'comment']  //TODO map correct type
-  return { categories, editPost }
+const mapStateToProps = ({ categories, }) => {
+  return { categories, }
 }
 
 const mapDispatchToProps = (dispatch) => {

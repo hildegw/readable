@@ -7,6 +7,7 @@ import uuid from "uuid"
 
 //TODO adjust Add-Button visibility
 //TODO go to category selected in new post
+//TODO preselect cat when coming from cat-view
 
 class AddPosts extends Component {
   state = {

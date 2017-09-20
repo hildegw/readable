@@ -55,6 +55,13 @@
   text-decoration: none;
 }
 
+.cat-item-selected {
+  cursor: pointer;
+  color: #676767;
+  text-decoration: none;
+  font-style: italic;
+}
+
 .add-post-link {
   background-color: transparent;
   background-image: url('./../icons/plus.svg');
@@ -87,6 +94,7 @@
 .post-list {
   list-style-type: none;
   max-width: 500px;
+  min-width: 500px;
 }
 .post-list-item {
   padding: 10px;
@@ -117,6 +125,7 @@
 
 .post-tools {
   padding: 10px;
+  padding-top: 20px;
   display: flex;
   justify-content: flex-start;
   width: 25px;

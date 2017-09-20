@@ -7,7 +7,6 @@ import AddPost from './AddPost'
 import SidebarMenu from './SidebarMenu'
 import EditPost from './EditPost'
 
-
 class App extends Component {
 
   render() {
@@ -15,7 +14,7 @@ class App extends Component {
     return (
       <div>
         <container className="App-header" >
-          <Link to='/' className='home-link'/>
+          <Link to='/' className='home-link' alt="Logo Home" />
           <h2>Discussion Board</h2>
         </container>
 

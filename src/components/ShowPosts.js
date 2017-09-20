@@ -11,7 +11,6 @@ class ShowPosts extends Component {
   componentDidMount(){ this.props.fetchPosts() }
 
   postsToShow = (posts, category) => {
-    console.log(category)
       if (category!==undefined && posts!==undefined) {
         return posts.filter((post) => post.category === category)
       } else {
@@ -21,7 +20,6 @@ class ShowPosts extends Component {
 
   render() {
     const { posts } = this.props.posts
-    console.log(this.props.match)
     const category = this.props.match.params.name
     const showPosts = this.postsToShow(posts, category)
 

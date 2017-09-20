@@ -33,7 +33,6 @@ export const receiveCategories = ((categories) => {
   }
 })
 
-
 //add a post to DB and state
 //thunk
 export const addPost = (post) => dispatch => {
