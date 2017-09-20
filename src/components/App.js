@@ -28,7 +28,7 @@ class App extends Component {
 
           <Route path="/edit/:id" component={EditPost} />
 
-          <Route path="/category/:name" component={ShowPosts}/>
+          <Route path="/:name" component={ShowPosts}/>
 
         </container>
       </div>
@@ -36,17 +36,4 @@ class App extends Component {
   }
 }
 
-/*const mapStateToProps = ({ posts, }) => {
-  return {
-    posts: posts,
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchPosts: () => dispatch(fetchPosts()),
-  }
-}*/
-
-export default withRouter(connect(
-)(App))
+export default withRouter(connect()(App))

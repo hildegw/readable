@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
+import { withRouter } from "react-router-dom"
 import { addPost, } from '../actions'
 import serializeForm from "form-serialize"
 import uuid from "uuid"
@@ -8,6 +9,7 @@ import uuid from "uuid"
 //TODO adjust Add-Button visibility
 //TODO go to category selected in new post
 //TODO preselect cat when coming from cat-view
+//TODO history go back does not refresh posts
 
 class AddPosts extends Component {
   state = {
@@ -26,10 +28,12 @@ class AddPosts extends Component {
     const id = uuid()
     Object.assign(newPost, {id: id}, {category: this.state.category})
     this.props.addPost(newPost)
-    this.props.history.goBack()
+    this.props.history.push('/' + this.state.category) //TODO check link
+    this.props.history.go(2)
+    console.log(this.props.history)
   }
 
-  justGoBack = (evenet) => { this.props.history.goBack() }
+  justGoBack = (event) => { this.props.history.goBack() }
 
   render() {
     const {categories} = this.props.categories
@@ -75,7 +79,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(AddPosts)
+)(AddPosts))

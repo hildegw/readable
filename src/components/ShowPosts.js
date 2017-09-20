@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchPosts, deletePost, openPostEdit } from '../actions'
-import {Link} from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 
 
 class ShowPosts extends Component {
 
-
-  componentDidMount(){ this.props.fetchPosts() }
+  componentDidMount(){
+    this.props.fetchPosts().then(() =>{
+        console.log("loading ShowPosts")}
+    )
+  }
 
   postsToShow = (posts, category) => {
       if (category!==undefined && posts!==undefined) {
@@ -43,11 +46,24 @@ class ShowPosts extends Component {
                       className='post-edit'>
                     </Link>
 
+                    <Link onClick={()=>
+                      { this.props.openPostEdit(post) }}
+                      to={ {pathname: `/edit/${post.id}`} }
+                      className='post-edit'>
+                    </Link>
+
+                    <Link onClick={()=>
+                      { this.props.openPostEdit(post) }}
+                      to={ {pathname: `/edit/${post.id}`} }
+                      className='post-edit'>
+                    </Link>
+
                     <button onClick={()=>
                       { this.props.deletePost(post) }}
                       className="post-remove">
                       Remove
                     </button>
+
                   </div>
 
                 </li>
@@ -71,7 +87,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ShowPosts)
+)(ShowPosts))

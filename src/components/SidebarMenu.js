@@ -31,7 +31,7 @@ class SidebarMenu extends Component {
             <div key={cat.name}>
               <ul>
               <Link
-                to={'/category/' + cat.name}
+                to={'/' + cat.name}
                 onClick={()=> { this.handleClick(cat.name) }}
                 className={ this.state.catName===cat.name ? 'cat-item-selected' : 'cat-item' }>
                 {cat.name}

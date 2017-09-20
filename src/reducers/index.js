@@ -13,7 +13,7 @@ const posts = (state={}, action) => {
     case ADD_POST:
       return {
         ...state,
-        [posts]: post,
+        posts: state.posts.concat(post),
       }
 
     case REMOVE_POST:
