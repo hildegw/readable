@@ -7,7 +7,6 @@ import ShowPosts from './ShowPosts'
 import AddPost from './AddPost'
 import SidebarMenu from './SidebarMenu'
 import EditPost from './EditPost'
-import ShowCategoryPosts from './ShowCategoryPosts'
 
 //TODO home button
 class App extends Component {
@@ -31,7 +30,7 @@ class App extends Component {
 
           <Route path="/edit/:id" component={EditPost} />
 
-          <Route path="/category/:name" component={ShowCategoryPosts}/>
+          <Route path="/category/:name" component={ShowPosts}/>
 
         </container>
       </div>

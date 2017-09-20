@@ -4,12 +4,8 @@ import { connect } from 'react-redux'
 import { updatePostInDb, fetchPosts, openPostEdit } from '../actions'
 import serializeForm from "form-serialize"
 
-//TODO investigate Link versus Redirect, adjust Add-Button visibility: formDone state
-//TODO fetch posts if no state exists
+
 class EditPosts extends Component {
-  state = {
-    formDone: false,
-   }
 
   componentDidMount(){
     const editPostId = this.props.match.params.id
@@ -19,9 +15,7 @@ class EditPosts extends Component {
           const { posts } = this.props.posts
           const post = posts.filter((post) => post.id===editPostId)
           this.props.openPostEdit(post[0])
-        })
-    }
-  }
+    })}}
 
   //hand over post to store and DB
   handleSubmit = (event) => {
@@ -33,7 +27,6 @@ class EditPosts extends Component {
     const body = newPost.body
     Object.assign(editPost, {title: title}, {body: body},)
     this.props.updatePostInDb(id, title, body, editPost)
-    this.setState({ formDone: true })
     this.props.history.goBack()
   }
 

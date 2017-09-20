@@ -6,11 +6,11 @@ import {Link, Redirect} from "react-router-dom"
 import serializeForm from "form-serialize"
 import uuid from "uuid"
 
-//TODO investigate Link versus Redirect, adjust Add-Button visibility: formDone state
+//TODO adjust Add-Button visibility
+//TODO go to category selected in new post
 
 class AddPosts extends Component {
   state = {
-    formDone: false,
     category: 'none',
    }
 
@@ -26,51 +26,47 @@ class AddPosts extends Component {
     const id = uuid()
     Object.assign(newPost, {id: id}, {category: this.state.category})
     this.props.addPost(newPost)
-    this.setState({ formDone: true })
+    this.props.history.goBack()
   }
+
+  justGoBack = (evenet) => { this.props.history.goBack() }
 
   render() {
     const {categories} = this.props.categories
 
     return (
       <div>
-      { this.state.formDone && (<Redirect to='/' />)}
-      <container className='Add-post'>
-        <form onSubmit={this.handleSubmit} className="add-form">
-          <div className="add-details">
-
+        <container className='Add-post'>
+          <form onSubmit={this.handleSubmit} className="add-form">
+            <div className="add-details">
               <div>
                 <input type="text" name="author" placeholder="Your name" required />
                 <input type="text" name="title" placeholder="Subject" required />
                 <textarea type='text' className="add-text-area" name="body"
                   placeholder="Message" required ></textarea>
-
                 { categories!==undefined && (
                 <div className='add-radio' >
-                {categories.map((cat) =>
-                  <label key={cat.name}><input type="radio" name='category' value={cat.name}
-                    onClick={this.checkCategory} />
-                    <span className={ this.state.category===cat.name ? 'add-radio-checked' : '' }>{cat.name}</span>
-                  </label>
-                )}
+                  {categories.map((cat) =>
+                    <label key={cat.name}><input type="radio" name='category' value={cat.name}
+                      onClick={this.checkCategory} />
+                      <span className={ this.state.category===cat.name ? 'add-radio-checked' : '' }>{cat.name}</span>
+                    </label>
+                  )}
                 </div>)}
-
               </div>
-
-            { this.state.category!=='none' &&
-              <button className='add-discussion'>Add</button> }
-          </div>
-        </form>
-        <Link to="/" className="close-add">Discard</Link>
-      </container>
+              {this.state.category!=='none' &&
+                <button className='add-discussion'>Add</button> }
+            </div>
+          </form>
+          <button className="close-add" onClick={this.justGoBack}>Discard</button>
+        </container>
       </div>
     )
-  }b
+  }
 }
 
-const mapStateToProps = ({ posts, categories, editPost, }) => {
-  //const postType = ['oPost', 'comment']  //TODO map correct type
-  return { posts, categories, editPost }
+const mapStateToProps = ({ categories, editPost, }) => {
+  return { categories, editPost }
 }
 
 const mapDispatchToProps = (dispatch) => {
