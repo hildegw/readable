@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { addPost, } from '../actions'
-import {Link, Redirect} from "react-router-dom"
 import serializeForm from "form-serialize"
 import uuid from "uuid"
 

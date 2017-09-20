@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.5"
-     inkscape:cx="428.40856"
+     inkscape:cx="74.40856"
      inkscape:cy="109.95565"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -47,7 +47,7 @@
        orientation="0,1"
        id="guide4155" />
     <sodipodi:guide
-       position="184.0493,398.88518"
+       position="247.99999,380"
        orientation="0,1"
        id="guide4157" />
     <sodipodi:guide
@@ -109,16 +109,28 @@
      id="layer1"
      transform="translate(-3.3339965,-139.05388)">
     <path
-       sodipodi:nodetypes="ccccccccc"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:43.44225693;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 18.424478,348.1751 78.711664,289.94363 186.77431,399.10336 294.83694,289.94363 404.54522,399.10336 513.1564,289.94363 581.61379,359.1768 404.54522,529.48115 295.11212,427.77656"
-       id="path4183"
-       inkscape:connector-curvature="0" />
-    <path
        sodipodi:nodetypes="cccc"
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:38.01197433;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 405.76985,158.05987 -1.22463,121.0232 135.76259,-121.0232 z"
+       d="m 179.76985,176.05987 -1.22463,121.0232 135.76259,-121.0232 z"
        id="path4185"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:nodetypes="ccccccc"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:43.44225693;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 18.424478,348.1751 78.711664,289.94363 186.77431,399.10336 294.83694,289.94363 404.54522,399.10336 513.1564,289.94363 581.61379,359.1768"
+       id="path4183"
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:nodetypes="ccccccc"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:43.44225693;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 11.561857,462.85308 71.849043,404.62161 179.91169,513.78134 287.97432,404.62161 397.6826,513.78134 506.29378,404.62161 l 68.45739,69.23317"
+       id="path4183-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>

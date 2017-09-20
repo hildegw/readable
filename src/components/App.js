@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css'
 import { connect } from 'react-redux'
-import {Route, withRouter} from "react-router-dom"
+import { Link, Route, withRouter } from "react-router-dom"
 import ShowPosts from './ShowPosts'
 import AddPost from './AddPost'
 import SidebarMenu from './SidebarMenu'
 import EditPost from './EditPost'
 
-//TODO home button
+
 class App extends Component {
 
   render() {
@@ -16,7 +15,7 @@ class App extends Component {
     return (
       <div>
         <container className="App-header" >
-          <img src={logo} className="App-logo" alt="Logo Home" />
+          <Link to='/' className='home-link'/>
           <h2>Discussion Board</h2>
         </container>
 
