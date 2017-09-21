@@ -3,33 +3,14 @@ import './App.css'
 import { connect } from 'react-redux'
 import { fetchPosts, deletePost, openPostEdit, openPostDetail } from '../actions'
 import { Link } from "react-router-dom"
-import OnePost from './OnePost'
 
 
-class ShowPosts extends Component {
-
-  componentDidMount(){ this.props.fetchPosts() }
-
-  postsToShow = (posts, category) => {
-      if (category!==undefined && posts!==undefined) {
-        return posts.filter((post) => post.category === category)
-      } else {
-        return posts
-      }
-  }
+class OnePost extends Component {
 
   render() {
-    const { posts } = this.props.posts
-    console.log(this.props.match.params.category)
-    const category = this.props.match.params.category
-    const showPosts = this.postsToShow(posts, category)
+      const post = {}
 
     return (
-      <div>
-        { posts!==undefined && (
-        <div className="post">
-          <ol className="post-list">
-              {showPosts.map((post)=>
                 <li key={post.id} className="post-list-item">
                   <div className="post-details">
                     <p className="post-author">{post.author}</p>
@@ -63,12 +44,7 @@ class ShowPosts extends Component {
                     </button>
 
                   </div>
-
                 </li>
-            )}
-          </ol>
-        </div>)}
-      </div>
     )
   }
 }
@@ -89,4 +65,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ShowPosts)
+)(OnePost)

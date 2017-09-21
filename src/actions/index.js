@@ -6,6 +6,7 @@ export const REMOVE_POST = "REMOVE_POST"
 export const OPEN_POST_EDIT = "OPEN_POST_EDIT"
 export const SELECT_CATEGORY = "SELECT_CATEGORY"  //TODO check if needed
 export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES"
+export const OPEN_POST_DETAIL = 'OPEN_POST_DETAIL'
 
 //fetch data from DB
 //thunk middleware for asynchronous call to fetch posts
@@ -73,6 +74,14 @@ export const openPostEdit = ((editPost) => {
   return {
     type: OPEN_POST_EDIT,
     editPost,
+  }
+})
+
+//TODO fetch comments for post
+export const openPostDetail = ((detailPost) => {
+  return {
+    type: OPEN_POST_DETAIL,
+    detailPost,
   }
 })
 

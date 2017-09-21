@@ -6,6 +6,8 @@ import ShowPosts from './ShowPosts'
 import AddPost from './AddPost'
 import SidebarMenu from './SidebarMenu'
 import EditPost from './EditPost'
+import ShowDetail from './ShowDetail'
+
 
 class App extends Component {
 
@@ -28,7 +30,9 @@ class App extends Component {
 
           <Route path="/edit/:id" component={EditPost} />
 
-          <Route path="/:name" component={ShowPosts}/>
+          <Route path="/:category" component={ShowPosts}/>
+
+          <Route path="/:category/:id" component={ShowDetail}/>
 
         </container>
       </div>

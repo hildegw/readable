@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { withRouter } from "react-router-dom"
 import { addPost, } from '../actions'
 import serializeForm from "form-serialize"
 import uuid from "uuid"
 
 //TODO adjust Add-Button visibility
-//TODO go to category selected in new post
 //TODO preselect cat when coming from cat-view
-//TODO history go back does not refresh posts
 
 class AddPosts extends Component {
   state = {
@@ -79,7 +76,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter(connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(AddPosts))
+)(AddPosts)

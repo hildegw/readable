@@ -1,4 +1,6 @@
-import { RECEIVE_POSTS, RECEIVE_CATEGORIES, ADD_POST, REMOVE_POST, OPEN_POST_EDIT, SELECT_CATEGORY } from '../actions'
+import { RECEIVE_POSTS, RECEIVE_CATEGORIES, ADD_POST,
+  REMOVE_POST, OPEN_POST_EDIT, SELECT_CATEGORY,
+  OPEN_POST_DETAIL, } from '../actions'
 import { combineReducers } from 'redux'
 
 
@@ -59,4 +61,17 @@ const editPost = (state= {}, action) => {
   }
 }
 
-export default combineReducers({posts, categories, editPost})
+const openPostDetail = (state= {}, action) => {
+  const { detailPost } = action
+  switch (action.type) {
+    case OPEN_POST_DETAIL:
+      return {
+        ...state,
+        detailPost: detailPost,
+      }
+    default:
+      return state
+  }
+}
+
+export default combineReducers({posts, categories, editPost, openPostDetail})
