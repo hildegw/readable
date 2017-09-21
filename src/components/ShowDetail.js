@@ -19,14 +19,20 @@ class ShowDetail extends Component {
           this.props.openPostDetail(post[0])
   })}}
 
+  //TODO: fetch Comments from DB via openPostDetail
+  //load comments in list below post
+
   render() {
-    console.log("render show detail", this.props.openPost)
+    console.log("render show detail", this.props.history)
     const { openPost } = this.props.openPost
 
     return (
-      <div className='post-list'>
+      <div className='post'>
         { openPost!==undefined && (
-            <OnePost postDetail={ openPost } /> )}
+            <OnePost
+              post={ openPost }
+              history={ this.props.history }
+            /> )}
       </div>
     )
   }

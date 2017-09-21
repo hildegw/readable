@@ -92,13 +92,13 @@
 
 .post-list {
   list-style-type: none;
-  max-width: 500px;
-  min-width: 500px;
 }
 .post-list-item {
   padding: 10px;
   background: white;
   border-bottom: 1px solid #ccc;
+  max-width: 500px;
+  min-width: 500px;
 }
 
 .post-details {

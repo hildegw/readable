@@ -1,8 +1,9 @@
 import { RECEIVE_POSTS, RECEIVE_CATEGORIES, ADD_POST,
-  REMOVE_POST, OPEN_POST_EDIT, SELECT_CATEGORY,
-  OPEN_POST_DETAIL, } from '../actions'
+  REMOVE_POST, OPEN_POST_EDIT, SELECT_CATEGORY,  OPEN_POST_DETAIL,
+  RECEIVE_COMMENTS, ADD_COMMENT, REMOVE_COMMENT, } from '../actions'
 import { combineReducers } from 'redux'
 
+//TODO is editComment needed?
 
 const posts = (state={}, action) => {
   const { posts, post } = action
@@ -65,7 +66,6 @@ const openPost = (state= {}, action) => {
   const { openPost } = action
   switch (action.type) {
     case OPEN_POST_DETAIL:
-       console.log(openPost)
       return {
         ...state,
         openPost: openPost,
@@ -75,4 +75,30 @@ const openPost = (state= {}, action) => {
   }
 }
 
-export default combineReducers({posts, categories, editPost, openPost})
+const comments = (state={}, action) => {
+  const { comments, comment } = action
+  switch (action.type) {
+    case RECEIVE_COMMENTS:
+      return  {
+        ...state,
+        comments,
+      }
+    case ADD_COMMENT:
+      return {
+        ...state,
+        comments: state.comments.concat(comment),
+      }
+
+    case REMOVE_COMMENT:
+      const newStateComments = state.comments.filter((item) => item.id !== comments.id)
+      return {
+        ...state,
+        comments: newStateComments,
+      }
+
+    default:
+      return state
+  }
+}
+
+export default combineReducers({posts, categories, editPost, openPost, comments})

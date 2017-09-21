@@ -1,11 +1,18 @@
 const api = 'http://localhost:3001'
 
-
 export const fetchPosts = () => {
   const headersGet = {
     headers: { 'Authorization': 'hildegwUdacityReadable' }
   }
   return fetch( `${api}/posts`,  headersGet )
+  .then(result => result.json())
+}
+
+export const fetchComments = (id) => {
+  const headersGet = {
+    headers: { 'Authorization': 'hildegwUdacityReadable' }
+  }
+  return fetch( `${api}/posts/${id}`,  headersGet )
   .then(result => result.json())
 }
 
@@ -29,6 +36,17 @@ export const deletePost = (id) => {
   return fetch(`${api}/posts/${id}`,  headersDelete,)
 }
 
+export const deleteComment = (id) => {
+  const headersDelete = {
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'hildegwUdacityReadable',
+    }
+  }
+  return fetch(`${api}/comments/${id}`,  headersDelete,)
+}
+
 export const addPost = (post) => {
    const timeStamp = new Date().getTime();
    Object.assign(post, {timestamp: timeStamp})
@@ -41,6 +59,20 @@ export const addPost = (post) => {
        }
    };
    return fetch(`${api}/posts`, headersAdd,)
+}
+
+export const addComment = (comment) => {
+   const timeStamp = new Date().getTime();
+   Object.assign(comment, {timestamp: timeStamp})
+   const headersAdd = {
+       method: 'POST',
+       body: JSON.stringify(comment),
+       headers: {
+         'Content-Type': 'application/json',
+         'Authorization': 'hildegwUdacityReadable',
+       }
+   };
+   return fetch(`${api}/comments`, headersAdd,)
 }
 
 //Update a post: `PUT /posts/:id` title and body
@@ -56,4 +88,18 @@ export const updatePost = (id, title, body) => {
      }
    }
    return fetch(`${api}/posts/${id}`, headersUpdate,)
+}
+
+export const updateComment = (id, title, body) => {
+  const data = {title, body}
+  const headersUpdate = {
+     method: 'PUT',
+     body: JSON.stringify(data),
+     headers: {
+       'Accept': 'application/json',
+       'Content-Type': 'application/json',
+       'Authorization': 'hildegwUdacityReadable',
+     }
+   }
+   return fetch(`${api}/comments/${id}`, headersUpdate,)
 }
