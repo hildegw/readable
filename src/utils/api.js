@@ -10,7 +10,6 @@ export const fetchPosts = () => {
 
 //    GET /posts/:id/comments
 export const fetchComments = (id) => {
-  console.log(id)
   const headersGet = {
     headers: {
       'Content-Type': 'application/json',
@@ -95,8 +94,10 @@ export const updatePost = (id, title, body) => {
    return fetch(`${api}/posts/${id}`, headersUpdate,)
 }
 
-export const updateComment = (id, title, body) => {
-  const data = {title, body}
+export const updateComment = (id, body) => {
+  const timeStamp = new Date().getTime();
+  const data = {body: body, timestamp: timeStamp}
+  console.log(id, body, JSON.stringify(data))
   const headersUpdate = {
      method: 'PUT',
      body: JSON.stringify(data),
@@ -107,4 +108,13 @@ export const updateComment = (id, title, body) => {
      }
    }
    return fetch(`${api}/comments/${id}`, headersUpdate,)
+}
+
+//GET /comments/:id
+export const fetchOneComment = (id) => {
+  const headersGet = {
+    headers: { 'Authorization': 'hildegwUdacityReadable' }
+  }
+  return fetch( `${api}/comments/${id}`,  headersGet )
+  .then(result => result.json())
 }

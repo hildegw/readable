@@ -10,6 +10,7 @@ export const OPEN_POST_DETAIL = 'OPEN_POST_DETAIL'
 export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS"
 export const ADD_COMMENT = "ADD_COMMENT"
 export const REMOVE_COMMENT = "REMOVE_COMMENT"
+export const RECEIVE_ONE_COMMENT = 'RECEIVE_ONE_COMMENT'
 
 //fetch data from DB
 //thunk middleware for asynchronous call to fetch posts
@@ -24,7 +25,7 @@ export const receivePosts = ((posts) => {
   }
 })
 
-//thunk to fetch comments
+//thunk to fetch comments for a parentId/post
 export const fetchComments = (id) => dispatch => (
   PostsApi.fetchComments(id).then((data) => {
     dispatch(receiveComments(data))}))
@@ -33,6 +34,18 @@ export const receiveComments = ((comments) => {
   return {
     type: RECEIVE_COMMENTS,
     comments,
+  }
+})
+
+//thunk to fetch single comment by ID
+export const fetchOneComment = (id) => dispatch => (
+  PostsApi.fetchOneComment(id).then((data) => {
+    dispatch(receiveOneComment(data))}))
+//action
+export const receiveOneComment = ((comment) => {
+  return {
+    type: RECEIVE_ONE_COMMENT,
+    comment,
   }
 })
 
@@ -110,13 +123,22 @@ export const updatePostInDb = (id, title, body, editPost) => dispatch => {
     dispatch(openPostEdit(editPost))
   })
 }
-////action to set state keeping the post to be edited
+//action to set state keeping the post to be edited
 export const openPostEdit = ((editPost) => {
   return {
     type: OPEN_POST_EDIT,
     editPost,
   }
 })
+
+//update edited comment in DB, calls same action as post edit
+export const updateCommentInDb = (id, body, editPost) => dispatch => {
+  PostsApi.updateComment(id, body)
+  .then(
+    (data) => {
+    dispatch(openPostEdit(editPost))
+  })
+}
 
 //TODO fetch comments for post
 export const openPostDetail = ((openPost) => {

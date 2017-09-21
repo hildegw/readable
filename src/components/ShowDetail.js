@@ -10,7 +10,6 @@ class ShowDetail extends Component {
   componentDidMount(){
     const postId = this.props.match.params.id
     this.props.fetchComments(postId)
-    console.log('ShowDetail mounting', this.props)
     if (this.props===undefined || !this.props.openPost.hasOwnProperty('openPost')) {
       this.props.fetchPosts()
         .then(() => {
@@ -19,15 +18,10 @@ class ShowDetail extends Component {
           this.props.openPostDetail(post[0])
   })}}
 
-  //TODO: fetch Comments from DB via openPostDetail
-  //load comments in list below post
-
   render() {
     const { openPost } = this.props.openPost
     const { comments } = this.props.comments
     const showBody = true
-    console.log("render show detail", comments)
-
 
     return (
       <div>

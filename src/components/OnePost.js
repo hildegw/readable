@@ -11,10 +11,8 @@ import { Link } from "react-router-dom"
 class OnePost extends Component {
 
   handleDelete = (event) => {
-    console.log("handleDelete")
     const post = this.props.post
     this.props.deletePost(post)
-    console.log(this.props)
     if (this.props.history) this.props.history.goBack()
     //TODO add warning for delete, deletes comments as well: different for post vs comment
     //TODO add cases for going back if history does not exist: "normal" and "repeated history"
@@ -23,9 +21,7 @@ class OnePost extends Component {
   }
 
   render() {
-      const post = this.props.post
-      const showBody = this.props.showBody
-      console.log("renderOnePost ", this.props)
+      const { post, showBody } = this.props
 
     return (
       <div className="post-list-item">
@@ -37,10 +33,12 @@ class OnePost extends Component {
         </div>
 
         <div className='post-tools'>
+
+          { !post.hasOwnProperty('parentId') && (
           <Link onClick={() => { this.props.openPostDetail(post) }}
             to={ {pathname: `/${post.category}/${post.id}`} }
             className='post-comment'>377
-          </Link>
+          </Link>)}
 
           <Link onClick={() => { this.props.openPostEdit(post) }}
             to={ {pathname: `/edit/${post.id}`} }

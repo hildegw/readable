@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { updatePostInDb, fetchPosts, openPostEdit } from '../actions'
+import { updatePostInDb, updateCommentInDb, fetchPosts, fetchComments,
+  fetchOneComment, openPostEdit } from '../actions'
 import serializeForm from "form-serialize"
 
 
@@ -14,8 +15,18 @@ class EditPosts extends Component {
         .then(() => {
           const { posts } = this.props.posts
           const post = posts.filter((post) => post.id===editPostId)
+          console.log(post[0])
           this.props.openPostEdit(post[0])
-    })}}
+        })
+
+      this.props.fetchOneComment(editPostId)
+        .then(() => {
+            const { comment } = this.props.comment
+            console.log(comment)
+            this.props.openPostEdit(comment)
+        })
+      }
+  }
 
   //hand over post to store and DB
   handleSubmit = (event) => {
@@ -26,7 +37,8 @@ class EditPosts extends Component {
     const title = newPost.title
     const body = newPost.body
     Object.assign(editPost, {title: title}, {body: body},)
-    this.props.updatePostInDb(id, title, body, editPost)
+    if (editPost.hasOwnProperty('parentId')) this.props.updateCommentInDb(id, body, editPost)
+    else this.props.updatePostInDb(id, title, body, editPost)
     this.props.history.goBack()
   }
 
@@ -44,11 +56,15 @@ class EditPosts extends Component {
               <div>
                 <input type="text" name="author" placeholder="Your name" readOnly
                   value={ editPost.author }  />
+
+                { !editPost.hasOwnProperty('parentId') && (
                 <input type="text" name="title" placeholder="Subject" required
-                  defaultValue={ editPost.title }  />
+                  defaultValue={ editPost.title }  />)}
+
                 <textarea type='text' className="add-text-area" name="body"
                   placeholder="Message" required
                   defaultValue={ editPost.body } ></textarea>
+
               </div>
             <button className='add-discussion'>Add</button>
           </div>
@@ -60,15 +76,18 @@ class EditPosts extends Component {
   }
 }
 
-const mapStateToProps = ({ posts, editPost, }) => {
-  return { posts, editPost }
+const mapStateToProps = ({ posts, editPost, comment }) => {
+  return { posts, editPost, comment }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
+    fetchComments: (parentId) => dispatch(fetchComments(parentId)),
+    fetchOneComment: (id) => dispatch(fetchOneComment(id)),
     openPostEdit: (data) => dispatch(openPostEdit(data)),
     updatePostInDb: (id, title, body, postEdit) => dispatch(updatePostInDb(id, title, body, postEdit)),
+    updateCommentInDb: (id, body, postEdit) => dispatch(updateCommentInDb(id, body, postEdit)),
   }
 }
 

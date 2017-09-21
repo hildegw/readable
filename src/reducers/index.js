@@ -1,6 +1,6 @@
 import { RECEIVE_POSTS, RECEIVE_CATEGORIES, ADD_POST,
   REMOVE_POST, OPEN_POST_EDIT, SELECT_CATEGORY,  OPEN_POST_DETAIL,
-  RECEIVE_COMMENTS, ADD_COMMENT, REMOVE_COMMENT, } from '../actions'
+  RECEIVE_COMMENTS, ADD_COMMENT, REMOVE_COMMENT, RECEIVE_ONE_COMMENT} from '../actions'
 import { combineReducers } from 'redux'
 
 //TODO is editComment needed?
@@ -101,4 +101,17 @@ const comments = (state={}, action) => {
   }
 }
 
-export default combineReducers({posts, categories, editPost, openPost, comments})
+const comment = (state={}, action) => {
+  const { comment } = action
+  switch (action.type) {
+    case RECEIVE_ONE_COMMENT:
+      return  {
+        ...state,
+        comment: comment,
+    }
+    default:
+      return state
+    }
+  }
+
+export default combineReducers({posts, categories, editPost, openPost, comments, comment})
