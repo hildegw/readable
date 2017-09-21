@@ -21,6 +21,7 @@ class ShowPosts extends Component {
     const { posts } = this.props.posts
     const category = this.props.match.params.category
     const showPosts = this.postsToShow(posts, category)
+    const showBody = false
 
     return (
       <div>
@@ -29,7 +30,10 @@ class ShowPosts extends Component {
           <ol className="post-list">
               {showPosts.map((post)=>
                 <li key={post.id} >
-                  <OnePost post={post} key={post.id}/>
+                  <OnePost
+                    post={post}
+                    showBody={showBody}
+                  />
                 </li>
             )}
           </ol>

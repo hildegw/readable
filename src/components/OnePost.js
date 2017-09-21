@@ -24,12 +24,15 @@ class OnePost extends Component {
 
   render() {
       const post = this.props.post
+      const showBody = this.props.showBody
+      console.log("renderOnePost ", this.props)
 
     return (
       <div className="post-list-item">
         <div className="post-details">
           <p className="post-author">{post.author}</p>
           <p>{post.title}</p>
+          { showBody && (<p>{post.body}</p>)}
           <p className="post-author">{post.category}</p>
         </div>
 

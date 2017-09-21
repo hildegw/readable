@@ -8,11 +8,16 @@ export const fetchPosts = () => {
   .then(result => result.json())
 }
 
+//    GET /posts/:id/comments
 export const fetchComments = (id) => {
+  console.log(id)
   const headersGet = {
-    headers: { 'Authorization': 'hildegwUdacityReadable' }
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'hildegwUdacityReadable',
+    }
   }
-  return fetch( `${api}/posts/${id}`,  headersGet )
+  return fetch( `${api}/posts/${id}/comments`,  headersGet )
   .then(result => result.json())
 }
 
