@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, deletePost, openPostEdit } from '../actions'
+import { fetchPosts, deletePost, openPostEdit, openPostDetail } from '../actions'
 import { Link, withRouter } from "react-router-dom"
 import ShowPosts from './ShowPosts'
 import OnePost from './OnePost'
@@ -9,23 +9,29 @@ import OnePost from './OnePost'
 
 class ShowDetail extends Component {
 
-  componentDidMount(){ this.props.fetchPosts() }
+  componentDidMount(){
+    console.log('ShowDetail mounting')
 
-  /*postsToShow = (posts, category) => {
-      if (category!==undefined && posts!==undefined) {
-        return posts.filter((post) => post.category === category)
-      } else {
-        return posts
-      }
-  }*/
+    const postId = this.props.match.params.id
+    if (this.props.openPostDetail===undefined || !this.props.openPostDetail.hasOwnProperty('detailPost')) {
+      this.props.fetchPosts()
+        .then(() => {
+          const { posts } = this.props.posts
+          const post = posts.filter((post) => post.id===postId)
+          console.log(post)
+          this.props.openPostDetail(post[0])
+  })}}
 
   render() {
-    //const { detailPost } = this.props.detailPost //does not work, no idea why
+    console.log(this.props)
 
-
+  //  const detailPost = this.props.openPostDetail.detailPost
+    const detailPost = {}
 
     return (
-        <div></div>
+      <div>
+        <OnePost postDetail={ detailPost } />
+      </div>
     )
   }
 }
@@ -39,6 +45,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchPosts: () => dispatch(fetchPosts()),
     deletePost: (data) => dispatch(deletePost(data)),
     openPostEdit: (data) => dispatch(openPostEdit(data)),
+    openPostDetail: (data) => dispatch(openPostDetail(data)),
   }
 }
 

@@ -4,47 +4,47 @@ import { connect } from 'react-redux'
 import { fetchPosts, deletePost, openPostEdit, openPostDetail } from '../actions'
 import { Link } from "react-router-dom"
 
-
+//displays one post
 class OnePost extends Component {
 
   render() {
-      const post = {}
+      const post = this.props.postDetail
 
     return (
-                <li key={post.id} className="post-list-item">
-                  <div className="post-details">
-                    <p className="post-author">{post.author}</p>
-                    <p>{post.title}</p>
-                    <p className="post-author">{post.category}</p>
-                  </div>
+      <li key={post.id} className="post-list-item">
+        <div className="post-details">
+          <p className="post-author">{post.author}</p>
+          <p>{post.title}</p>
+          <p className="post-author">{post.category}</p>
+        </div>
 
-                  <div className='post-tools'>
-                    <Link onClick={()=>
-                      { this.props.openPostDetail(post) }}
-                      to={ {pathname: `/${post.category}/${post.id}`} }
-                      className='post-comment'>377
-                    </Link>
+        <div className='post-tools'>
+          <Link onClick={()=>
+            { this.props.openPostDetail(post) }}
+            to={ {pathname: `/${post.category}/${post.id}`} }
+            className='post-comment'>377
+          </Link>
 
-                    <Link onClick={()=>
-                      { this.props.openPostEdit(post) }}
-                      to={ {pathname: `/edit/${post.id}`} }
-                      className='post-vote'>-566
-                    </Link>
+          <Link onClick={()=>
+            { this.props.openPostEdit(post) }}
+            to={ {pathname: `/edit/${post.id}`} }
+            className='post-vote'>-566
+          </Link>
 
-                    <Link onClick={()=>
-                      { this.props.openPostEdit(post) }}
-                      to={ {pathname: `/edit/${post.id}`} }
-                      className='post-edit'>
-                    </Link>
+          <Link onClick={()=>
+            { this.props.openPostEdit(post) }}
+            to={ {pathname: `/edit/${post.id}`} }
+            className='post-edit'>
+          </Link>
 
-                    <button onClick={()=>
-                      { this.props.deletePost(post) }}
-                      className="post-remove">
-                      Remove
-                    </button>
+          <button onClick={()=>
+            { this.props.deletePost(post) }}
+            className="post-remove">
+            Remove
+          </button>
 
-                  </div>
-                </li>
+        </div>
+      </li>
     )
   }
 }

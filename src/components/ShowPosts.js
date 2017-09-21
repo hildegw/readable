@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, deletePost, openPostEdit, openPostDetail } from '../actions'
+import { fetchPosts, deletePost } from '../actions'
 import { Link } from "react-router-dom"
 import OnePost from './OnePost'
 
-
+//displays all posts or per category
 class ShowPosts extends Component {
 
   componentDidMount(){ this.props.fetchPosts() }
@@ -20,7 +20,6 @@ class ShowPosts extends Component {
 
   render() {
     const { posts } = this.props.posts
-    console.log(this.props.match.params.category)
     const category = this.props.match.params.category
     const showPosts = this.postsToShow(posts, category)
 
@@ -29,42 +28,8 @@ class ShowPosts extends Component {
         { posts!==undefined && (
         <div className="post">
           <ol className="post-list">
-              {showPosts.map((post)=>
-                <li key={post.id} className="post-list-item">
-                  <div className="post-details">
-                    <p className="post-author">{post.author}</p>
-                    <p>{post.title}</p>
-                    <p className="post-author">{post.category}</p>
-                  </div>
-
-                  <div className='post-tools'>
-                    <Link onClick={()=>
-                      { this.props.openPostDetail(post) }}
-                      to={ {pathname: `/${post.category}/${post.id}`} }
-                      className='post-comment'>377
-                    </Link>
-
-                    <Link onClick={()=>
-                      { this.props.openPostEdit(post) }}
-                      to={ {pathname: `/edit/${post.id}`} }
-                      className='post-vote'>-566
-                    </Link>
-
-                    <Link onClick={()=>
-                      { this.props.openPostEdit(post) }}
-                      to={ {pathname: `/edit/${post.id}`} }
-                      className='post-edit'>
-                    </Link>
-
-                    <button onClick={()=>
-                      { this.props.deletePost(post) }}
-                      className="post-remove">
-                      Remove
-                    </button>
-
-                  </div>
-
-                </li>
+              {showPosts.map((postDetail)=>
+                <OnePost postDetail={postDetail} key={postDetail.id}/>
             )}
           </ol>
         </div>)}
@@ -81,8 +46,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
     deletePost: (data) => dispatch(deletePost(data)),
-    openPostEdit: (data) => dispatch(openPostEdit(data)),
-    openPostDetail: (data) => dispatch(openPostDetail(data)),
   }
 }
 

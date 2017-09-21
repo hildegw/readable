@@ -12,6 +12,7 @@ import ShowDetail from './ShowDetail'
 class App extends Component {
 
   render() {
+    //TODO routing to :category and :id
 
     return (
       <div>
@@ -28,11 +29,11 @@ class App extends Component {
 
           <Route path="/add" component={AddPost} />
 
-          <Route path="/edit/:id" component={EditPost} />
+          <Route exact path="/edit/:id" component={EditPost} />
 
-          <Route path="/:category" component={ShowPosts}/>
+          <Route path="/:category" component={ShowPosts} />
 
-          <Route path="/:category/:id" component={ShowDetail}/>
+          <Route path="/:category/:id" component={ShowDetail} />
 
         </container>
       </div>
