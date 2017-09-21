@@ -2,18 +2,15 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchPosts, deletePost, openPostEdit, openPostDetail } from '../actions'
-import { Link, withRouter } from "react-router-dom"
-import ShowPosts from './ShowPosts'
 import OnePost from './OnePost'
 
 
 class ShowDetail extends Component {
 
   componentDidMount(){
-    console.log('ShowDetail mounting')
-
+    console.log('ShowDetail mounting', this.props)
     const postId = this.props.match.params.id
-    if (this.props.openPostDetail===undefined || !this.props.openPostDetail.hasOwnProperty('detailPost')) {
+    if (this.props===undefined || !this.props.openPost.hasOwnProperty('openPost')) {
       this.props.fetchPosts()
         .then(() => {
           const { posts } = this.props.posts
@@ -23,21 +20,20 @@ class ShowDetail extends Component {
   })}}
 
   render() {
-    console.log(this.props)
-
-  //  const detailPost = this.props.openPostDetail.detailPost
-    const detailPost = {}
+    console.log("render show detail", this.props.openPost)
+    const { openPost } = this.props.openPost
 
     return (
-      <div>
-        <OnePost postDetail={ detailPost } />
+      <div className='post-list'>
+        { openPost!==undefined && (
+            <OnePost postDetail={ openPost } /> )}
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ posts }) => {
-  return { posts }
+const mapStateToProps = ({ posts, openPost }) => {
+  return { posts, openPost }
 }
 
 const mapDispatchToProps = (dispatch) => {

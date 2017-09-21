@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchPosts, deletePost } from '../actions'
-import { Link } from "react-router-dom"
 import OnePost from './OnePost'
 
 //displays all posts or per category

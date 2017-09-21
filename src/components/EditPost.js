@@ -30,7 +30,7 @@ class EditPosts extends Component {
     this.props.history.goBack()
   }
 
-  justGoBack = (evenet) => { this.props.history.goBack() }
+  justGoBack = (event) => { this.props.history.goBack() }
 
   render() {
     const { editPost } = this.props.editPost

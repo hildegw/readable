@@ -61,17 +61,18 @@ const editPost = (state= {}, action) => {
   }
 }
 
-const openPostDetail = (state= {}, action) => {
-  const { detailPost } = action
+const openPost = (state= {}, action) => {
+  const { openPost } = action
   switch (action.type) {
     case OPEN_POST_DETAIL:
+       console.log(openPost)
       return {
         ...state,
-        detailPost: detailPost,
+        openPost: openPost,
       }
     default:
       return state
   }
 }
 
-export default combineReducers({posts, categories, editPost, openPostDetail})
+export default combineReducers({posts, categories, editPost, openPost})

@@ -78,10 +78,10 @@ export const openPostEdit = ((editPost) => {
 })
 
 //TODO fetch comments for post
-export const openPostDetail = ((detailPost) => {
+export const openPostDetail = ((openPost) => {
   return {
     type: OPEN_POST_DETAIL,
-    detailPost,
+    openPost,
   }
 })
 
