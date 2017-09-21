@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { Link, Route, withRouter } from "react-router-dom"
+import { Link, Route, withRouter, Switch } from "react-router-dom"
 import ShowPosts from './ShowPosts'
 import AddPost from './AddPost'
 import SidebarMenu from './SidebarMenu'
@@ -22,19 +22,14 @@ class App extends Component {
         </container>
 
         <container className="Sidebar-show-posts" >
-
           <SidebarMenu />
-
-          <Route exact path="/" component={ShowPosts} />
-
-          <Route path="/add" component={AddPost} />
-
-          <Route exact path="/edit/:id" component={EditPost} />
-
-          <Route path="/:category" component={ShowPosts} />
-
-          <Route path="/:category/:id" component={ShowDetail} />
-
+          <Switch>
+            <Route exact path="/" component={ShowPosts} />
+            <Route exact path="/add" component={AddPost} />
+            <Route exact path="/edit/:id" component={EditPost} />
+            <Route path="/:category" component={ShowPosts} />
+            <Route path="/:category/:id" component={ShowDetail} />
+          </Switch>
         </container>
       </div>
     )
