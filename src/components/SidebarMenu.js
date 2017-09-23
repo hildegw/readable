@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { fetchCategories, selectCategory, openPostEdit } from '../actions'
 import {Link} from "react-router-dom"
 
+//TODO: remove category selection in home screen
 
 class SidebarMenu extends Component {
   state = {

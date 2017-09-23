@@ -7,6 +7,8 @@ import OnePost from './OnePost'
 
 class ShowDetail extends Component {
 
+//TODO implement delete of comments and check delete of post+comments
+
   componentDidMount(){
     const postId = this.props.match.params.id
     this.props.fetchComments(postId)

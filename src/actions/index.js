@@ -1,156 +1,160 @@
 import * as PostsApi from '../utils/api'
 
-export const RECEIVE_POSTS = "RECEIVE_POSTS"
-export const ADD_POST = "ADD_POST"
-export const REMOVE_POST = "REMOVE_POST"
-export const OPEN_POST_EDIT = "OPEN_POST_EDIT"
-export const SELECT_CATEGORY = "SELECT_CATEGORY"  //TODO check if needed
-export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES"
+export const RECEIVE_POSTS = 'RECEIVE_POSTS'
+export const ADD_POST = 'ADD_POST'
+export const REMOVE_POST = 'REMOVE_POST'
+export const OPEN_POST_EDIT = 'OPEN_POST_EDIT'
+export const SELECT_CATEGORY = 'SELECT_CATEGORY'  // TODO check if needed
+export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 export const OPEN_POST_DETAIL = 'OPEN_POST_DETAIL'
-export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS"
-export const ADD_COMMENT = "ADD_COMMENT"
-export const REMOVE_COMMENT = "REMOVE_COMMENT"
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
+export const ADD_COMMENT = 'ADD_COMMENT'
+export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const RECEIVE_ONE_COMMENT = 'RECEIVE_ONE_COMMENT'
 
-//fetch data from DB
-//thunk middleware for asynchronous call to fetch posts
+// fetch data from DB
+// thunk middleware for asynchronous call to fetch posts
 export const fetchPosts = () => dispatch => (
   PostsApi.fetchPosts().then((data) => {
-    dispatch(receivePosts(data))}))
-//action creator functions being called when posts have been fetched
-export const receivePosts = ((posts) => {
+    dispatch(receivePosts(data))
+  }))
+// action creator functions being called when posts have been fetched
+export const receivePosts = (posts) => {
   return {
     type: RECEIVE_POSTS,
-    posts,
+    posts
   }
-})
+}
 
-//thunk to fetch comments for a parentId/post
+// thunk to fetch comments for a parentId/post
 export const fetchComments = (id) => dispatch => (
   PostsApi.fetchComments(id).then((data) => {
-    dispatch(receiveComments(data))}))
-//action creator functions being called when comments have been fetched
-export const receiveComments = ((comments) => {
+    dispatch(receiveComments(data))
+  }))
+// action creator functions being called when comments have been fetched
+export const receiveComments = (comments) => {
   return {
     type: RECEIVE_COMMENTS,
-    comments,
+    comments
   }
-})
+}
 
-//thunk to fetch single comment by ID
+// thunk to fetch single comment by ID
 export const fetchOneComment = (id) => dispatch => (
   PostsApi.fetchOneComment(id).then((data) => {
-    dispatch(receiveOneComment(data))}))
-//action
-export const receiveOneComment = ((comment) => {
+    dispatch(receiveOneComment(data))
+  }))
+// action
+export const receiveOneComment = (comment) => {
   return {
     type: RECEIVE_ONE_COMMENT,
-    comment,
+    comment
   }
-})
+}
 
-//fetch categories from DB
-//thunk middleware for asynchronous call to fetch categories
+// fetch categories from DB
+// thunk middleware for asynchronous call to fetch categories
 export const fetchCategories = () => dispatch => (
   PostsApi.fetchCategories().then((data) => {
-    dispatch(receiveCategories(data))}))
-//action creator functions being called upon receive
-export const receiveCategories = ((categories) => {
+    dispatch(receiveCategories(data))
+  }))
+// action creator functions being called upon receive
+export const receiveCategories = (categories) => {
   return {
     type: RECEIVE_CATEGORIES,
-    categories,
+    categories
   }
-})
+}
 
-//add a post to DB and state
-//thunk
+// add a post to DB and state
+// thunk
 export const addPost = (post) => dispatch => {
   PostsApi.addPost(post).then(dispatch(newPost(post)))
 }
-//actionpost
-export const newPost = ((post) => {
+// actionpost
+export const newPost = (post) => {
   return {
     type: ADD_POST,
-    post,
+    post
   }
-})
+}
 
-//add a comment to DB and state
-//thunk
+// add a comment to DB and state
+// thunk
 export const addComment = (comment) => dispatch => {
   PostsApi.addComment(comment).then(dispatch(newComment(comment)))
 }
-//action
-export const newComment = ((comment) => {
+// action
+export const newComment = (comment) => {
   return {
     type: ADD_POST,
-    comment,
+    comment
   }
-})
+}
 
-//remove post from DB and from store
-//thunk
+// remove post from DB and from store
+// thunk
 export const deletePost = (post) => dispatch => {
   PostsApi.deletePost(post['id']).then(dispatch(removePost(post)))
 }
-//action
-export const removePost = ((post) => {
+// action
+export const removePost = (post) => {
   return {
     type: REMOVE_POST,
-    post,
+    post
   }
-})
+}
 
-//remove comment from DB and from store
-//thunk
+// remove comment from DB and from store
+// thunk
 export const deleteComment = (comment) => dispatch => {
   PostsApi.deleteComment(comment['id']).then(dispatch(removeComment(comment)))
 }
-//action
-export const removeComment = ((comment) => {
+// action
+export const removeComment = (comment) => {
   return {
     type: REMOVE_COMMENT,
-    comment,
+    comment
   }
-})
+}
 
-//update edited post in DB and store
-//thunk to update DB
+// update edited post in DB and store
+// thunk to update DB
 export const updatePostInDb = (id, title, body, editPost) => dispatch => {
   PostsApi.updatePost(id, title, body)
   .then(
     (data) => {
-    dispatch(openPostEdit(editPost))
-  })
+      dispatch(openPostEdit(editPost))
+    })
 }
-//action to set state keeping the post to be edited
-export const openPostEdit = ((editPost) => {
+// action to set state keeping the post to be edited
+export const openPostEdit = (editPost) => {
   return {
     type: OPEN_POST_EDIT,
-    editPost,
+    editPost
   }
-})
+}
 
-//update edited comment in DB, calls same action as post edit
+// update edited comment in DB, calls same action as post edit
 export const updateCommentInDb = (id, body, editPost) => dispatch => {
   PostsApi.updateComment(id, body)
   .then(
     (data) => {
-    dispatch(openPostEdit(editPost))
-  })
+      dispatch(openPostEdit(editPost))
+    })
 }
 
-//TODO fetch comments for post
-export const openPostDetail = ((openPost) => {
+// TODO fetch comments for post
+export const openPostDetail = (openPost) => {
   return {
     type: OPEN_POST_DETAIL,
-    openPost,
+    openPost
   }
-})
+}
 
-export const selectCategory = ((categorySelected) => {
+export const selectCategory = (categorySelected) => {
   return {
     type: SELECT_CATEGORY,
-    categorySelected,
+    categorySelected
   }
-})
+}

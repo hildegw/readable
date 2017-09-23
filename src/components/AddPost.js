@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { addPost, } from '../actions'
+import { addPost } from '../actions'
 import serializeForm from "form-serialize"
 import uuid from "uuid"
 
 //TODO adjust Add-Button visibility
 //TODO preselect cat when coming from cat-view
+
+//TODO check if editPost is being used/should not be here
+ //https://atom.io/packages/standard-formatter
+//eventpreventDefault not needed (in add post)
+//eslint
 
 class AddPosts extends Component {
   state = {

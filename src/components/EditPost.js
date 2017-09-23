@@ -3,32 +3,34 @@ import './App.css'
 import { connect } from 'react-redux'
 import { updatePostInDb, updateCommentInDb, fetchPosts, fetchComments,
   fetchOneComment, openPostEdit } from '../actions'
-import serializeForm from "form-serialize"
+import serializeForm from 'form-serialize'
+
 
 
 class EditPosts extends Component {
 
   componentDidMount(){
     const editPostId = this.props.match.params.id
-    if (this.props===undefined || !this.props.editPost.hasOwnProperty('editPost')) {
-      this.props.fetchPosts()
-        .then(() => {
-          const { posts } = this.props.posts
-          const post = posts.filter((post) => post.id===editPostId)
-          console.log(post[0])
-          this.props.openPostEdit(post[0])
-        })
 
-      this.props.fetchOneComment(editPostId)
-        .then(() => {
-            const { comment } = this.props.comment
-            console.log(comment)
-            this.props.openPostEdit(comment)
-        })
-      }
+    //Fetching posts and filter for id from url. If post does not exist, it's a comment
+    this.props.fetchPosts() //TODO fetch just one post
+      .then(() => {
+        const { posts } = this.props.posts
+        const post = posts.filter((post) => post.id===editPostId)
+        console.log('post: ', post)
+        if (post.length !== 0 )this.props.openPostEdit(post.shift())
+      })
+
+    //fetching comment with id from url, then restarting openPostEdit action
+    this.props.fetchOneComment(editPostId)
+      .then(() => {
+          const { comment } = this.props.comment
+          console.log('EditPost comment: ', comment)
+          this.props.openPostEdit(comment)
+      })
   }
 
-  //hand over post to store and DB
+  //hand over edited post to store and DB
   handleSubmit = (event) => {
     event.preventDefault()
     const newPost = serializeForm(event.target, {hash: true})
@@ -46,31 +48,32 @@ class EditPosts extends Component {
 
   render() {
     const { editPost } = this.props.editPost
+    console.log(editPost)
 
     return (
       <div>
       { editPost!==undefined && (
-      <container className='Add-post'>
-        <form onSubmit={this.handleSubmit} className="add-form">
-          <div className="add-details">
-              <div>
-                <input type="text" name="author" placeholder="Your name" readOnly
-                  value={ editPost.author }  />
+        <container className='Add-post'>
+          <form onSubmit={this.handleSubmit} className="add-form">
+            <div className="add-details">
+                <div>
+                  <input type="text" name="author" placeholder="Your name" readOnly
+                    value={ editPost.author }  />
 
-                { !editPost.hasOwnProperty('parentId') && (
-                <input type="text" name="title" placeholder="Subject" required
-                  defaultValue={ editPost.title }  />)}
+                  { !editPost.hasOwnProperty('parentId') && (
+                  <input type="text" name="title" placeholder="Subject" required
+                    defaultValue={ editPost.title }  />)}
 
-                <textarea type='text' className="add-text-area" name="body"
-                  placeholder="Message" required
-                  defaultValue={ editPost.body } ></textarea>
+                  <textarea type='text' className="add-text-area" name="body"
+                    placeholder="Message" required
+                    defaultValue={ editPost.body } ></textarea>
 
-              </div>
-            <button className='add-discussion'>Add</button>
-          </div>
-        </form>
-        <button className="close-add" onClick={this.justGoBack}>Discard</button>
-      </container>)}
+                </div>
+              <button className='add-discussion'>Add</button>
+            </div>
+          </form>
+          <button className="close-add" onClick={this.justGoBack}>Discard</button>
+        </container>)}
       </div>
     )
   }
