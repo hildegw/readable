@@ -45,8 +45,7 @@ class SidebarMenu extends Component {
         <div>
           <Link
             to="/add"
-            className='add-post-link'
-            onClick={()=> { this.props.openPostEdit({}) }}>
+            className='add-post-link' >
             new discussion
           </Link>
         </div>

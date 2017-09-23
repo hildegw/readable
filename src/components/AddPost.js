@@ -8,7 +8,7 @@ import uuid from "uuid"
 //TODO adjust Add-Button visibility
 //TODO preselect cat when coming from cat-view
 
-//TODO check if editPost is being used/should not be here
+//TODO
  //https://atom.io/packages/standard-formatter
 //eventpreventDefault not needed (in add post)
 //eslint
@@ -71,8 +71,8 @@ class AddPosts extends Component {
   }
 }
 
-const mapStateToProps = ({ categories, editPost, }) => {
-  return { categories, editPost }
+const mapStateToProps = ({ categories }) => {
+  return { categories }
 }
 
 const mapDispatchToProps = (dispatch) => {

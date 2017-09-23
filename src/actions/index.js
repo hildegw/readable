@@ -13,7 +13,7 @@ export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const RECEIVE_ONE_COMMENT = 'RECEIVE_ONE_COMMENT'
 
 // fetch data from DB
-// thunk middleware for asynchronous call to fetch posts
+// thunk for asynchronous call to fetch posts
 export const fetchPosts = () => dispatch => (
   PostsApi.fetchPosts().then((data) => {
     dispatch(receivePosts(data))

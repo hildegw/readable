@@ -4,7 +4,7 @@ export const fetchPosts = () => {
   const headersGet = {
     headers: { 'Authorization': 'hildegwUdacityReadable' }
   }
-  return fetch( `${api}/posts`,  headersGet )
+  return fetch(`${api}/posts`, headersGet)
   .then(result => result.json())
 }
 
@@ -13,10 +13,10 @@ export const fetchComments = (id) => {
   const headersGet = {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'hildegwUdacityReadable',
+      'Authorization': 'hildegwUdacityReadable'
     }
   }
-  return fetch( `${api}/posts/${id}/comments`,  headersGet )
+  return fetch(`${api}/posts/${id}/comments`, headersGet)
   .then(result => result.json())
 }
 
@@ -24,7 +24,7 @@ export const fetchCategories = () => {
   const headersGet = {
     headers: { 'Authorization': 'hildegwUdacityReadable' }
   }
-  return fetch( `${api}/categories`,  headersGet )
+  return fetch(`${api}/categories`, headersGet)
   .then(result => result.json())
   .then(data => data.categories)
 }
@@ -34,10 +34,10 @@ export const deletePost = (id) => {
     method: 'delete',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'hildegwUdacityReadable',
+      'Authorization': 'hildegwUdacityReadable'
     }
   }
-  return fetch(`${api}/posts/${id}`,  headersDelete,)
+  return fetch(`${api}/posts/${id}`, headersDelete,)
 }
 
 export const deleteComment = (id) => {
@@ -45,76 +45,76 @@ export const deleteComment = (id) => {
     method: 'delete',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'hildegwUdacityReadable',
+      'Authorization': 'hildegwUdacityReadable'
     }
   }
-  return fetch(`${api}/comments/${id}`,  headersDelete,)
+  return fetch(`${api}/comments/${id}`, headersDelete,)
 }
 
 export const addPost = (post) => {
-   const timeStamp = new Date().getTime();
-   Object.assign(post, {timestamp: timeStamp})
-   const headersAdd = {
-       method: 'POST',
-       body: JSON.stringify(post),
-       headers: {
-         'Content-Type': 'application/json',
-         'Authorization': 'hildegwUdacityReadable',
-       }
-   };
-   return fetch(`${api}/posts`, headersAdd,)
+  const timeStamp = new Date().getTime()
+  Object.assign(post, {timestamp: timeStamp})
+  const headersAdd = {
+    method: 'POST',
+    body: JSON.stringify(post),
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'hildegwUdacityReadable'
+    }
+  }
+  return fetch(`${api}/posts`, headersAdd,)
 }
 
 export const addComment = (comment) => {
-   const timeStamp = new Date().getTime();
-   Object.assign(comment, {timestamp: timeStamp})
-   const headersAdd = {
-       method: 'POST',
-       body: JSON.stringify(comment),
-       headers: {
-         'Content-Type': 'application/json',
-         'Authorization': 'hildegwUdacityReadable',
-       }
-   };
-   return fetch(`${api}/comments`, headersAdd,)
+  const timeStamp = new Date().getTime()
+  Object.assign(comment, {timestamp: timeStamp})
+  const headersAdd = {
+    method: 'POST',
+    body: JSON.stringify(comment),
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'hildegwUdacityReadable'
+    }
+  }
+  return fetch(`${api}/comments`, headersAdd,)
 }
 
-//Update a post: `PUT /posts/:id` title and body
+// Update a post: `PUT /posts/:id` title and body
 export const updatePost = (id, title, body) => {
   const data = {title, body}
   const headersUpdate = {
-     method: 'PUT',
-     body: JSON.stringify(data),
-     headers: {
-       'Accept': 'application/json',
-       'Content-Type': 'application/json',
-       'Authorization': 'hildegwUdacityReadable',
-     }
-   }
-   return fetch(`${api}/posts/${id}`, headersUpdate,)
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'hildegwUdacityReadable'
+    }
+  }
+  return fetch(`${api}/posts/${id}`, headersUpdate,)
 }
 
 export const updateComment = (id, body) => {
-  const timeStamp = new Date().getTime();
+  const timeStamp = new Date().getTime()
   const data = {body: body, timestamp: timeStamp}
   console.log(id, body, JSON.stringify(data))
   const headersUpdate = {
-     method: 'PUT',
-     body: JSON.stringify(data),
-     headers: {
-       'Accept': 'application/json',
-       'Content-Type': 'application/json',
-       'Authorization': 'hildegwUdacityReadable',
-     }
-   }
-   return fetch(`${api}/comments/${id}`, headersUpdate,)
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'hildegwUdacityReadable'
+    }
+  }
+  return fetch(`${api}/comments/${id}`, headersUpdate,)
 }
 
-//GET /comments/:id
+// GET /comments/:id
 export const fetchOneComment = (id) => {
   const headersGet = {
     headers: { 'Authorization': 'hildegwUdacityReadable' }
   }
-  return fetch( `${api}/comments/${id}`,  headersGet )
+  return fetch(`${api}/comments/${id}`, headersGet)
   .then(result => result.json())
 }

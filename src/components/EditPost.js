@@ -6,27 +6,25 @@ import { updatePostInDb, updateCommentInDb, fetchPosts, fetchComments,
 import serializeForm from 'form-serialize'
 
 
-
 class EditPosts extends Component {
 
   componentDidMount(){
     const editPostId = this.props.match.params.id
-
     //Fetching posts and filter for id from url. If post does not exist, it's a comment
     this.props.fetchPosts() //TODO fetch just one post
       .then(() => {
         const { posts } = this.props.posts
         const post = posts.filter((post) => post.id===editPostId)
-        console.log('post: ', post)
-        if (post.length !== 0 )this.props.openPostEdit(post.shift())
-      })
-
-    //fetching comment with id from url, then restarting openPostEdit action
-    this.props.fetchOneComment(editPostId)
-      .then(() => {
-          const { comment } = this.props.comment
-          console.log('EditPost comment: ', comment)
-          this.props.openPostEdit(comment)
+        if (post.length !== 0 ){
+          this.props.openPostEdit(post.shift())
+        } else {
+          //It's a comment: Fetching comment with id from url, then restarting openPostEdit action.
+          this.props.fetchOneComment(editPostId)
+            .then(() => {
+                const { comment } = this.props.comment
+                this.props.openPostEdit(comment)
+            })
+        }
       })
   }
 
@@ -48,7 +46,6 @@ class EditPosts extends Component {
 
   render() {
     const { editPost } = this.props.editPost
-    console.log(editPost)
 
     return (
       <div>
