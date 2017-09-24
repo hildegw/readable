@@ -81,6 +81,7 @@ export const newPost = (post) => {
 // add a comment to DB and state
 // thunk
 export const addComment = (comment) => dispatch => {
+  console.log('API add Comment ', comment)
   PostsApi.addComment(comment).then(dispatch(newComment(comment)))
 }
 // action

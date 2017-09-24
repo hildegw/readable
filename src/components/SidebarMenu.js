@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchCategories, selectCategory, openPostDetail } from '../actions'
+import { fetchCategories, selectCategory } from '../actions'
 import {Link} from "react-router-dom"
 
 //TODO: correct category when going back in history
@@ -18,13 +18,8 @@ class SidebarMenu extends Component {
     this.props.selectCategory(category)
   }
 
-  handleClickComment = (openPost) => {
-    this.props.openPostDetail(openPost)
-  }
-
   render() {
     const { categories, categorySelected } = this.props.categories
-    const { openPost } = this.props.openPost
 
     return (
       <div className='Sidebar-menu'>
@@ -53,16 +48,6 @@ class SidebarMenu extends Component {
           </Link>
         </div>
 
-        {openPost !== undefined && openPost.hasOwnProperty('id') && (
-        <div className='sidebar-add'>
-          <Link
-            to={'/add/' + openPost.id}
-            onClick={()=> { this.handleClickComment(openPost) }}
-            className='sidebar-add-post-link' >
-            new comment
-          </Link>
-        </div>)}
-
       </div>
 
     )
@@ -70,14 +55,13 @@ class SidebarMenu extends Component {
 }
 
 
-const mapStateToProps = ({ categories, categorySelected, openPost }) => {
-  return { categories, categorySelected, openPost }
+const mapStateToProps = ({ categories, categorySelected }) => {
+  return { categories, categorySelected }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     selectCategory: (data) => dispatch(selectCategory(data)),
-    openPostDetail: (data) => dispatch(openPostDetail(data)),
     fetchCategories: () => dispatch(fetchCategories()),
   }
 }

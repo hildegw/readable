@@ -3,10 +3,14 @@ import './App.css'
 import { connect } from 'react-redux'
 import { fetchPosts, deletePost, openPostDetail, fetchComments } from '../actions'
 import OnePost from './OnePost'
+import serializeForm from "form-serialize"
+import uuid from "uuid"
+
 
 class ShowDetail extends Component {
 
   componentDidMount () {
+    console.log("mounting Show Detail")
     const postId = this.props.match.params.id
     this.props.fetchComments(postId)
     this.props.fetchPosts()
@@ -15,6 +19,16 @@ class ShowDetail extends Component {
         const post = posts.filter((post) => post.id === postId)
         this.props.openPostDetail(post.shift())
       })
+  }
+
+  handleSubmit = (event) => {
+    console.log("submitting !!!!!!!!!!!!!")
+    const parentId = this.props.openPost.id
+    const newComment = serializeForm(event.target, {hash: true})
+    const id = uuid()
+    Object.assign(newComment, {id: id}, {parentId: parentId})
+    this.props.addComment(newComment)
+    console.log('handle Submit - this props', this.props)
   }
 
   render () {
@@ -30,7 +44,7 @@ class ShowDetail extends Component {
             post={openPost}
             showBody={showBody}
             history={this.props.history}
-              />)}
+          />)}
         </div>
 
         { comments !== undefined && openPost !== undefined && (
@@ -46,6 +60,22 @@ class ShowDetail extends Component {
             )}
           </ol>
         </div>)}
+
+        <div>
+        { openPost !== undefined && (
+        <container className='Add-post'>
+          <form onSubmit={this.handleSubmit} className='add-form'>
+            <div className='add-details'>
+              <div>
+                <input type='text' name='author' placeholder='Your name' required />
+                <textarea type='text' className='add-text-area' name='body'
+                  placeholder='Message' required />
+              </div>
+              <button className='add-discussion'>Add</button>
+            </div>
+          </form>
+        </container>)}
+        </div>
       </div>
 
     )

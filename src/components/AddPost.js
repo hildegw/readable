@@ -1,31 +1,17 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { addPost, addComment, openPostDetail, fetchPosts } from '../actions'
+import { addPost } from '../actions'
 import serializeForm from "form-serialize"
 import uuid from "uuid"
-import OnePost from './OnePost'
-
 
 //TODO adjust Add-Button visibility
 //TODO preselect cat when coming from cat-view
+//TODO build back add comment: actions, bindings, etc.
 
 class AddPosts extends Component {
   state = {
     category: 'none',
-   }
-
-   componentDidMount(){
-     const parentId = this.props.match.params.id
-     //Fetching posts, and filter for id from url. If post does not exist, it's a comment
-     this.props.fetchPosts()
-       .then(() => {
-         const { posts } = this.props.posts
-         const post = posts.filter((post) => post.id === parentId)
-         if (post.length !== 0 ){
-           this.props.openPostDetail(post.shift())
-         }
-       })
    }
 
   checkCategory = (event) => {
@@ -48,20 +34,9 @@ class AddPosts extends Component {
 
   render() {
     const {categories} = this.props.categories
-    const openPost = this.props.openPost
-    console.log("render AddPost - openPost ", openPost)
-    const showBody = true
 
     return (
       <div>
-
-              <OnePost
-                post={openPost}
-                showBody={showBody}
-              />
-
-
-
         <container className='Add-post'>
           <form onSubmit={this.handleSubmit} className="add-form">
             <div className="add-details">
@@ -91,15 +66,13 @@ class AddPosts extends Component {
   }
 }
 
-const mapStateToProps = ({ categories, openPost, posts }) => {
-  return { categories, openPost, posts }
+const mapStateToProps = ({ categories }) => {
+  return { categories }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addPost: (data) => dispatch(addPost(data)),
-    fetchPosts: () => dispatch(fetchPosts()),
-    openPostDetail: (data) => dispatch(openPostDetail(data)),
   }
 }
 
