@@ -6,8 +6,8 @@ import OnePost from './OnePost'
 
 class ShowDetail extends Component {
 
-// TODO check delete of post+comments
   componentDidMount () {
+    console.log('Detail mounting')
     const postId = this.props.match.params.id
     this.props.fetchComments(postId)
     this.props.fetchPosts()
@@ -34,7 +34,7 @@ class ShowDetail extends Component {
               />)}
         </div>
 
-        { comments !== undefined && (
+        { comments !== undefined && openPost !== undefined && (
         <div className='post'>
           <ol className='post-list'>
             {comments.map((comment) =>

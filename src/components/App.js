@@ -8,6 +8,12 @@ import SidebarMenu from './SidebarMenu'
 import EditPost from './EditPost'
 import ShowDetail from './ShowDetail'
 
+// TODO add comment
+// up/down vote
+// showposts: sort by date and vote
+// fix sidebar status when going back in history
+// comment counter
+
 class App extends Component {
 
   render () {
