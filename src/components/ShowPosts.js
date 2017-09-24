@@ -31,16 +31,16 @@ class ShowPosts extends Component {
       <div>
         { posts!==undefined && (
         <div className="post">
-          <ol className="post-list">
+          <div className="post-list">
               {showPosts.map((post)=>
-                <li key={post.id} >
+                <div key={post.id} >
                   <OnePost
                     post={post}
                     showBody={showBody}
                   />
-                </li>
+                </div>
             )}
-          </ol>
+          </div>
         </div>)}
       </div>
     )

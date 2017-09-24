@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, deletePost, openPostDetail, fetchComments, 
+import { fetchPosts, deletePost, openPostDetail, fetchComments,
   addComment } from '../actions'
 import OnePost from './OnePost'
 import serializeForm from "form-serialize"
@@ -41,44 +41,46 @@ class ShowDetail extends Component {
     return (
       <div>
         <div className='post'>
-          { openPost !== undefined && (
-          <OnePost
-            post={openPost}
-            showBody={showBody}
-            history={this.props.history}
-          />)}
+          <div className='post-list'>
+            { openPost !== undefined && (
+            <OnePost
+              post={openPost}
+              showBody={showBody}
+              history={this.props.history}
+            />)}
+          </div>
         </div>
 
         { comments !== undefined && openPost !== undefined && (
-        <div className='post'>
-          <ol className='post-list'>
+        <div className='comment'>
+          <div className='post-list'>
             {comments.map((comment) =>
-              <li key={comment.id} >
+              <div key={comment.id} >
                 <OnePost
                   post={comment}
                   showBody={showBody}
                   />
-              </li>
+              </div>
             )}
-          </ol>
+          </div>
         </div>)}
 
         <div>
-        { openPost !== undefined && (
-        <container className='Add-post'>
-          <form onSubmit={this.handleSubmit} 
-                className='add-form' 
-                ref={(addForm) => this.addForm = addForm} >
-            <div className='add-details'>
-              <div>
-                <input type='text' name='author' placeholder='Your name' required />
-                <textarea type='text' className='add-text-area' name='body'
-                  placeholder='Message' required />
+          { openPost !== undefined && (
+          <container className='Add-post'>
+            <form onSubmit={this.handleSubmit}
+                  className='add-form'
+                  ref={(addForm) => this.addForm = addForm} >
+              <div className='add-details'>
+                <div>
+                  <input type='text' name='author' placeholder='Your name' required />
+                  <textarea type='text' className='add-text-area' name='body'
+                    placeholder='Message' required />
+                </div>
+                <button className='add-discussion'>Add</button>
               </div>
-              <button className='add-discussion'>Add</button>
-            </div>
-          </form>
-        </container>)}
+            </form>
+          </container>)}
         </div>
       </div>
 

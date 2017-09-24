@@ -1,4 +1,6 @@
 .App {
+  padding: 0px;
+  margin: 0px;
 }
 
 .App-header {
@@ -86,29 +88,34 @@
 
 
 /* Show Posts */
-.Show-posts {
-}
-
 .post {
   font-size: medium;
-  display: flex;
+  padding-left: 20px;
   border-left: 1px solid #ccc;
-}
-
-.post-list {
-  list-style-type: none;
-  padding: 10px;
-}
-.post-list-item {
-  padding: 10px;
-  background: white;
-  border-bottom: 1px solid #ccc;
   max-width: 500px;
   min-width: 500px;
 }
 
+.comment {
+  font-size: small;
+  padding-left: 40px;
+  padding-top: 10px;
+  border-left: 1px solid #ccc;
+  max-width: 440px;
+  min-width: 440px;
+}
+
+.post-list {
+  list-style-type: none;
+}
+.post-list-item {
+  padding-top: 10px;
+  background: white;
+  border-bottom: 1px solid #ccc;
+}
+
 .post-details {
-  padding-left: 20px;
+  padding-left: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -129,25 +136,23 @@
 }
 
 .post-tools {
-  padding: 10px;
+  padding: 10px;10px
   padding-top: 20px;
   display: flex;
   justify-content: flex-start;
-  width: 25px;
-  height: 25px;
+  font-size: small;
 }
 
 .post-comment {
-  padding-left: 70px;
+  padding-left: 60px;
   background-color: transparent;
   background-image: url('./../icons/comments.svg');
-  background-size: 25px 25px;
+  background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: center center;
   border: 0;
   color: #676767;
   text-decoration: none;
-  font-size: 5spx;;
   cursor: pointer;
   outline: none;
 }
@@ -156,7 +161,7 @@
   margin-left: 20px;
   background-color: transparent;
   background-image: url('./../icons/vote.svg');
-  background-size: 25px 25px;
+  background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: center center;
   border: 0;
@@ -171,7 +176,7 @@
   padding-left: 130px;
   background-color: transparent;
   background-image: url('./../icons/edit.svg');
-  background-size: 25px 25px;
+  background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: center center;
   border: 0;
@@ -184,12 +189,11 @@
 .post-remove {
   background-color: transparent;
   background-image: url('./../icons/cancel.svg');
-  background-size: 25px 25px;
+  background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: center center;
   border: 0;
   color: transparent;
-  font-size: 5spx;;
   cursor: pointer;
   outline: none;
 }
@@ -197,28 +201,26 @@
 
 /* Add Post */
 .Add-post {
-  display: flex;
   flex-direction: column;
   border-left: 1px solid #ccc;
 }
 
 .add-form {
-  padding: 20px;
   padding-bottom: 0px;
-  max-width: 500px;
-  margin: 0 auto;
   display: flex;
+  max-width: 520px;
+  border-left: 1px solid #ccc;
 }
 
 .add-details {
-  margin-left: 10px;
+  padding-left: 40px;
 }
 
 .add-details input {
-  width: 100%;
-  padding: 5px 10px;
+  width: 85%;
+  padding: 5px 20px;
   margin-bottom: 10px;
-  font-size: medium;
+  font-size: small;
   background: transparent;
   border: none;
   border-bottom: 1px solid #ccc;
@@ -230,10 +232,10 @@
 }
 
 .add-text-area {
-  width: 100%;
-  padding: 5px 10px;
+  width: 85%;
+  padding: 5px 20px;
   margin-bottom: 10px;
-  font-size: medium;
+  font-size: small;
   font-family: sans-serif;
   background: transparent;
   border: none;
@@ -278,14 +280,12 @@
   background-image: url('./../icons/plus.svg');
   background-repeat: no-repeat;
   background-position: center left;
-  margin-left: 40px;
+  margin-left: 30px;
   padding-right: 8px;
   padding-left: 40px;
-  padding-bottom: 20px;
-  padding-top: 20px;
   cursor: pointer;
   color: #676767;
-  font-size: medium;
+  font-size: small;
   text-decoration: none;
   border: none;
   outline: none;
@@ -298,14 +298,14 @@
   background-image: url('./../icons/arrow-back.svg');
   background-repeat: no-repeat;
   background-position: center left;
-  margin-left: 70px;
+  margin-left: 66px;
   padding-right: 8px;
-  padding-left: 40px;
+  padding-left: 42px;
   padding-bottom: 20px;
   padding-top: 20px;
   cursor: pointer;
   color: #676767;
-  font-size: medium;
+  font-size: small;
   text-decoration: none;
   border: none;
   outline: none;
