@@ -5,6 +5,8 @@ import { fetchCategories, selectCategory, openPostEdit } from '../actions'
 import {Link} from "react-router-dom"
 
 //TODO: correct category when going back in history
+//'add comment' menu item if showDetail is open
+//reset openPost state when done with showDetail or Edit
 
 class SidebarMenu extends Component {
 
@@ -18,6 +20,7 @@ class SidebarMenu extends Component {
 
   render() {
     const { categories, categorySelected } = this.props.categories
+    const { openPost } = this.props.openPost
 
     return (
       <div className='Sidebar-menu'>
@@ -46,6 +49,15 @@ class SidebarMenu extends Component {
           </Link>
         </div>
 
+        {openPost !== undefined && openPost.hasOwnProperty('id') && (
+        <div>
+          <Link
+            to="/add"
+            className='add-post-link' >
+            new comment
+          </Link>
+        </div>)}
+
       </div>
 
     )
@@ -53,8 +65,8 @@ class SidebarMenu extends Component {
 }
 
 
-const mapStateToProps = ({ categories, categorySelected }) => {
-  return { categories, categorySelected }
+const mapStateToProps = ({ categories, categorySelected, openPost }) => {
+  return { categories, categorySelected, openPost }
 }
 
 const mapDispatchToProps = (dispatch) => {

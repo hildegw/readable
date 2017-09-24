@@ -11,7 +11,7 @@ class EditPosts extends Component {
   componentDidMount(){
     const editPostId = this.props.match.params.id
     //Fetching posts and filter for id from url. If post does not exist, it's a comment
-    this.props.fetchPosts() //TODO fetch just one post
+    this.props.fetchPosts() 
       .then(() => {
         const { posts } = this.props.posts
         const post = posts.filter((post) => post.id===editPostId)
