@@ -110,7 +110,7 @@ export const removePost = (post) => {
 export const deleteComment = (comment) => dispatch => {
   PostsApi.deleteComment(comment['id']).then(dispatch(removeComment(comment)))
 }
-// action
+// action with payload = comment
 export const removeComment = (comment) => {
   return {
     type: REMOVE_COMMENT,

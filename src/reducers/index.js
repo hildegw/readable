@@ -16,14 +16,12 @@ const posts = (state = {}, action) => {
         ...state,
         posts: state.posts.concat(post)
       }
-
     case REMOVE_POST:
       const newStatePosts = state.posts.filter((item) => item.id !== post.id)
       return {
         ...state,
         posts: newStatePosts
       }
-
     default:
       return state
   }
@@ -86,14 +84,12 @@ const comments = (state = {}, action) => {
         ...state,
         comments: state.comments.concat(comment)
       }
-
     case REMOVE_COMMENT:
-      const newStateComments = state.comments.filter((item) => item.id !== comments.id)
+      const newStateComments = state.comments.filter((item) => item.id !== comment.id)
       return {
         ...state,
         comments: newStateComments
       }
-
     default:
       return state
   }

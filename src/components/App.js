@@ -23,7 +23,7 @@ class App extends Component {
         </container>
 
         <container className='Sidebar-show-posts' >
-          <SidebarMenu />
+          <Route path='/' component={SidebarMenu} />
           <Switch>
             <Route exact path='/' component={ShowPosts} />
             <Route exact path='/add' component={AddPost} />

@@ -4,23 +4,21 @@ import { connect } from 'react-redux'
 import { fetchPosts, deletePost, openPostEdit, openPostDetail, fetchComments } from '../actions'
 import OnePost from './OnePost'
 
-
 class ShowDetail extends Component {
 
-//TODO implement delete of comments and check delete of post+comments
-
-  componentDidMount(){
+// TODO check delete of post+comments
+  componentDidMount () {
     const postId = this.props.match.params.id
     this.props.fetchComments(postId)
-    if (this.props===undefined || !this.props.openPost.hasOwnProperty('openPost')) {
-      this.props.fetchPosts()
-        .then(() => {
-          const { posts } = this.props.posts
-          const post = posts.filter((post) => post.id===postId)
-          this.props.openPostDetail(post[0])
-  })}}
+    this.props.fetchPosts()
+      .then(() => {
+        const { posts } = this.props.posts
+        const post = posts.filter((post) => post.id === postId)
+        this.props.openPostDetail(post.shift())
+      })
+  }
 
-  render() {
+  render () {
     const { openPost } = this.props.openPost
     const { comments } = this.props.comments
     const showBody = true
@@ -28,29 +26,28 @@ class ShowDetail extends Component {
     return (
       <div>
         <div className='post'>
-          { openPost!==undefined && (
-              <OnePost
-                post={ openPost }
-                showBody={showBody}
-                history={ this.props.history }
-              /> )}
+          { openPost !== undefined && (
+          <OnePost
+            post={openPost}
+            showBody={showBody}
+            history={this.props.history}
+              />)}
         </div>
 
-        { comments!==undefined && (
-        <div className="post">
-          <ol className="post-list">
-              {comments.map((comment)=>
-                <li key={comment.id} >
-                  <OnePost
-                    post={comment}
-                    showBody={showBody}
+        { comments !== undefined && (
+        <div className='post'>
+          <ol className='post-list'>
+            {comments.map((comment) =>
+              <li key={comment.id} >
+                <OnePost
+                  post={comment}
+                  showBody={showBody}
                   />
-                </li>
+              </li>
             )}
           </ol>
         </div>)}
       </div>
-
 
     )
   }
@@ -66,7 +63,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchComments: (data) => dispatch(fetchComments(data)),
     deletePost: (data) => dispatch(deletePost(data)),
     openPostEdit: (data) => dispatch(openPostEdit(data)),
-    openPostDetail: (data) => dispatch(openPostDetail(data)),
+    openPostDetail: (data) => dispatch(openPostDetail(data))
   }
 }
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fetchCategories, selectCategory, openPostEdit } from '../actions'
 import {Link} from "react-router-dom"
 
-//TODO: remove category selection in home screen, and keep refresh
+//TODO: correct category when going back in history
 
 class SidebarMenu extends Component {
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, deletePost, selectCategory } from '../actions'
+import { fetchPosts, selectCategory } from '../actions'
 import OnePost from './OnePost'
 
 //displays all posts or per category
@@ -11,7 +11,6 @@ class ShowPosts extends Component {
     this.props.fetchPosts()
     const category = this.props.match.params.category
     this.props.selectCategory(category)
-    console.log("mouting", category)
   }
 
   postsToShow = (posts, category) => {
@@ -55,7 +54,6 @@ const mapStateToProps = ({ posts, selectCategory }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
-    deletePost: (data) => dispatch(deletePost(data)),
     selectCategory: (data) => dispatch(selectCategory(data)),
   }
 }
