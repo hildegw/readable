@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, deletePost, openPostEdit, openPostDetail, fetchComments } from '../actions'
+import { fetchPosts, deletePost, openPostDetail, fetchComments } from '../actions'
 import OnePost from './OnePost'
 
 class ShowDetail extends Component {
 
   componentDidMount () {
-    console.log('Detail mounting')
     const postId = this.props.match.params.id
     this.props.fetchComments(postId)
     this.props.fetchPosts()
@@ -62,7 +61,6 @@ const mapDispatchToProps = (dispatch) => {
     fetchPosts: () => dispatch(fetchPosts()),
     fetchComments: (data) => dispatch(fetchComments(data)),
     deletePost: (data) => dispatch(deletePost(data)),
-    openPostEdit: (data) => dispatch(openPostEdit(data)),
     openPostDetail: (data) => dispatch(openPostDetail(data))
   }
 }

@@ -1,5 +1,5 @@
 import { RECEIVE_POSTS, RECEIVE_CATEGORIES, ADD_POST,
-  REMOVE_POST, OPEN_POST_EDIT, SELECT_CATEGORY, OPEN_POST_DETAIL,
+  REMOVE_POST, SELECT_CATEGORY, OPEN_POST_DETAIL,
   RECEIVE_COMMENTS, ADD_COMMENT, REMOVE_COMMENT, RECEIVE_ONE_COMMENT} from '../actions'
 import { combineReducers } from 'redux'
 
@@ -39,19 +39,6 @@ const categories = (state = {}, action) => {
       return {
         ...state,
         categorySelected
-      }
-    default:
-      return state
-  }
-}
-
-const editPost = (state = {}, action) => {
-  const { editPost } = action
-  switch (action.type) {
-    case OPEN_POST_EDIT:
-      return {
-        ...state,
-        editPost: editPost
       }
     default:
       return state
@@ -108,4 +95,4 @@ const comment = (state = {}, action) => {
   }
 }
 
-export default combineReducers({posts, categories, editPost, openPost, comments, comment})
+export default combineReducers({posts, categories, openPost, comments, comment})

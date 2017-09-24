@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, deletePost, deleteComment, openPostEdit, openPostDetail } from '../actions'
+import { fetchPosts, deletePost, deleteComment, openPostDetail } from '../actions'
 import { Link } from "react-router-dom"
 
 //TODO resolve routing issue on delete when history contains showDetail more than once
@@ -46,12 +46,12 @@ class OnePost extends Component {
             className='post-comment'>377
           </Link>)}
 
-          <Link onClick={() => { this.props.openPostEdit(post) }}
+          <Link onClick={() => { this.props.openPostDetail(post) }}
             to={ {pathname: `/edit/${post.id}`} }
             className='post-vote'>-566
           </Link>
 
-          <Link onClick={() => { this.props.openPostEdit(post) }}
+          <Link onClick={() => { this.props.openPostDetail(post) }}
             to={ {pathname: `/edit/${post.id}`} }
             className='post-edit'>
           </Link>
@@ -76,7 +76,6 @@ const mapDispatchToProps = (dispatch) => {
     fetchPosts: () => dispatch(fetchPosts()),
     deletePost: (data) => dispatch(deletePost(data)),
     deleteComment: (data) => dispatch(deleteComment(data)),
-    openPostEdit: (data) => dispatch(openPostEdit(data)),
     openPostDetail: (data) => dispatch(openPostDetail(data)),
   }
 }

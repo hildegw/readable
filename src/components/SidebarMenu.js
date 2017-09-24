@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchCategories, selectCategory, openPostEdit } from '../actions'
+import { fetchCategories, selectCategory, openPostDetail } from '../actions'
 import {Link} from "react-router-dom"
 
 //TODO: correct category when going back in history
@@ -14,8 +14,12 @@ class SidebarMenu extends Component {
     this.props.fetchCategories()
   }
 
-  handleClick = (category) => {
+  handleClickCat = (category) => {
     this.props.selectCategory(category)
+  }
+
+  handleClickComment = (openPost) => {
+    this.props.openPostDetail(openPost)
   }
 
   render() {
@@ -32,7 +36,7 @@ class SidebarMenu extends Component {
               <ul>
               <Link
                 to={'/' + cat.name}
-                onClick={()=> { this.handleClick(cat.name) }}
+                onClick={()=> { this.handleClickCat(cat.name) }}
                 className={ categorySelected === cat.name ? 'cat-item-selected' : 'cat-item' }>
                 {cat.name}
               </Link>
@@ -41,19 +45,20 @@ class SidebarMenu extends Component {
           )}
         </div>)}
 
-        <div>
+        <div className='sidebar-add'>
           <Link
             to="/add"
-            className='add-post-link' >
+            className='sidebar-add-post-link' >
             new discussion
           </Link>
         </div>
 
         {openPost !== undefined && openPost.hasOwnProperty('id') && (
-        <div>
+        <div className='sidebar-add'>
           <Link
-            to="/add"
-            className='add-post-link' >
+            to={'/add/' + openPost.id}
+            onClick={()=> { this.handleClickComment(openPost) }}
+            className='sidebar-add-post-link' >
             new comment
           </Link>
         </div>)}
@@ -72,7 +77,7 @@ const mapStateToProps = ({ categories, categorySelected, openPost }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     selectCategory: (data) => dispatch(selectCategory(data)),
-    openPostEdit: (data) => dispatch(openPostEdit(data)),
+    openPostDetail: (data) => dispatch(openPostDetail(data)),
     fetchCategories: () => dispatch(fetchCategories()),
   }
 }

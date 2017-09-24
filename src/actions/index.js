@@ -3,7 +3,6 @@ import * as PostsApi from '../utils/api'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
-export const OPEN_POST_EDIT = 'OPEN_POST_EDIT'
 export const SELECT_CATEGORY = 'SELECT_CATEGORY'  // TODO check if needed
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 export const OPEN_POST_DETAIL = 'OPEN_POST_DETAIL'
@@ -120,31 +119,24 @@ export const removeComment = (comment) => {
 
 // update edited post in DB and store
 // thunk to update DB
-export const updatePostInDb = (id, title, body, editPost) => dispatch => {
+export const updatePostInDb = (id, title, body, openPost) => dispatch => {
   PostsApi.updatePost(id, title, body)
   .then(
     (data) => {
-      dispatch(openPostEdit(editPost))
+      dispatch(openPostDetail(openPost))
     })
-}
-// action to set state keeping the post to be edited
-export const openPostEdit = (editPost) => {
-  return {
-    type: OPEN_POST_EDIT,
-    editPost
-  }
 }
 
 // update edited comment in DB, calls same action as post edit
-export const updateCommentInDb = (id, body, editPost) => dispatch => {
+export const updateCommentInDb = (id, body, openPost) => dispatch => {
   PostsApi.updateComment(id, body)
   .then(
     (data) => {
-      dispatch(openPostEdit(editPost))
+      dispatch(openPostDetail(openPost))
     })
 }
 
-// TODO fetch comments for post
+// setting openPost state to currently opened post
 export const openPostDetail = (openPost) => {
   return {
     type: OPEN_POST_DETAIL,
