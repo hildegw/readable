@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, deletePost } from '../actions'
+import { fetchPosts, deletePost, selectCategory } from '../actions'
 import OnePost from './OnePost'
 
 //displays all posts or per category
 class ShowPosts extends Component {
 
-  componentDidMount(){ this.props.fetchPosts() }
+  componentDidMount(){
+    this.props.fetchPosts()
+    const category = this.props.match.params.category
+    this.props.selectCategory(category)
+    console.log("mouting", category)
+  }
 
   postsToShow = (posts, category) => {
       if (category!==undefined && posts!==undefined) {
@@ -43,14 +48,15 @@ class ShowPosts extends Component {
   }
 }
 
-const mapStateToProps = ({ posts }) => {
-  return { posts }
+const mapStateToProps = ({ posts, selectCategory }) => {
+  return { posts, selectCategory }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
     deletePost: (data) => dispatch(deletePost(data)),
+    selectCategory: (data) => dispatch(selectCategory(data)),
   }
 }
 

@@ -4,24 +4,20 @@ import { connect } from 'react-redux'
 import { fetchCategories, selectCategory, openPostEdit } from '../actions'
 import {Link} from "react-router-dom"
 
-//TODO: remove category selection in home screen
+//TODO: remove category selection in home screen, and keep refresh
 
 class SidebarMenu extends Component {
-  state = {
-    cateName: 'none',
-  }
 
   componentDidMount(){
     this.props.fetchCategories()
   }
 
-  handleClick = (catName) => {
-    this.props.selectCategory(catName)
-    this.setState({catName: catName})
+  handleClick = (category) => {
+    this.props.selectCategory(category)
   }
 
   render() {
-    const { categories } = this.props.categories
+    const { categories, categorySelected } = this.props.categories
 
     return (
       <div className='Sidebar-menu'>
@@ -34,7 +30,7 @@ class SidebarMenu extends Component {
               <Link
                 to={'/' + cat.name}
                 onClick={()=> { this.handleClick(cat.name) }}
-                className={ this.state.catName===cat.name ? 'cat-item-selected' : 'cat-item' }>
+                className={ categorySelected === cat.name ? 'cat-item-selected' : 'cat-item' }>
                 {cat.name}
               </Link>
               </ul>
@@ -57,8 +53,8 @@ class SidebarMenu extends Component {
 }
 
 
-const mapStateToProps = ({ categories, }) => {
-  return { categories, }
+const mapStateToProps = ({ categories, categorySelected }) => {
+  return { categories, categorySelected }
 }
 
 const mapDispatchToProps = (dispatch) => {
