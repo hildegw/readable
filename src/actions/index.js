@@ -87,7 +87,7 @@ export const addComment = (comment) => dispatch => {
 // action
 export const newComment = (comment) => {
   return {
-    type: ADD_POST,
+    type: ADD_COMMENT,
     comment
   }
 }

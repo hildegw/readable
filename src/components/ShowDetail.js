@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, deletePost, openPostDetail, fetchComments } from '../actions'
+import { fetchPosts, deletePost, openPostDetail, fetchComments, 
+  addComment } from '../actions'
 import OnePost from './OnePost'
 import serializeForm from "form-serialize"
 import uuid from "uuid"
@@ -22,13 +23,14 @@ class ShowDetail extends Component {
   }
 
   handleSubmit = (event) => {
-    console.log("submitting !!!!!!!!!!!!!")
-    const parentId = this.props.openPost.id
+    event.preventDefault()
+    const parentId = this.props.match.params.id
     const newComment = serializeForm(event.target, {hash: true})
     const id = uuid()
     Object.assign(newComment, {id: id}, {parentId: parentId})
+    console.log("reste ", event)
     this.props.addComment(newComment)
-    console.log('handle Submit - this props', this.props)
+    this.addForm.reset()
   }
 
   render () {
@@ -64,7 +66,9 @@ class ShowDetail extends Component {
         <div>
         { openPost !== undefined && (
         <container className='Add-post'>
-          <form onSubmit={this.handleSubmit} className='add-form'>
+          <form onSubmit={this.handleSubmit} 
+                className='add-form' 
+                ref={(addForm) => this.addForm = addForm} >
             <div className='add-details'>
               <div>
                 <input type='text' name='author' placeholder='Your name' required />
@@ -91,7 +95,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchPosts: () => dispatch(fetchPosts()),
     fetchComments: (data) => dispatch(fetchComments(data)),
     deletePost: (data) => dispatch(deletePost(data)),
-    openPostDetail: (data) => dispatch(openPostDetail(data))
+    openPostDetail: (data) => dispatch(openPostDetail(data)),
+    addComment: (data) => dispatch(addComment(data)),
   }
 }
 

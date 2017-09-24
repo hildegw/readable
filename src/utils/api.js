@@ -68,6 +68,7 @@ export const addPost = (post) => {
 export const addComment = (comment) => {
   const timeStamp = new Date().getTime()
   Object.assign(comment, {timestamp: timeStamp})
+  console.log('API addComment ', comment)
   const headersAdd = {
     method: 'POST',
     body: JSON.stringify(comment),
