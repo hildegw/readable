@@ -11,8 +11,9 @@ export const ADD_COMMENT = 'ADD_COMMENT'
 export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const RECEIVE_ONE_COMMENT = 'RECEIVE_ONE_COMMENT'
 export const COUNT_COMMENTS = 'COUNT_COMMENTS'
+export const VOTE = 'VOTE'
 
-// fetch data from DB
+// fetch data from DB and then set state
 // thunk for asynchronous call to fetch posts
 export const fetchPosts = () => dispatch => (
   PostsApi.fetchPosts().then((data) => {
@@ -158,5 +159,22 @@ export const countComments = (count, parentId) => {
     type: COUNT_COMMENTS,
     count,
     parentId
+  }
+}
+
+// voting thunk
+export const setVote = (type, id, option) => dispatch => {
+  PostsApi.vote(type, id, option)
+  .then(
+    (data) => {
+      dispatch(setVote(type, id, option))
+    })
+}
+// voting action
+export const vote = (type, id, option) => {
+  return {
+    type: VOTE,
+    id,
+    option
   }
 }

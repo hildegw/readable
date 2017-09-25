@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, deletePost, deleteComment, openPostDetail, countComments } from '../actions'
+import { fetchPosts, deletePost, deleteComment, 
+  openPostDetail, countComments, vote } from '../actions'
 import { Link } from 'react-router-dom'
 import CommentsCounter from './CommentsCounter'
 
@@ -29,6 +30,8 @@ class OnePost extends Component {
 
   render() {
       const { post, showBody } = this.props
+      let type = 'post' 
+      if (post.hasOwnProperty('parentId')) type = 'comment'
 
     return (
       <div className="post-list-item">
@@ -51,13 +54,18 @@ class OnePost extends Component {
             <CommentsCounter post={post}/>
           </div>)}
 
-          <Link 
-            onClick={() => { this.props.openPostDetail(post) }}
-            to={ {pathname: `/edit/${post.id}`} }
-            className='post-vote'>
-            -566
-          </Link>
-
+          <div className='post-vote'>
+            <button 
+              onClick={() => { this.props.vote(type, post.id, 'upVote') }}
+              className='post-voteup-link'>
+            </button>
+            {this.props.count}
+            <button 
+              onClick={() => { console.log(post) }}
+              className='post-votedown-link'>
+            </button>
+          </div>
+          
           <Link 
             onClick={() => { this.props.openPostDetail(post) }}
             to={ {pathname: `/edit/${post.id}`} }
@@ -75,8 +83,8 @@ class OnePost extends Component {
   }
 }
 
-const mapStateToProps = ({ posts, comments }) => {
-  return { posts, comments }
+const mapStateToProps = ({ posts, comments, vote }) => {
+  return { posts, comments, vote }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -86,6 +94,7 @@ const mapDispatchToProps = (dispatch) => {
     deleteComment: (data) => dispatch(deleteComment(data)),
     openPostDetail: (data) => dispatch(openPostDetail(data)),
     countComments: (count, parentId) => dispatch(countComments(count, parentId)),
+    vote: (type, id, option) => dispatch(vote(type, id, option)),
   }
 }
 

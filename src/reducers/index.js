@@ -1,7 +1,7 @@
 import { RECEIVE_POSTS, RECEIVE_CATEGORIES, ADD_POST,
   REMOVE_POST, SELECT_CATEGORY, OPEN_POST_DETAIL,
   RECEIVE_COMMENTS, ADD_COMMENT, REMOVE_COMMENT,
-  RECEIVE_ONE_COMMENT, COUNT_COMMENTS} from '../actions'
+  RECEIVE_ONE_COMMENT, COUNT_COMMENTS, VOTE} from '../actions'
 import { combineReducers } from 'redux'
 
 const posts = (state = {}, action) => {
@@ -110,4 +110,24 @@ const commentCounter = (state = {}, action) => {
   }
 }
 
-export default combineReducers({posts, categories, openPost, comments, comment, commentCounter})
+// voting
+const vote = (state = {}, action) => {
+  const { type, id, option } = action
+  let count = 1
+  if (this.state !== undefined) {
+    count = this.state.vote.id;
+    (option === 'upVote') ? count += 1 : count -= 1
+  }
+  console.log('reducer vote: ', count)
+  switch (action.type) {
+    case VOTE:
+      return {
+        ...state,
+        [id]: count
+      }
+    default:
+      return state
+  }
+}
+
+export default combineReducers({posts, categories, openPost, comments, comment, commentCounter, vote})

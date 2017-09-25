@@ -98,7 +98,6 @@ export const updatePost = (id, title, body) => {
 export const updateComment = (id, body) => {
   const timeStamp = new Date().getTime()
   const data = {body: body, timestamp: timeStamp}
-  console.log(id, body, JSON.stringify(data))
   const headersUpdate = {
     method: 'PUT',
     body: JSON.stringify(data),
@@ -118,4 +117,18 @@ export const fetchOneComment = (id) => {
   }
   return fetch(`${api}/comments/${id}`, headersGet)
   .then(result => result.json())
+}
+
+// vote for type = post or comment, option = upvote or downvote
+export const vote = (type, id, option) => {
+  const data = {id: id, option: option}
+  const headersVote = {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'hildegwUdacityReadable'
+    }
+  }
+  return fetch(`${api}/${type}`, headersVote)
 }
