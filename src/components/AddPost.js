@@ -8,6 +8,7 @@ import uuid from "uuid"
 //TODO adjust Add-Button visibility
 //TODO preselect cat when coming from cat-view
 //TODO build back add comment: actions, bindings, etc.
+//TODO check if state can be substituted by categorySelected
 
 class AddPosts extends Component {
   state = {
@@ -50,7 +51,7 @@ class AddPosts extends Component {
                   {categories.map((cat) =>
                     <label key={cat.name}><input type="radio" name='category' value={cat.name}
                       onClick={this.checkCategory} />
-                      <span className={ this.state.category===cat.name ? 'add-radio-checked' : '' }>{cat.name}</span>
+                      <span className={ this.state.category === cat.name ? 'add-radio-checked' : '' }>{cat.name}</span>
                     </label>
                   )}
                 </div>)}

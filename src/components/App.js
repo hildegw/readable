@@ -8,7 +8,7 @@ import SidebarMenu from './SidebarMenu'
 import EditPost from './EditPost'
 import ShowDetail from './ShowDetail'
 
-// TODO add comment
+// TODO
 // up/down vote
 // showposts: sort by date and vote
 // fix sidebar status when going back in history
@@ -29,7 +29,10 @@ class App extends Component {
         </container>
 
         <container className='Sidebar-show-posts' >
-          <Route path='/' component={SidebarMenu} />
+          <Switch>
+            <Route exact path='/' component={SidebarMenu} />
+            <Route path='/:category' component={SidebarMenu} />
+          </Switch>
           <Switch>
             <Route exact path='/' component={ShowPosts} />
             <Route exact path='/add' component={AddPost} />

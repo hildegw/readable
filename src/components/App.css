@@ -136,8 +136,8 @@ html {
 }
 
 .post-tools {
-  padding: 10px;10px
-  padding-top: 20px;
+  padding: 10px;
+  padding-bottom: 20px;
   display: flex;
   justify-content: flex-start;
   font-size: small;
@@ -214,11 +214,12 @@ html {
 
 .add-details {
   padding-left: 40px;
+  padding-top: 10px;
 }
 
 .add-details input {
-  width: 410px;
-  padding: 5px 20px;
+  width: 85%;
+  padding: 5px 10px;
   margin-bottom: 10px;
   font-size: small;
   background: transparent;
@@ -232,8 +233,8 @@ html {
 }
 
 .add-text-area {
-  width: 410px;
-  padding: 5px 20px;
+  width: 85%;
+  padding: 5px 10px;
   margin-bottom: 10px;
   font-size: small;
   font-family: sans-serif;

@@ -4,9 +4,7 @@ import { connect } from 'react-redux'
 import { fetchCategories, selectCategory } from '../actions'
 import {Link} from "react-router-dom"
 
-//TODO: correct category when going back in history
-//'add comment' menu item if showDetail is open
-//reset openPost state when done with showDetail or Edit
+//TODO reset openPost state when done with showDetail or Edit ???
 
 class SidebarMenu extends Component {
 
@@ -14,17 +12,31 @@ class SidebarMenu extends Component {
     this.props.fetchCategories()
   }
 
+  catToShow = () => {
+    const {categories} = this.props.categories
+    if (categories !== undefined) {
+      const checkLink = this.props.match.params.category
+      const checkCat = categories.filter((cat) => cat.name === checkLink)
+      const categorySelected = checkCat.shift().name
+      return categorySelected
+    } else {
+      const { categorySelected } = this.props.categories
+      return categorySelected
+    }
+  }
+
   handleClickCat = (category) => {
     this.props.selectCategory(category)
   }
 
   render() {
-    const { categories, categorySelected } = this.props.categories
-
+    const categorySelected = this.catToShow()
+    const { categories,  } = this.props.categories
+    
     return (
       <div className='Sidebar-menu'>
 
-        { categories!==undefined && (
+        { categories !== undefined && (
         <div className="cat-list">
           {categories.map((cat)=>
             <div key={cat.name}>
