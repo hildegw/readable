@@ -10,6 +10,7 @@ export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const RECEIVE_ONE_COMMENT = 'RECEIVE_ONE_COMMENT'
+export const COUNT_COMMENTS = 'COUNT_COMMENTS'
 
 // fetch data from DB
 // thunk for asynchronous call to fetch posts
@@ -149,5 +150,13 @@ export const selectCategory = (categorySelected) => {
   return {
     type: SELECT_CATEGORY,
     categorySelected
+  }
+}
+
+export const countComments = (count, parentId) => {
+  return {
+    type: COUNT_COMMENTS,
+    count,
+    parentId
   }
 }

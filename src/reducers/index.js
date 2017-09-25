@@ -1,6 +1,7 @@
 import { RECEIVE_POSTS, RECEIVE_CATEGORIES, ADD_POST,
   REMOVE_POST, SELECT_CATEGORY, OPEN_POST_DETAIL,
-  RECEIVE_COMMENTS, ADD_COMMENT, REMOVE_COMMENT, RECEIVE_ONE_COMMENT} from '../actions'
+  RECEIVE_COMMENTS, ADD_COMMENT, REMOVE_COMMENT,
+  RECEIVE_ONE_COMMENT, COUNT_COMMENTS} from '../actions'
 import { combineReducers } from 'redux'
 
 const posts = (state = {}, action) => {
@@ -95,4 +96,18 @@ const comment = (state = {}, action) => {
   }
 }
 
-export default combineReducers({posts, categories, openPost, comments, comment})
+const commentCounter = (state = {}, action) => {
+  const { count, parentId } = action
+  switch (action.type) {
+    case COUNT_COMMENTS:
+      return {
+        ...state,
+        count: count,
+        parentId: parentId
+      }
+    default:
+      return state
+  }
+}
+
+export default combineReducers({posts, categories, openPost, comments, comment, commentCounter})

@@ -2,10 +2,13 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchPosts, deletePost, deleteComment, openPostDetail } from '../actions'
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
+import CommentsCounter from './CommentsCounter'
 
 //TODO resolve routing issue on delete when history contains showDetail more than once
-//TODO styles are differen in show detail
+//TODO add warning for delete, deletes comments as well: different for post vs comment
+//TODO use this.props.history.push('/') + goBack() in "repeated" case
+// how to identify "repeated" case?
 
 //displays one post
 class OnePost extends Component {
@@ -21,9 +24,6 @@ class OnePost extends Component {
       this.props.deletePost(post)
     }
     if (this.props.history) this.props.history.goBack()
-    //TODO add warning for delete, deletes comments as well: different for post vs comment
-    //TODO use this.props.history.push('/') + goBack() in "repeated" case
-    // how to identify "repeated" case?
   }
 
   render() {
@@ -41,10 +41,13 @@ class OnePost extends Component {
         <div className='post-tools'>
 
           { !post.hasOwnProperty('parentId') && (
-          <Link onClick={() => { this.props.openPostDetail(post) }}
-            to={ {pathname: `/${post.category}/${post.id}`} }
-            className='post-comment'>377
-          </Link>)}
+          <div>
+            <Link onClick={() => { this.props.openPostDetail(post) }}
+              to={ {pathname: `/${post.category}/${post.id}`} }
+              className='post-comment'>
+            </Link>
+            <CommentsCounter post={post}/>
+          </div>)}
 
           <Link onClick={() => { this.props.openPostDetail(post) }}
             to={ {pathname: `/edit/${post.id}`} }
