@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchPosts, deletePost, openPostDetail, fetchComments,
-  addComment, countComments } from '../actions'
+  addComment, countComments, setVote } from '../actions'
 import OnePost from './OnePost'
 import serializeForm from "form-serialize"
 import uuid from "uuid"
@@ -31,6 +31,7 @@ class ShowDetail extends Component {
     Object.assign(newComment, {id: id}, {parentId: parentId})
     this.props.addComment(newComment)
     this.props.countComments(count, parentId)  //counting comments
+    this.props.setVote(id, 'upVote', 'comments', 0)  //set voteScore to 1
     this.addForm.reset()
   }
 
@@ -100,7 +101,8 @@ const mapDispatchToProps = (dispatch) => {
     deletePost: (data) => dispatch(deletePost(data)),
     openPostDetail: (data) => dispatch(openPostDetail(data)),
     addComment: (data) => dispatch(addComment(data)),
-    countComments: (count, parentId) => dispatch(countComments(count, parentId)),
+    countComments: (count, parentId) => dispatch(countComments(count, parentId)),    
+    setVote: (id, option, type, startScore) => dispatch(setVote(id, option, type, startScore)),
   }
 }
 

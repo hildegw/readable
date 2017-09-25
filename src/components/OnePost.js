@@ -6,10 +6,7 @@ import { fetchPosts, deletePost, deleteComment,
 import { Link } from 'react-router-dom'
 import CommentsCounter from './CommentsCounter'
 
-//TODO resolve routing issue on delete when history contains showDetail more than once
 //TODO add warning for delete, deletes comments as well: different for post vs comment
-//TODO use this.props.history.push('/') + goBack() in "repeated" case
-// how to identify "repeated" case?
 
 //displays one post
 class OnePost extends Component {
@@ -35,7 +32,6 @@ class OnePost extends Component {
       
       //initialize voteScore with value from DB
       let voteScore = (vote[post.id] === undefined) ?  post.voteScore : vote[post.id]
-      console.log('OnePost render vote', vote[post.id])
 
     return (
       <div className="post-list-item">
