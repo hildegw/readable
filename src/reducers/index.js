@@ -112,11 +112,14 @@ const commentCounter = (state = {}, action) => {
 
 // voting
 const vote = (state = {}, action) => {
-  const { type, id, option } = action
+  const { id, option } = action
   let count = 1
-  if (this.state !== undefined) {
-    count = this.state.vote.id;
-    (option === 'upVote') ? count += 1 : count -= 1
+  console.log('reducer state.id 1', state[id])
+  if (!isNaN(state[id])) {
+    count = (option === 'upVote')
+    ? state[id] += 1
+    : state[id] -= 1
+    console.log('reducer state.id 2', state[id])
   }
   console.log('reducer vote: ', count)
   switch (action.type) {

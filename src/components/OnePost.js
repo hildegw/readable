@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchPosts, deletePost, deleteComment, 
-  openPostDetail, countComments, vote } from '../actions'
+  openPostDetail, countComments, setVote } from '../actions'
 import { Link } from 'react-router-dom'
 import CommentsCounter from './CommentsCounter'
 
@@ -30,8 +30,8 @@ class OnePost extends Component {
 
   render() {
       const { post, showBody } = this.props
-      let type = 'post' 
-      if (post.hasOwnProperty('parentId')) type = 'comment'
+      let type = 'posts' 
+      if (post.hasOwnProperty('parentId')) type = 'comments'
 
     return (
       <div className="post-list-item">
@@ -56,12 +56,12 @@ class OnePost extends Component {
 
           <div className='post-vote'>
             <button 
-              onClick={() => { this.props.vote(type, post.id, 'upVote') }}
+              onClick={() => { this.props.setVote(post.id, 'upVote', type) }}
               className='post-voteup-link'>
             </button>
-            {this.props.count}
+            {post.voteScore} 
             <button 
-              onClick={() => { console.log(post) }}
+              onClick={() => { this.props.setVote(post.id, 'downVote', type) }}
               className='post-votedown-link'>
             </button>
           </div>
@@ -94,7 +94,7 @@ const mapDispatchToProps = (dispatch) => {
     deleteComment: (data) => dispatch(deleteComment(data)),
     openPostDetail: (data) => dispatch(openPostDetail(data)),
     countComments: (count, parentId) => dispatch(countComments(count, parentId)),
-    vote: (type, id, option) => dispatch(vote(type, id, option)),
+    setVote: (id, option, type) => dispatch(setVote(id, option, type)),
   }
 }
 

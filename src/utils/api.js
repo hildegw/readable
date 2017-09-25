@@ -120,15 +120,16 @@ export const fetchOneComment = (id) => {
 }
 
 // vote for type = post or comment, option = upvote or downvote
-export const vote = (type, id, option) => {
+export const vote = (id, option, type) => {
+  console.log('voteAPI', id, option, type)
   const data = {id: id, option: option}
   const headersVote = {
-    method: 'PUT',
+    method: 'POST',
     body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json',
       'Authorization': 'hildegwUdacityReadable'
     }
   }
-  return fetch(`${api}/${type}`, headersVote)
+  return fetch(`${api}/${type}/${id}`, headersVote)
 }
