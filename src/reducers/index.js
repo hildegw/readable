@@ -96,14 +96,14 @@ const comment = (state = {}, action) => {
   }
 }
 
+// adding comment counts as key-value pair with parentId
 const commentCounter = (state = {}, action) => {
   const { count, parentId } = action
   switch (action.type) {
     case COUNT_COMMENTS:
       return {
         ...state,
-        count: count,
-        parentId: parentId
+        [parentId]: count
       }
     default:
       return state

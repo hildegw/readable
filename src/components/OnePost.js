@@ -18,9 +18,9 @@ class OnePost extends Component {
     const { comments } = this.props.comments
     if (post.hasOwnProperty('parentId')) {
       const count = comments.length - 1
-      const parentId = post.id
-      this.props.countComments(count, parentId) //counting comments
+      const parentId = post.parentId
       this.props.deleteComment(post)
+      this.props.countComments(count, parentId) //counting comments
     } else {
       this.props.deletePost(post)
     }
@@ -29,7 +29,6 @@ class OnePost extends Component {
 
   render() {
       const { post, showBody } = this.props
-      const { comments } = this.props.comments
 
     return (
       <div className="post-list-item">

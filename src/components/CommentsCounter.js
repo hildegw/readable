@@ -6,9 +6,6 @@ import { fetchComments, countComments } from '../actions'
 //TODO learn how to count
 
 class CommentsCounter extends Component {
-  state = {
-    count: 0,
-  }
 
   componentDidMount () {
     const parentId = this.props.post.id
@@ -26,13 +23,13 @@ class CommentsCounter extends Component {
   }
 
   render () {
-    const {count} = this.props.commentCounter
+    const parentId = this.props.post.id
+    const count = this.props.commentCounter[parentId]
 
     return (
       <div className='counter'>
         <span>{count}</span>
       </div>
-
     )
   }
 }

@@ -24,13 +24,13 @@ class ShowDetail extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const { comments } = this.props.comments
-    const count = comments.length + 1
+    const count = comments.length + 1  
     const parentId = this.props.match.params.id
     const newComment = serializeForm(event.target, {hash: true})
     const id = uuid()
     Object.assign(newComment, {id: id}, {parentId: parentId})
     this.props.addComment(newComment)
-    this.props.countComments(count, parentId)
+    this.props.countComments(count, parentId)  //counting comments
     this.addForm.reset()
   }
 

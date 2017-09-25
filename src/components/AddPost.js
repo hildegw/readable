@@ -5,9 +5,6 @@ import { addPost } from '../actions'
 import serializeForm from "form-serialize"
 import uuid from "uuid"
 
-//TODO adjust Add-Button visibility
-//TODO preselect cat when coming from cat-view
-//TODO check if state can be substituted by categorySelected
 
 class AddPosts extends Component {
   state = {
@@ -25,8 +22,7 @@ class AddPosts extends Component {
     const id = uuid()
     Object.assign(newPost, {id: id}, {category: this.state.category})
     this.props.addPost(newPost)
-    this.props.history.push('/' + this.state.category) //TODO check link
-    this.props.history.go(2)
+    this.props.history.goBack()
   }
 
   justGoBack = (event) => { this.props.history.goBack() }
