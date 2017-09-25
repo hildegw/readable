@@ -68,7 +68,6 @@ export const addPost = (post) => {
 export const addComment = (comment) => {
   const timeStamp = new Date().getTime()
   Object.assign(comment, {timestamp: timeStamp})
-  console.log('API addComment ', comment)
   const headersAdd = {
     method: 'POST',
     body: JSON.stringify(comment),
@@ -121,7 +120,6 @@ export const fetchOneComment = (id) => {
 
 // vote for type = post or comment, option = upvote or downvote
 export const vote = (id, option, type) => {
-  console.log('voteAPI', id, option, type)
   const data = {id: id, option: option}
   const headersVote = {
     method: 'POST',

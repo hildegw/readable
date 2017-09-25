@@ -29,9 +29,13 @@ class OnePost extends Component {
   }
 
   render() {
-      const { post, showBody } = this.props
+      const { post, showBody, vote } = this.props
       let type = 'posts' 
       if (post.hasOwnProperty('parentId')) type = 'comments'
+      
+      //initialize voteScore with value from DB
+      let voteScore = (vote[post.id] === undefined) ?  post.voteScore : vote[post.id]
+      console.log('OnePost render vote', vote[post.id])
 
     return (
       <div className="post-list-item">
@@ -56,12 +60,12 @@ class OnePost extends Component {
 
           <div className='post-vote'>
             <button 
-              onClick={() => { this.props.setVote(post.id, 'upVote', type) }}
+              onClick={() => { this.props.setVote(post.id, 'upVote', type, voteScore) }}
               className='post-voteup-link'>
             </button>
-            {post.voteScore} 
+            {voteScore} 
             <button 
-              onClick={() => { this.props.setVote(post.id, 'downVote', type) }}
+              onClick={() => { this.props.setVote(post.id, 'downVote', type, voteScore) }}
               className='post-votedown-link'>
             </button>
           </div>
@@ -94,7 +98,7 @@ const mapDispatchToProps = (dispatch) => {
     deleteComment: (data) => dispatch(deleteComment(data)),
     openPostDetail: (data) => dispatch(openPostDetail(data)),
     countComments: (count, parentId) => dispatch(countComments(count, parentId)),
-    setVote: (id, option, type) => dispatch(setVote(id, option, type)),
+    setVote: (id, option, type, startScore) => dispatch(setVote(id, option, type, startScore)),
   }
 }
 

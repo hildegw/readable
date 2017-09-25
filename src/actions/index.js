@@ -163,17 +163,18 @@ export const countComments = (count, parentId) => {
 }
 
 // voting thunk
-export const setVote = (id, option, type) => dispatch => {
+export const setVote = (id, option, type, startScore) => dispatch => {
   console.log('action setVote id, option, type', id, option, type)
   PostsApi.vote(id, option, type)
-  .then((data) => { dispatch(vote(id, option, type)) })
+  .then((data) => { dispatch(vote(id, option, startScore)) })
 }
 // voting action
-export const vote = (id, option) => {
+export const vote = (id, option, startScore) => {
   console.log('action vote id, option', id, option)
   return {
     type: VOTE,
     id,
-    option
+    option,
+    startScore
   }
 }
