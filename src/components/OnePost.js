@@ -42,20 +42,24 @@ class OnePost extends Component {
         <div className='post-tools'>
 
           { !post.hasOwnProperty('parentId') && (
-          <div>
-            <Link onClick={() => { this.props.openPostDetail(post) }}
+          <div className='post-comment'> 
+            <Link 
+              onClick={() => { this.props.openPostDetail(post) }}
               to={ {pathname: `/${post.category}/${post.id}`} }
-              className='post-comment'>
+              className='post-comment-link'>
             </Link>
             <CommentsCounter post={post}/>
           </div>)}
 
-          <Link onClick={() => { this.props.openPostDetail(post) }}
+          <Link 
+            onClick={() => { this.props.openPostDetail(post) }}
             to={ {pathname: `/edit/${post.id}`} }
-            className='post-vote'>-566
+            className='post-vote'>
+            -566
           </Link>
 
-          <Link onClick={() => { this.props.openPostDetail(post) }}
+          <Link 
+            onClick={() => { this.props.openPostDetail(post) }}
             to={ {pathname: `/edit/${post.id}`} }
             className='post-edit'>
           </Link>

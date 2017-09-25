@@ -22,7 +22,8 @@ class AddPosts extends Component {
     const id = uuid()
     Object.assign(newPost, {id: id}, {category: this.state.category})
     this.props.addPost(newPost)
-    this.props.history.goBack()
+    this.props.history.push('/' + this.state.category) 
+    this.props.history.go(2) //go to category list after submitting new post
   }
 
   justGoBack = (event) => { this.props.history.goBack() }
