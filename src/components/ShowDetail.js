@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchPosts, deletePost, openPostDetail, fetchComments,
-  addComment } from '../actions'
+  addComment, countComments } from '../actions'
 import OnePost from './OnePost'
 import serializeForm from "form-serialize"
 import uuid from "uuid"
@@ -23,11 +23,14 @@ class ShowDetail extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    const { comments } = this.props.comments
+    const count = comments.length + 1
     const parentId = this.props.match.params.id
     const newComment = serializeForm(event.target, {hash: true})
     const id = uuid()
     Object.assign(newComment, {id: id}, {parentId: parentId})
     this.props.addComment(newComment)
+    this.props.countComments(count, parentId)
     this.addForm.reset()
   }
 
@@ -97,6 +100,7 @@ const mapDispatchToProps = (dispatch) => {
     deletePost: (data) => dispatch(deletePost(data)),
     openPostDetail: (data) => dispatch(openPostDetail(data)),
     addComment: (data) => dispatch(addComment(data)),
+    countComments: (count, parentId) => dispatch(countComments(count, parentId)),
   }
 }
 

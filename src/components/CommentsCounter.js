@@ -11,7 +11,6 @@ class CommentsCounter extends Component {
   }
 
   componentDidMount () {
-    console.log('mounting ', this.props.post.id)
     const parentId = this.props.post.id
     this.props.fetchComments(parentId).then(() => {
       const { comments } = this.props.comments
@@ -22,14 +21,12 @@ class CommentsCounter extends Component {
   getLength = (comments, parentId) => {
     if (Array.isArray(comments)) {
       const count = comments.length
-      console.log('length of', comments.length)
       return this.props.countComments(count, parentId)
     }
   }
 
   render () {
-    const {count, parentId} = this.props.commentCounter
-    console.log('render count', countComments)
+    const {count} = this.props.commentCounter
 
     return (
       <div className='counter'>

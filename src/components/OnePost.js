@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, deletePost, deleteComment, openPostDetail } from '../actions'
+import { fetchPosts, deletePost, deleteComment, openPostDetail, countComments } from '../actions'
 import { Link } from 'react-router-dom'
 import CommentsCounter from './CommentsCounter'
 
@@ -15,10 +15,11 @@ class OnePost extends Component {
 
   handleDelete = (event) => {
     const post = this.props.post
-    let isComment = false
+    const { comments } = this.props.comments
     if (post.hasOwnProperty('parentId')) {
-      isComment = true
-      console.log('handleDelete: isComment = ', isComment)
+      const count = comments.length - 1
+      const parentId = post.id
+      this.props.countComments(count, parentId) //counting comments
       this.props.deleteComment(post)
     } else {
       this.props.deletePost(post)
@@ -28,6 +29,7 @@ class OnePost extends Component {
 
   render() {
       const { post, showBody } = this.props
+      const { comments } = this.props.comments
 
     return (
       <div className="post-list-item">
@@ -70,8 +72,8 @@ class OnePost extends Component {
   }
 }
 
-const mapStateToProps = ({ posts }) => {
-  return { posts }
+const mapStateToProps = ({ posts, comments }) => {
+  return { posts, comments }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -80,6 +82,7 @@ const mapDispatchToProps = (dispatch) => {
     deletePost: (data) => dispatch(deletePost(data)),
     deleteComment: (data) => dispatch(deleteComment(data)),
     openPostDetail: (data) => dispatch(openPostDetail(data)),
+    countComments: (count, parentId) => dispatch(countComments(count, parentId)),
   }
 }
 
