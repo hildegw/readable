@@ -70,7 +70,7 @@ export const receiveCategories = (categories) => {
 export const addPost = (post) => dispatch => {
   PostsApi.addPost(post).then(dispatch(newPost(post)))
 }
-// actionpost
+// action
 export const newPost = (post) => {
   return {
     type: ADD_POST,

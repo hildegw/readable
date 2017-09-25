@@ -11,8 +11,8 @@ import ShowDetail from './ShowDetail'
 // TODO
 // up/down vote
 // showposts: sort by date and vote
-// fix sidebar status when going back in history
 // comment counter
+// TODO reset openPost state when done with showDetail or Edit ???
 
 class App extends Component {
 

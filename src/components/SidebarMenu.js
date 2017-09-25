@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { fetchCategories, selectCategory } from '../actions'
 import {Link} from "react-router-dom"
 
-//TODO reset openPost state when done with showDetail or Edit ???
 
 class SidebarMenu extends Component {
 
@@ -13,11 +12,11 @@ class SidebarMenu extends Component {
   }
 
   catToShow = () => {
-    const {categories} = this.props.categories
+    let {categories, categorySelected} = this.props.categories
     if (categories !== undefined) {
       const checkLink = this.props.match.params.category
       const checkCat = categories.filter((cat) => cat.name === checkLink)
-      const categorySelected = checkCat.shift().name
+      if (checkCat.length !== 0) categorySelected = checkCat.shift().name
       return categorySelected
     } else {
       const { categorySelected } = this.props.categories

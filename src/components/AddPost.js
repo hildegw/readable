@@ -7,7 +7,6 @@ import uuid from "uuid"
 
 //TODO adjust Add-Button visibility
 //TODO preselect cat when coming from cat-view
-//TODO build back add comment: actions, bindings, etc.
 //TODO check if state can be substituted by categorySelected
 
 class AddPosts extends Component {
@@ -28,7 +27,6 @@ class AddPosts extends Component {
     this.props.addPost(newPost)
     this.props.history.push('/' + this.state.category) //TODO check link
     this.props.history.go(2)
-    console.log(this.props.history)
   }
 
   justGoBack = (event) => { this.props.history.goBack() }

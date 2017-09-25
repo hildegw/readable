@@ -11,6 +11,7 @@ import uuid from "uuid"
 class ShowDetail extends Component {
 
   componentDidMount () {
+    console.log("mounting Show Detail")
     const postId = this.props.match.params.id
     this.props.fetchComments(postId)
     this.props.fetchPosts()
@@ -27,6 +28,7 @@ class ShowDetail extends Component {
     const newComment = serializeForm(event.target, {hash: true})
     const id = uuid()
     Object.assign(newComment, {id: id}, {parentId: parentId})
+    console.log("reste ", event)
     this.props.addComment(newComment)
     this.addForm.reset()
   }
