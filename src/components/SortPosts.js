@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchCategories, selectCategory } from '../actions'
-import {Link} from "react-router-dom"
+import { fetchCategories, selectCategory, setSortCategory } from '../actions'
 
 
 class SortPosts extends Component {
 
-  state = {
-    sortCategory: 'most recent',
-   }
+ componentDidMount(){
+   this.props.setSortCategory(this.getSortCategory('MOST_RECENT'))
+ }
 
   getSortCategory = (type) => {
     switch (type) {
@@ -23,12 +22,13 @@ class SortPosts extends Component {
   }
 
   handleClick = (event) => {
-    this.setState({ sortCategory: event.target.value })
+    this.props.setSortCategory(event.target.value)
   }
 
   render() {
-    const sortCategory = this.state.sortCategory
     const sortCategories = [this.getSortCategory('MOST_RECENT'), this.getSortCategory('TOP_SCORE')]
+    const { sortCategory } = this.props.sortCategory
+    console.log('render sort', sortCategory)
     
     return (
       <div>
@@ -54,14 +54,15 @@ class SortPosts extends Component {
 }
 
 
-const mapStateToProps = ({ categories, categorySelected }) => {
-  return { categories, categorySelected }
+const mapStateToProps = ({ categories, categorySelected, sortCategory }) => {
+  return { categories, categorySelected, sortCategory }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     selectCategory: (data) => dispatch(selectCategory(data)),
     fetchCategories: () => dispatch(fetchCategories()),
+    setSortCategory: (data) => dispatch(setSortCategory(data)),
   }
 }
 

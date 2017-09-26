@@ -1,7 +1,8 @@
 import { RECEIVE_POSTS, RECEIVE_CATEGORIES, ADD_POST,
   REMOVE_POST, SELECT_CATEGORY, OPEN_POST_DETAIL,
   RECEIVE_COMMENTS, ADD_COMMENT, REMOVE_COMMENT,
-  RECEIVE_ONE_COMMENT, COUNT_COMMENTS, VOTE} from '../actions'
+  RECEIVE_ONE_COMMENT, COUNT_COMMENTS, VOTE,
+  SET_SORT_CATEGORY} from '../actions'
 import { combineReducers } from 'redux'
 
 const posts = (state = {}, action) => {
@@ -126,4 +127,27 @@ const vote = (state = {}, action) => {
   }
 }
 
-export default combineReducers({posts, categories, openPost, comments, comment, commentCounter, vote})
+// sorting posts
+const sortCategory = (state = {}, action) => {
+  const { sortCategory } = action
+  switch (action.type) {
+    case SET_SORT_CATEGORY:
+      return {
+        ...state,
+        sortCategory
+      }
+    default:
+      return state
+  }
+}
+
+export default combineReducers({
+  posts,
+  categories,
+  openPost,
+  comments,
+  comment,
+  commentCounter,
+  vote,
+  sortCategory
+})

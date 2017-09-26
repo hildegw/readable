@@ -12,13 +12,12 @@ export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const RECEIVE_ONE_COMMENT = 'RECEIVE_ONE_COMMENT'
 export const COUNT_COMMENTS = 'COUNT_COMMENTS'
 export const VOTE = 'VOTE'
+export const SET_SORT_CATEGORY = 'SET_SORT_CATEGORY'
 
 // fetch data from DB and then set state
 // thunk for asynchronous call to fetch posts
 export const fetchPosts = () => dispatch => (
-  PostsApi.fetchPosts().then((data) => {
-    dispatch(receivePosts(data))
-  }))
+  PostsApi.fetchPosts().then((data) => { dispatch(receivePosts(data)) }))
 // action creator functions being called when posts have been fetched
 export const receivePosts = (posts) => {
   return {
@@ -29,9 +28,7 @@ export const receivePosts = (posts) => {
 
 // thunk to fetch comments for a parentId/post
 export const fetchComments = (id) => dispatch => (
-  PostsApi.fetchComments(id).then((data) => {
-    dispatch(receiveComments(data))
-  }))
+  PostsApi.fetchComments(id).then((data) => { dispatch(receiveComments(data)) }))
 // action creator functions being called when comments have been fetched
 export const receiveComments = (comments) => {
   return {
@@ -42,9 +39,7 @@ export const receiveComments = (comments) => {
 
 // thunk to fetch single comment by ID
 export const fetchOneComment = (id) => dispatch => (
-  PostsApi.fetchOneComment(id).then((data) => {
-    dispatch(receiveOneComment(data))
-  }))
+  PostsApi.fetchOneComment(id).then((data) => { dispatch(receiveOneComment(data)) }))
 // action
 export const receiveOneComment = (comment) => {
   return {
@@ -56,9 +51,7 @@ export const receiveOneComment = (comment) => {
 // fetch categories from DB
 // thunk middleware for asynchronous call to fetch categories
 export const fetchCategories = () => dispatch => (
-  PostsApi.fetchCategories().then((data) => {
-    dispatch(receiveCategories(data))
-  }))
+  PostsApi.fetchCategories().then((data) => { dispatch(receiveCategories(data)) }))
 // action creator functions being called upon receive
 export const receiveCategories = (categories) => {
   return {
@@ -119,26 +112,19 @@ export const removeComment = (comment) => {
   }
 }
 
-// update edited post in DB and store
-// thunk to update DB
+// thunk to update post in DB
 export const updatePostInDb = (id, title, body, openPost) => dispatch => {
   PostsApi.updatePost(id, title, body)
-  .then(
-    (data) => {
-      dispatch(openPostDetail(openPost))
-    })
+  .then((data) => { dispatch(openPostDetail(openPost)) })
 }
 
 // update edited comment in DB, calls same action as post edit
 export const updateCommentInDb = (id, body, openPost) => dispatch => {
   PostsApi.updateComment(id, body)
-  .then(
-    (data) => {
-      dispatch(openPostDetail(openPost))
-    })
+  .then((data) => { dispatch(openPostDetail(openPost)) })
 }
 
-// setting openPost state to currently opened post
+// setting openPost state to currently opened post or comment
 export const openPostDetail = (openPost) => {
   return {
     type: OPEN_POST_DETAIL,
@@ -173,5 +159,12 @@ export const vote = (id, option, startScore) => {
     id,
     option,
     startScore
+  }
+}
+
+export const setSortCategory = (sortCategory) => {
+  return {
+    type: SET_SORT_CATEGORY,
+    sortCategory
   }
 }

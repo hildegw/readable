@@ -15,6 +15,10 @@ class ShowPosts extends Component {
   }
 
   postsToShow = (posts, category) => {
+    const { sortCategory } = this.props.sortCategory
+    console.log('ShowPosts postsToShow()', sortCategory)
+    //TODO where to sort???? and how????
+    
       if (category!==undefined && posts!==undefined) {
         return posts.filter((post) => post.category === category)
       } else {
@@ -25,6 +29,7 @@ class ShowPosts extends Component {
   render() {
     const { posts } = this.props.posts
     const category = this.props.match.params.category
+    const { sortCategory } = this.props.sortCategory
     const showPosts = this.postsToShow(posts, category)
     const showBody = false
 
@@ -51,8 +56,8 @@ class ShowPosts extends Component {
   }
 }
 
-const mapStateToProps = ({ posts, selectCategory }) => {
-  return { posts, selectCategory }
+const mapStateToProps = ({ posts, selectCategory, sortCategory }) => {
+  return { posts, selectCategory, sortCategory }
 }
 
 const mapDispatchToProps = (dispatch) => {
