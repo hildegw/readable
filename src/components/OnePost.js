@@ -11,6 +11,11 @@ import CommentsCounter from './CommentsCounter'
 //displays one post
 class OnePost extends Component {
 
+  vote = (id, option, type, startScore) => {
+    this.props.setVote(id, option, type, startScore) 
+    this.props.onVoting()
+  }
+
   handleDelete = (event) => {
     const post = this.props.post
     const { comments } = this.props.comments
@@ -56,12 +61,12 @@ class OnePost extends Component {
 
           <div className='post-vote'>
             <button 
-              onClick={() => { this.props.setVote(post.id, 'upVote', type, voteScore) }}
+              onClick={() => { this.vote(post.id, 'upVote', type, voteScore)}}
               className='post-voteup-link'>
             </button>
             {voteScore} 
             <button 
-              onClick={() => { this.props.setVote(post.id, 'downVote', type, voteScore) }}
+              onClick={() => { this.vote(post.id, 'downVote', type, voteScore) }}
               className='post-votedown-link'>
             </button>
           </div>

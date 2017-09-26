@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchCategories, selectCategory, setSortCategory } from '../actions'
+import { setSortCategory } from '../actions'
 
 
 class SortSelector extends Component {
@@ -40,14 +40,12 @@ class SortSelector extends Component {
 }
 
 
-const mapStateToProps = ({ categories, categorySelected, sortCategory }) => {
-  return { categories, categorySelected, sortCategory }
+const mapStateToProps = ({ sortCategory }) => {
+  return { sortCategory }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectCategory: (data) => dispatch(selectCategory(data)),
-    fetchCategories: () => dispatch(fetchCategories()),
     setSortCategory: (data) => dispatch(setSortCategory(data)),
   }
 }

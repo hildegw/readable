@@ -13,22 +13,36 @@ class ShowPosts extends Component {
     this.props.selectCategory(category)
   }
 
-  postsToShow = (posts, category) => {
+  sortPosts = (posts) => {
     const { sortCategory } = this.props.sortCategory
-    console.log('ShowPosts postsToShow()', sortCategory)
-    if (category!==undefined && posts!==undefined) {
-      let sortedPosts = posts
-      if (sortCategory === 'top score') { sortedPosts = posts.sort((a, b) =>  a.voteScore < b.voteScore) }
-      else { sortedPosts = posts.sort((a, b) =>  a.timestamp < b.timestamp) }
-      console.log('postsToShow sorted', sortedPosts)
+    console.log(posts)
+    if (posts !== undefined) {
+    switch (sortCategory) {
+      case 'top score':
+        { return posts.sort((a, b) =>  a.voteScore < b.voteScore) }
+      case 'most recent':
+        { return posts.sort((a, b) =>  a.timestamp < b.timestamp) }
+      default:
+        return posts
+    }} else { return posts }
+  }
+
+  postsToShow = (posts, category) => {
+    const sortedPosts = this.sortPosts(posts)
+    if (category !== undefined && posts !== undefined) {
       return sortedPosts.filter((post) => post.category === category)
     } else {
       return posts
     }
   }
 
-  render() {
+  voting = () => { 
     const { posts } = this.props.posts
+    this.sortPosts(posts)
+   }
+
+  render() {
+    const { posts } = this.props.posts  
     const category = this.props.match.params.category
     const { sortCategory } = this.props.sortCategory
     const showPosts = this.postsToShow(posts, category)
@@ -47,6 +61,7 @@ class ShowPosts extends Component {
                   <OnePost
                     post={post}
                     showBody={showBody}
+                    onVoting={() => {this.voting()}}
                   />
                 </div>
             )}
