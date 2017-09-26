@@ -8,12 +8,6 @@ import SidebarMenu from './SidebarMenu'
 import EditPost from './EditPost'
 import ShowDetail from './ShowDetail'
 
-// TODO
-// up/down vote
-// showposts: sort by date and vote
-// comment counter
-// TODO reset openPost state when done with showDetail or Edit ???
-
 class App extends Component {
 
   render () {

@@ -30,7 +30,7 @@ class SidebarMenu extends Component {
 
   render() {
     const categorySelected = this.catToShow()
-    const { categories,  } = this.props.categories
+    const { categories } = this.props.categories
     
     return (
       <div className='Sidebar-menu'>

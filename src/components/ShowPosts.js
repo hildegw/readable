@@ -3,8 +3,9 @@ import './App.css'
 import { connect } from 'react-redux'
 import { fetchPosts, selectCategory } from '../actions'
 import OnePost from './OnePost'
+import SortPosts from './SortPosts'
 
-//displays all posts or per category
+
 class ShowPosts extends Component {
 
   componentDidMount(){
@@ -29,6 +30,9 @@ class ShowPosts extends Component {
 
     return (
       <div>
+
+        <SortPosts />
+      
         { posts!==undefined && (
         <div className="post">
           <div className="post-list">

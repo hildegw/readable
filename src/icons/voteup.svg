@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.5"
-     inkscape:cx="354.1909"
-     inkscape:cy="426.18144"
+     inkscape:cx="0.19089511"
+     inkscape:cy="426.18142"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -39,7 +39,14 @@
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
-     fit-margin-bottom="0" />
+     fit-margin-bottom="0"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="554.00002,587.99999"
+       orientation="1,0"
+       id="guide4136" />
+  </sodipodi:namedview>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -66,13 +73,7 @@
        ry="479.53204" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#676767;stroke-width:130;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 173.19492,338.30773 426.98224,154.81349 692.50606,338.13223"
-       id="path4149"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccc" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#676767;stroke-width:130;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 173.19492,610.7409 426.98224,427.24665 692.50606,610.5654"
+       d="M 174.19479,494.7409 425.98211,311.24665 691.50593,494.5654"
        id="path4149-3"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccc" />
