@@ -4,44 +4,30 @@ import { connect } from 'react-redux'
 import { fetchCategories, selectCategory, setSortCategory } from '../actions'
 
 
-class SortPosts extends Component {
+class SortSelector extends Component {
 
- componentDidMount(){
-   this.props.setSortCategory(this.getSortCategory('MOST_RECENT'))
- }
-
-  getSortCategory = (type) => {
-    switch (type) {
-      case 'MOST_RECENT':
-        return 'most recent'
-      case 'TOP_SCORE':
-        return 'top score'
-      default:
-        return 'most recent'
-    }
-  }
+ componentDidMount(){ this.props.setSortCategory('most recent') }
 
   handleClick = (event) => {
     this.props.setSortCategory(event.target.value)
   }
 
   render() {
-    const sortCategories = [this.getSortCategory('MOST_RECENT'), this.getSortCategory('TOP_SCORE')]
+    const sortCategories = ['most recent', 'top score']
     const { sortCategory } = this.props.sortCategory
-    console.log('render sort', sortCategory)
-    
+
     return (
       <div>
         <div className='add-radio' >
           {sortCategories.map((cat) =>
             <label key={cat}>
-            <input type="radio" 
-              name='category' 
+            <input type="radio"
+              name='category'
               value={cat}
               onClick={this.handleClick} />
-              <span 
-                className={ sortCategory === cat 
-                  ? 'add-radio-checked' 
+              <span
+                className={ sortCategory === cat
+                  ? 'add-radio-checked'
                   : '' }>
                 {cat}
               </span>
@@ -69,4 +55,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SortPosts)
+)(SortSelector)

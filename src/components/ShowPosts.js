@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, selectCategory } from '../actions'
+import { fetchPosts, selectCategory, setSortCategory } from '../actions'
 import OnePost from './OnePost'
-import SortPosts from './SortPosts'
-
+import SortSelector from './SortSelector'
 
 class ShowPosts extends Component {
 
@@ -17,13 +16,15 @@ class ShowPosts extends Component {
   postsToShow = (posts, category) => {
     const { sortCategory } = this.props.sortCategory
     console.log('ShowPosts postsToShow()', sortCategory)
-    //TODO where to sort???? and how????
-    
-      if (category!==undefined && posts!==undefined) {
-        return posts.filter((post) => post.category === category)
-      } else {
-        return posts
-      }
+    if (category!==undefined && posts!==undefined) {
+      let sortedPosts = posts
+      if (sortCategory === 'top score') { sortedPosts = posts.sort((a, b) =>  a.voteScore < b.voteScore) }
+      else { sortedPosts = posts.sort((a, b) =>  a.timestamp < b.timestamp) }
+      console.log('postsToShow sorted', sortedPosts)
+      return sortedPosts.filter((post) => post.category === category)
+    } else {
+      return posts
+    }
   }
 
   render() {
@@ -36,7 +37,7 @@ class ShowPosts extends Component {
     return (
       <div>
 
-        <SortPosts />
+        <SortSelector />
       
         { posts!==undefined && (
         <div className="post">
