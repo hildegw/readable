@@ -5,7 +5,6 @@ import { fetchPosts, deletePost, deleteComment,
   openPostDetail, countComments, setVote, receivePosts } from '../actions'
 import { Link } from 'react-router-dom'
 import CommentsCounter from './CommentsCounter'
-import SortPosts from './SortPosts'
 
 
 //displays one post
@@ -14,12 +13,6 @@ class OnePost extends Component {
   vote = (id, option, type, startScore) => {
     const { posts } = this.props.posts
     this.props.setVote(id, option, type, startScore, posts) 
-    /*this.props.fetchPosts().then(() => {
-      const { sortCategory } = this.props.sortCategory
-      const sortedPosts = SortPosts(posts, sortCategory) 
-      console.log('3. OnePost vote > sorted posts', sortedPosts)
-      this.props.receivePosts(sortedPosts)
-    })*/
   }
 
   handleDelete = (event) => {

@@ -151,9 +151,12 @@ export const countComments = (count, parentId) => {
 // voting thunk
 export const setVote = (id, option, type, startScore, posts) => dispatch => {
   PostsApi.vote(id, option, type)
-  .then((data) => { dispatch(updateVote(id, option, startScore, posts)) }) // TODO decide
+  .then((data) => {
+    if (type === 'posts') dispatch(updateVote(id, option, startScore, posts))
+    else dispatch(vote(id, option, startScore))
+  })
 }
-// voting action TODO
+// action upon voting for comments only
 export const vote = (id, option, startScore) => {
   return {
     type: VOTE,
@@ -162,8 +165,7 @@ export const vote = (id, option, startScore) => {
     startScore
   }
 }
-
-// TODO alternative
+// action upon voting for posts only
 export const updateVote = (id, option, startScore, posts) => {
   return {
     type: UPDATE_VOTE,
