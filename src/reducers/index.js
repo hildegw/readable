@@ -1,9 +1,19 @@
-import { RECEIVE_POSTS, RECEIVE_CATEGORIES, ADD_POST,
-  REMOVE_POST, UPDATE_VOTE, SELECT_CATEGORY, OPEN_POST_DETAIL,
-  RECEIVE_COMMENTS, ADD_COMMENT, REMOVE_COMMENT,
-  RECEIVE_ONE_COMMENT, COUNT_COMMENTS, VOTE,
-  SET_SORT_CATEGORY} from '../actions'
 import { combineReducers } from 'redux'
+import {
+  RECEIVE_POSTS,
+  RECEIVE_CATEGORIES,
+  ADD_POST,
+  REMOVE_POST,
+  UPDATE_VOTE,
+  SELECT_CATEGORY,
+  OPEN_POST_DETAIL,
+  RECEIVE_COMMENTS,
+  ADD_COMMENT,
+  REMOVE_COMMENT,
+  RECEIVE_ONE_COMMENT,
+  COUNT_COMMENTS,
+  VOTE,
+  SET_SORT_CATEGORY} from '../actions'
 
 const posts = (state = {}, action) => {
   const { posts, post } = action
@@ -25,7 +35,7 @@ const posts = (state = {}, action) => {
         posts: newStatePosts
       }
     case UPDATE_VOTE:
-      const { id, option, startScore } = action // TODO move upwards
+      const { id, option, startScore } = action
       let count = startScore
       count = (option === 'upVote') ? count + 1 : count - 1
       const updateStatePosts = state.posts.map((item) => {

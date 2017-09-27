@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, deletePost, openPostDetail, fetchComments,
-  addComment, countComments, setVote } from '../actions'
+import { fetchPosts, openPostDetail, fetchComments, addComment, countComments, setVote } from '../actions'
 import OnePost from './OnePost'
 import serializeForm from "form-serialize"
 import uuid from "uuid"
@@ -98,7 +97,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
     fetchComments: (data) => dispatch(fetchComments(data)),
-    deletePost: (data) => dispatch(deletePost(data)),
     openPostDetail: (data) => dispatch(openPostDetail(data)),
     addComment: (data) => dispatch(addComment(data)),
     countComments: (count, parentId) => dispatch(countComments(count, parentId)),    

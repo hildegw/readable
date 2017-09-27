@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchCategories, selectCategory } from '../actions'
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 
 class SidebarMenu extends Component {

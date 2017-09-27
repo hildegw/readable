@@ -3,7 +3,7 @@ import * as PostsApi from '../utils/api'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
-export const SELECT_CATEGORY = 'SELECT_CATEGORY'  // TODO check if needed
+export const SELECT_CATEGORY = 'SELECT_CATEGORY'
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 export const OPEN_POST_DETAIL = 'OPEN_POST_DETAIL'
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'

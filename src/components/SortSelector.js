@@ -10,9 +10,6 @@ class SortSelector extends Component {
 
   handleClick = (event) => {
     this.props.setSortCategory(event.target.value)
-    if (event.target.value === 'top score') {
-      //TODO
-    }
   }
 
   render() {

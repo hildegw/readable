@@ -15,7 +15,6 @@ class AddPosts extends Component {
     this.setState({ category: event.target.value })
   }
 
-  //hand over post to store and DB
   handleSubmit = (event) => {
     event.preventDefault()
     const newPost = serializeForm(event.target, {hash: true})

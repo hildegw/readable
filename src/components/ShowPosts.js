@@ -16,7 +16,6 @@ class ShowPosts extends Component {
 
   postsToShow = (posts, category, sortCategory) => {
     const sortedPosts = SortPosts(posts, sortCategory) 
-    console.log('2. ShowPosts sorted', sortedPosts)
     if (category !== undefined && posts !== undefined) {
       return sortedPosts.filter((post) => post.category === category)
     } else {

@@ -28,7 +28,6 @@ class EditPosts extends Component {
       })
   }
 
-  //hand over edited post to store and DB
   handleSubmit = (event) => {
     event.preventDefault()
     const newPost = serializeForm(event.target, {hash: true})

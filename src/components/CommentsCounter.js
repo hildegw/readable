@@ -3,7 +3,6 @@ import './App.css'
 import { connect } from 'react-redux'
 import { fetchComments, countComments } from '../actions'
 
-//TODO learn how to count
 
 class CommentsCounter extends Component {
 

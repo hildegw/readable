@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, deletePost, deleteComment, 
-  openPostDetail, countComments, setVote, receivePosts } from '../actions'
 import { Link } from 'react-router-dom'
+import { deletePost, deleteComment, openPostDetail, countComments, setVote } from '../actions'
 import CommentsCounter from './CommentsCounter'
 
 
-//displays one post
 class OnePost extends Component {
 
   vote = (id, option, type, startScore) => {
@@ -33,8 +31,6 @@ class OnePost extends Component {
       const { post, showBody, vote } = this.props
       let type = 'posts' 
       if (post.hasOwnProperty('parentId')) type = 'comments'
-      
-      //initialize voteScore with value from DB
       let voteScore = (vote[post.id] === undefined) ?  post.voteScore : vote[post.id]
 
     return (
@@ -93,8 +89,6 @@ const mapStateToProps = ({ posts, comments, vote, sortCategory }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPosts: () => dispatch(fetchPosts()),
-    receivePosts: (data) => dispatch(receivePosts(data)),
     deletePost: (data) => dispatch(deletePost(data)),
     deleteComment: (data) => dispatch(deleteComment(data)),
     openPostDetail: (data) => dispatch(openPostDetail(data)),
