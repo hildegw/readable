@@ -2,18 +2,24 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchPosts, deletePost, deleteComment, 
-  openPostDetail, countComments, setVote } from '../actions'
+  openPostDetail, countComments, setVote, receivePosts } from '../actions'
 import { Link } from 'react-router-dom'
 import CommentsCounter from './CommentsCounter'
+import SortPosts from './SortPosts'
 
-//TODO add warning for delete, deletes comments as well: different for post vs comment
 
 //displays one post
 class OnePost extends Component {
 
   vote = (id, option, type, startScore) => {
-    this.props.setVote(id, option, type, startScore) 
-    this.props.onVoting()
+    const { posts } = this.props.posts
+    this.props.setVote(id, option, type, startScore, posts) 
+    /*this.props.fetchPosts().then(() => {
+      const { sortCategory } = this.props.sortCategory
+      const sortedPosts = SortPosts(posts, sortCategory) 
+      console.log('3. OnePost vote > sorted posts', sortedPosts)
+      this.props.receivePosts(sortedPosts)
+    })*/
   }
 
   handleDelete = (event) => {
@@ -88,13 +94,14 @@ class OnePost extends Component {
   }
 }
 
-const mapStateToProps = ({ posts, comments, vote }) => {
-  return { posts, comments, vote }
+const mapStateToProps = ({ posts, comments, vote, sortCategory }) => {
+  return { posts, comments, vote, sortCategory }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
+    receivePosts: (data) => dispatch(receivePosts(data)),
     deletePost: (data) => dispatch(deletePost(data)),
     deleteComment: (data) => dispatch(deleteComment(data)),
     openPostDetail: (data) => dispatch(openPostDetail(data)),

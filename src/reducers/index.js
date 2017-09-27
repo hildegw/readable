@@ -1,5 +1,5 @@
 import { RECEIVE_POSTS, RECEIVE_CATEGORIES, ADD_POST,
-  REMOVE_POST, SELECT_CATEGORY, OPEN_POST_DETAIL,
+  REMOVE_POST, UPDATE_VOTE, SELECT_CATEGORY, OPEN_POST_DETAIL,
   RECEIVE_COMMENTS, ADD_COMMENT, REMOVE_COMMENT,
   RECEIVE_ONE_COMMENT, COUNT_COMMENTS, VOTE,
   SET_SORT_CATEGORY} from '../actions'
@@ -23,6 +23,18 @@ const posts = (state = {}, action) => {
       return {
         ...state,
         posts: newStatePosts
+      }
+    case UPDATE_VOTE:
+      const { id, option, startScore } = action // TODO move upwards
+      let count = startScore
+      count = (option === 'upVote') ? count + 1 : count - 1
+      const updateStatePosts = state.posts.map((item) => {
+        if (item.id === id) { item.voteScore = count }
+        return item
+      })
+      return {
+        ...state,
+        posts: updateStatePosts
       }
     default:
       return state

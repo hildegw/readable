@@ -12,6 +12,7 @@ export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const RECEIVE_ONE_COMMENT = 'RECEIVE_ONE_COMMENT'
 export const COUNT_COMMENTS = 'COUNT_COMMENTS'
 export const VOTE = 'VOTE'
+export const UPDATE_VOTE = 'UPDATE_VOTE'
 export const SET_SORT_CATEGORY = 'SET_SORT_CATEGORY'
 
 // fetch data from DB and then set state
@@ -148,17 +149,28 @@ export const countComments = (count, parentId) => {
 }
 
 // voting thunk
-export const setVote = (id, option, type, startScore) => dispatch => {
+export const setVote = (id, option, type, startScore, posts) => dispatch => {
   PostsApi.vote(id, option, type)
-  .then((data) => { dispatch(vote(id, option, startScore)) })
+  .then((data) => { dispatch(updateVote(id, option, startScore, posts)) }) // TODO decide
 }
-// voting action
+// voting action TODO
 export const vote = (id, option, startScore) => {
   return {
     type: VOTE,
     id,
     option,
     startScore
+  }
+}
+
+// TODO alternative
+export const updateVote = (id, option, startScore, posts) => {
+  return {
+    type: UPDATE_VOTE,
+    id,
+    option,
+    startScore,
+    posts
   }
 }
 

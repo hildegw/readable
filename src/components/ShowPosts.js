@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, selectCategory, setSortCategory } from '../actions'
+import { fetchPosts, selectCategory } from '../actions'
 import OnePost from './OnePost'
 import SortSelector from './SortSelector'
+import SortPosts from './SortPosts'
 
 class ShowPosts extends Component {
 
@@ -13,22 +14,9 @@ class ShowPosts extends Component {
     this.props.selectCategory(category)
   }
 
-  sortPosts = (posts) => {
-    const { sortCategory } = this.props.sortCategory
-    console.log(posts)
-    if (posts !== undefined) {
-    switch (sortCategory) {
-      case 'top score':
-        { return posts.sort((a, b) =>  a.voteScore < b.voteScore) }
-      case 'most recent':
-        { return posts.sort((a, b) =>  a.timestamp < b.timestamp) }
-      default:
-        return posts
-    }} else { return posts }
-  }
-
-  postsToShow = (posts, category) => {
-    const sortedPosts = this.sortPosts(posts)
+  postsToShow = (posts, category, sortCategory) => {
+    const sortedPosts = SortPosts(posts, sortCategory) 
+    console.log('2. ShowPosts sorted', sortedPosts)
     if (category !== undefined && posts !== undefined) {
       return sortedPosts.filter((post) => post.category === category)
     } else {
@@ -36,17 +24,12 @@ class ShowPosts extends Component {
     }
   }
 
-  voting = () => { 
-    const { posts } = this.props.posts
-    this.sortPosts(posts)
-   }
-
   render() {
-    const { posts } = this.props.posts  
+    const { posts } = this.props.posts
     const category = this.props.match.params.category
     const { sortCategory } = this.props.sortCategory
-    const showPosts = this.postsToShow(posts, category)
     const showBody = false
+    const showPosts = this.postsToShow(posts, category, sortCategory)
 
     return (
       <div>
