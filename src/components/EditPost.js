@@ -82,18 +82,7 @@ const mapStateToProps = ({ posts, openPost, comment }) => {
   return { posts, openPost, comment }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchPosts: () => dispatch(fetchPosts()),
-    fetchComments: (parentId) => dispatch(fetchComments(parentId)),
-    fetchOneComment: (id) => dispatch(fetchOneComment(id)),
-    openPostDetail: (data) => dispatch(openPostDetail(data)),
-    updatePostInDb: (id, title, body, postEdit) => dispatch(updatePostInDb(id, title, body, postEdit)),
-    updateCommentInDb: (id, body, postEdit) => dispatch(updateCommentInDb(id, body, postEdit)),
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { fetchPosts, fetchComments, fetchOneComment, openPostDetail, updatePostInDb, updateCommentInDb }
 )(EditPosts)

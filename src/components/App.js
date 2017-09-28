@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './App.css'
-import { connect } from 'react-redux'
 import { Link, Route, withRouter, Switch } from 'react-router-dom'
 import ShowPosts from './ShowPosts'
 import AddPost from './AddPost'
@@ -41,4 +40,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(connect()(App))
+export default withRouter(App)

@@ -61,14 +61,7 @@ const mapStateToProps = ({ posts, selectCategory, sortCategory }) => {
   return { posts, selectCategory, sortCategory }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchPosts: () => dispatch(fetchPosts()),
-    selectCategory: (data) => dispatch(selectCategory(data)),
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { fetchPosts, selectCategory }
 )(ShowPosts)

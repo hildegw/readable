@@ -94,17 +94,7 @@ const mapStateToProps = ({ posts, comments, vote, sortCategory }) => {
   return { posts, comments, vote, sortCategory }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    deletePost: (data) => dispatch(deletePost(data)),
-    deleteComment: (data) => dispatch(deleteComment(data)),
-    openPostDetail: (data) => dispatch(openPostDetail(data)),
-    countComments: (count, parentId) => dispatch(countComments(count, parentId)),
-    setVote: (id, option, type, startScore) => dispatch(setVote(id, option, type, startScore)),
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { deletePost, deleteComment, openPostDetail, countComments, setVote }
 )(OnePost)

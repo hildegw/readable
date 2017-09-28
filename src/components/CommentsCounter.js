@@ -37,14 +37,7 @@ const mapStateToProps = ({ comments, commentCounter }) => {
   return { comments, commentCounter }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchComments: (data) => dispatch(fetchComments(data)),
-    countComments: (count, parentId) => dispatch(countComments(count, parentId)),
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { fetchComments, countComments }
 )(CommentsCounter)

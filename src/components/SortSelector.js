@@ -43,13 +43,7 @@ const mapStateToProps = ({ sortCategory }) => {
   return { sortCategory }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setSortCategory: (data) => dispatch(setSortCategory(data)),
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { setSortCategory }
 )(SortSelector)

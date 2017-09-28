@@ -70,14 +70,7 @@ const mapStateToProps = ({ categories, categorySelected }) => {
   return { categories, categorySelected }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    selectCategory: (data) => dispatch(selectCategory(data)),
-    fetchCategories: () => dispatch(fetchCategories()),
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { selectCategory, fetchCategories }
 )(SidebarMenu)

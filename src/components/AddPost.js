@@ -65,13 +65,7 @@ const mapStateToProps = ({ categories }) => {
   return { categories }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addPost: (data) => dispatch(addPost(data)),
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { addPost }
 )(AddPosts)
