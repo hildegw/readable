@@ -173,6 +173,14 @@ html {
   outline: none;
 }
 
+.post-title-link {
+  font-size: medium;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  outline: none;
+}
+
 .post-vote {
   display: flex;
   color: #676767;

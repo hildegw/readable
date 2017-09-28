@@ -30,6 +30,7 @@ const posts = (state = {}, action) => {
       }
     case REMOVE_POST:
       const newStatePosts = state.posts.filter((item) => item.id !== post.id)
+      console.log(newStatePosts)
       return {
         ...state,
         posts: newStatePosts
@@ -76,6 +77,12 @@ const openPost = (state = {}, action) => {
       return {
         ...state,
         openPost: openPost
+      }
+    case REMOVE_POST:
+      console.log('in openPost:')
+      return {
+        ...state,
+        openPost: undefined
       }
     default:
       return state
