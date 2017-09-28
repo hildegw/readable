@@ -135,6 +135,15 @@ html {
   font-size: small;
 }
 
+.detail-not-found {
+  font-style: oblique;
+  font-size: small;
+  padding: 40px;
+  line-height: 2;
+  min-width: 440px;
+  border-left: 1px solid #ccc;
+}
+
 /* Toolbar for posts */
 .post-tools {
   padding: 10px;

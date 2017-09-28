@@ -16,11 +16,9 @@ class ShowPosts extends Component {
 
   postsToShow = (posts, category, sortCategory) => {
     const sortedPosts = SortPosts(posts, sortCategory) 
-    if (category !== undefined && posts !== undefined) {
-      return sortedPosts.filter((post) => post.category === category)
-    } else {
-      return posts
-    }
+    return (category !== undefined && posts !== undefined) 
+    ?  sortedPosts.filter((post) => post.category === category)
+    :  posts
   }
 
   render() {
@@ -35,20 +33,25 @@ class ShowPosts extends Component {
 
         <SortSelector />
       
-        { posts!==undefined && (
-        <div className="post">
-          <div className="post-list">
-              {showPosts.map((post)=>
-                <div key={post.id} >
-                  <OnePost
-                    post={post}
-                    showBody={showBody}
-                    onVoting={() => {this.voting()}}
-                  />
-                </div>
-            )}
-          </div>
-        </div>)}
+        { (posts !== undefined && showPosts.length !== 0)
+          ? (<div className="post">
+              <div className="post-list">
+                  {showPosts.map((post)=>
+                    <div key={post.id} >
+                      <OnePost
+                        post={post}
+                        showBody={showBody}
+                        onVoting={() => {this.voting()}}
+                      />
+                    </div>
+                )}
+              </div>
+            </div>)
+          : (<div className='detail-not-found'>
+              sorry, no posts available <br />
+              please add a discussion
+            </div>) }
+    
       </div>
     )
   }

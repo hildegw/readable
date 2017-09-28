@@ -23,7 +23,7 @@ class ShowDetail extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const { comments } = this.props.comments
-    const count = comments.length + 1  
+    const count = comments.length + 1
     const parentId = this.props.match.params.id
     const newComment = serializeForm(event.target, {hash: true})
     const id = uuid()
@@ -41,16 +41,20 @@ class ShowDetail extends Component {
 
     return (
       <div>
-        <div className='post'>
-          <div className='post-list'>
-            { openPost !== undefined && (
-            <OnePost
-              post={openPost}
-              showBody={showBody}
-              history={this.props.history}
-            />)}
-          </div>
-        </div>
+        { openPost !== undefined
+          ? (<div className='post'>
+                <div className='post-list'>
+                    <OnePost
+                        post={openPost}
+                        showBody={showBody}
+                        history={this.props.history}
+                      />
+                </div>
+              </div>)
+          : (<div className='detail-not-found'>
+              sorry, the post was deleted <br />
+              (404 not found)
+            </div>) }
 
         { comments !== undefined && openPost !== undefined && (
         <div className='comment'>
@@ -99,7 +103,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchComments: (data) => dispatch(fetchComments(data)),
     openPostDetail: (data) => dispatch(openPostDetail(data)),
     addComment: (data) => dispatch(addComment(data)),
-    countComments: (count, parentId) => dispatch(countComments(count, parentId)),    
+    countComments: (count, parentId) => dispatch(countComments(count, parentId)),
     setVote: (id, option, type, startScore) => dispatch(setVote(id, option, type, startScore)),
   }
 }
