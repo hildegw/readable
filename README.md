@@ -14,7 +14,8 @@ Download the zip-file and unpack. Go to unpacked directory.
 ## Server API
 The application connects to 'http://localhost:3001'
 
-Please refer to the server readme file for detailed information on the API (./api-server/README.md).
+Please refer to the server readme file for detailed information on the API:
+[a link] (https://github.com/hildegw/readable/blob/master/api-server/README.md)
 
 
 ## Limitations
@@ -26,3 +27,6 @@ Currently, no user management is implemented. I.e. any user can add, update, or 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 The API-server was provided by Udacity team.
+
+## Licence
+[a link] (https://github.com/hildegw/readable/blob/master/LICENCE)
