@@ -1,7 +1,7 @@
 import {
   RECEIVE_CATEGORIES,
   SELECT_CATEGORY
-} from '../actions'
+} from '../actions/types'
 
 const categories = (state = {}, action) => {
   const { categories, categorySelected } = action

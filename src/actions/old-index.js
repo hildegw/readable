@@ -1,19 +1,5 @@
 import * as PostsApi from '../utils/api'
-
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const ADD_POST = 'ADD_POST'
-export const REMOVE_POST = 'REMOVE_POST'
-export const SELECT_CATEGORY = 'SELECT_CATEGORY'
-export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
-export const OPEN_POST_DETAIL = 'OPEN_POST_DETAIL'
-export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
-export const ADD_COMMENT = 'ADD_COMMENT'
-export const REMOVE_COMMENT = 'REMOVE_COMMENT'
-export const RECEIVE_ONE_COMMENT = 'RECEIVE_ONE_COMMENT'
-export const COUNT_COMMENTS = 'COUNT_COMMENTS'
-export const VOTE = 'VOTE'
-export const UPDATE_VOTE = 'UPDATE_VOTE'
-export const SET_SORT_CATEGORY = 'SET_SORT_CATEGORY'
+import * as Types from './types'
 
 // fetch data from DB and then set state
 // thunk for asynchronous call to fetch posts
@@ -22,7 +8,7 @@ export const fetchPosts = () => dispatch => (
 // action creator functions being called when posts have been fetched
 export const receivePosts = (posts) => {
   return {
-    type: RECEIVE_POSTS,
+    type: Types.RECEIVE_POSTS,
     posts
   }
 }
@@ -33,7 +19,7 @@ export const fetchComments = (id) => dispatch => (
 // action creator functions being called when comments have been fetched
 export const receiveComments = (comments) => {
   return {
-    type: RECEIVE_COMMENTS,
+    type: Types.RECEIVE_COMMENTS,
     comments
   }
 }
@@ -44,7 +30,7 @@ export const fetchOneComment = (id) => dispatch => (
 // action
 export const receiveOneComment = (comment) => {
   return {
-    type: RECEIVE_ONE_COMMENT,
+    type: Types.RECEIVE_ONE_COMMENT,
     comment
   }
 }
@@ -56,7 +42,7 @@ export const fetchCategories = () => dispatch => (
 // action creator functions being called upon receive
 export const receiveCategories = (categories) => {
   return {
-    type: RECEIVE_CATEGORIES,
+    type: Types.RECEIVE_CATEGORIES,
     categories
   }
 }
@@ -69,7 +55,7 @@ export const addPost = (post) => dispatch => {
 // action
 export const newPost = (post) => {
   return {
-    type: ADD_POST,
+    type: Types.ADD_POST,
     post
   }
 }
@@ -82,7 +68,7 @@ export const addComment = (comment) => dispatch => {
 // action
 export const newComment = (comment) => {
   return {
-    type: ADD_COMMENT,
+    type: Types.ADD_COMMENT,
     comment
   }
 }
@@ -95,7 +81,7 @@ export const deletePost = (post) => dispatch => {
 // action
 export const removePost = (post) => {
   return {
-    type: REMOVE_POST,
+    type: Types.REMOVE_POST,
     post
   }
 }
@@ -108,7 +94,7 @@ export const deleteComment = (comment) => dispatch => {
 // action with payload = comment
 export const removeComment = (comment) => {
   return {
-    type: REMOVE_COMMENT,
+    type: Types.REMOVE_COMMENT,
     comment
   }
 }
@@ -128,21 +114,21 @@ export const updateCommentInDb = (id, body, openPost) => dispatch => {
 // setting openPost state to currently opened post or comment
 export const openPostDetail = (openPost) => {
   return {
-    type: OPEN_POST_DETAIL,
+    type: Types.OPEN_POST_DETAIL,
     openPost
   }
 }
 
 export const selectCategory = (categorySelected) => {
   return {
-    type: SELECT_CATEGORY,
+    type: Types.SELECT_CATEGORY,
     categorySelected
   }
 }
 
 export const countComments = (count, parentId) => {
   return {
-    type: COUNT_COMMENTS,
+    type: Types.COUNT_COMMENTS,
     count,
     parentId
   }
@@ -159,7 +145,7 @@ export const setVote = (id, option, type, startScore, posts) => dispatch => {
 // action upon voting for comments only
 export const vote = (id, option, startScore) => {
   return {
-    type: VOTE,
+    type: Types.VOTE,
     id,
     option,
     startScore
@@ -168,7 +154,7 @@ export const vote = (id, option, startScore) => {
 // action upon voting for posts only
 export const updateVote = (id, option, startScore, posts) => {
   return {
-    type: UPDATE_VOTE,
+    type: Types.UPDATE_VOTE,
     id,
     option,
     startScore,
@@ -178,7 +164,7 @@ export const updateVote = (id, option, startScore, posts) => {
 
 export const setSortCategory = (sortCategory) => {
   return {
-    type: SET_SORT_CATEGORY,
+    type: Types.SET_SORT_CATEGORY,
     sortCategory
   }
 }

@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { deletePost, deleteComment, openPostDetail, countComments, setVote } from '../actions'
+import { deletePost, openPostDetail } from '../actions/postsAction'
+import { deleteComment, countComments } from '../actions/commentsAction'
+import { setVote } from '../actions/votingAction'
 import CommentsCounter from './CommentsCounter'
-
 
 class OnePost extends Component {
 

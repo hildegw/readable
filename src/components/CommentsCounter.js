@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchComments, countComments } from '../actions'
+import * as commentsAction from '../actions/commentsAction'
 
 
 class CommentsCounter extends Component {
@@ -39,5 +39,5 @@ const mapStateToProps = ({ comments, commentCounter }) => {
 
 export default connect(
   mapStateToProps,
-  { fetchComments, countComments }
+  commentsAction
 )(CommentsCounter)

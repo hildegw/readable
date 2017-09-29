@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchCategories, selectCategory } from '../actions'
+import * as selectorsAction from '../actions/selectorsAction'
 import { Link } from "react-router-dom"
 
 
@@ -72,5 +72,5 @@ const mapStateToProps = ({ categories, categorySelected }) => {
 
 export default connect(
   mapStateToProps,
-  { selectCategory, fetchCategories }
+  selectorsAction
 )(SidebarMenu)

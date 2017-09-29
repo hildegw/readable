@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { updatePostInDb, updateCommentInDb, fetchPosts, fetchComments,
-  fetchOneComment, openPostDetail } from '../actions'
+import { updatePostInDb, fetchPosts, openPostDetail } from '../actions/postsAction'
+import { updateCommentInDb, fetchComments, fetchOneComment } from '../actions/commentsAction'
+import { setVote } from '../actions/votingAction'
 import serializeForm from 'form-serialize'
-
 
 class EditPosts extends Component {
 
@@ -84,5 +84,6 @@ const mapStateToProps = ({ posts, openPost, comment }) => {
 
 export default connect(
   mapStateToProps,
-  { fetchPosts, fetchComments, fetchOneComment, openPostDetail, updatePostInDb, updateCommentInDb }
+  { updatePostInDb, updateCommentInDb, fetchPosts, fetchComments,
+  fetchOneComment, openPostDetail }
 )(EditPosts)

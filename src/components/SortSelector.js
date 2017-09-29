@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { setSortCategory } from '../actions'
+import * as selectorsAction from '../actions/selectorsAction'
 
 
 class SortSelector extends Component {
@@ -45,5 +45,5 @@ const mapStateToProps = ({ sortCategory }) => {
 
 export default connect(
   mapStateToProps,
-  { setSortCategory }
+  selectorsAction
 )(SortSelector)

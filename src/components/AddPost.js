@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { addPost } from '../actions'
+import * as postsAction from '../actions/postsAction'
 import serializeForm from "form-serialize"
 import uuid from "uuid"
 
@@ -21,7 +21,7 @@ class AddPosts extends Component {
     const id = uuid()
     Object.assign(newPost, {id: id}, {category: this.state.category})
     this.props.addPost(newPost)
-    this.props.history.push('/' + this.state.category) 
+    this.props.history.push('/' + this.state.category)
     this.props.history.go(2) //go to category list after submitting new post
   }
 
@@ -67,5 +67,5 @@ const mapStateToProps = ({ categories }) => {
 
 export default connect(
   mapStateToProps,
-  { addPost }
+  postsAction
 )(AddPosts)

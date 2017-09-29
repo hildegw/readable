@@ -2,7 +2,7 @@ import {
   RECEIVE_COMMENTS,
   ADD_COMMENT,
   REMOVE_COMMENT
-} from '../actions'
+} from '../actions/types'
 
 const comments = (state = {}, action) => {
   const { comments, comment } = action

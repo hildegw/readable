@@ -1,6 +1,6 @@
 import {
   COUNT_COMMENTS
-} from '../actions'
+} from '../actions/types'
 
 // adding comment counts as key-value pair with parentId
 const commentCounter = (state = {}, action) => {

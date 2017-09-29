@@ -4,7 +4,7 @@ import {
   ADD_POST,
   REMOVE_POST,
   UPDATE_VOTE
-} from '../actions'
+} from '../actions/types'
 
 const posts = (state = {}, action) => {
   const { posts, post } = action

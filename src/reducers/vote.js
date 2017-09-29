@@ -1,6 +1,4 @@
-import {
-  VOTE
-} from '../actions'
+import { VOTE } from '../actions/types'
 
 // voting
 const vote = (state = {}, action) => {

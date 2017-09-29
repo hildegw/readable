@@ -1,7 +1,7 @@
 import {
   REMOVE_POST,
   OPEN_POST_DETAIL
-} from '../actions'
+} from '../actions/types'
 
 const openPost = (state = {}, action) => {
   const { openPost } = action

@@ -1,4 +1,4 @@
-import { SET_SORT_CATEGORY } from '../actions'
+import { SET_SORT_CATEGORY } from '../actions/types'
 
 // sorting posts
 const sortCategory = (state = {}, action) => {

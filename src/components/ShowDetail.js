@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchPosts, openPostDetail, fetchComments, addComment, countComments, setVote } from '../actions'
+import { fetchPosts, openPostDetail } from '../actions/postsAction'
+import { fetchComments, addComment, countComments } from '../actions/commentsAction'
+import { setVote } from '../actions/votingAction'
 import OnePost from './OnePost'
 import serializeForm from "form-serialize"
 import uuid from "uuid"
-
 
 class ShowDetail extends Component {
 
@@ -99,5 +100,6 @@ const mapStateToProps = ({ posts, openPost, comments }) => {
 
 export default connect(
   mapStateToProps,
-  { fetchPosts, fetchComments, openPostDetail, addComment, countComments, setVote }
+  { fetchPosts, openPostDetail, fetchComments, addComment, 
+    countComments, setVote }
 )(ShowDetail)

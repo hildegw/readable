@@ -1,6 +1,6 @@
 import {
   RECEIVE_ONE_COMMENT
-} from '../actions'
+} from '../actions/types'
 
 const comment = (state = {}, action) => {
   const { comment } = action
