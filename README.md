@@ -7,7 +7,8 @@ Readable project is implemented by me (hildegw) as part of Udacity Nanodegree. I
 ## Installing and running the project
 Download the zip-file and unpack. Go to directory where application was unpacked.
 * install all project dependencies with `npm install`
-* go to api-server directory and start the server with `node server`
+* go to api-server directory and install the API server with `npm install`
+* start the API server from its directory with `node server`
 * start the application with `npm start` from application directory
 
 
