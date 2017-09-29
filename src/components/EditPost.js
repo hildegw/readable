@@ -3,7 +3,6 @@ import './App.css'
 import { connect } from 'react-redux'
 import { updatePostInDb, fetchPosts, openPostDetail } from '../actions/postsAction'
 import { updateCommentInDb, fetchComments, fetchOneComment } from '../actions/commentsAction'
-import { setVote } from '../actions/votingAction'
 import serializeForm from 'form-serialize'
 
 class EditPosts extends Component {

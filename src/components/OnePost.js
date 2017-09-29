@@ -38,7 +38,6 @@ class OnePost extends Component {
       <div className="post-list-item">
         <div className="post-details">
           <p className="post-author">{post.author}</p>
-
           <Link 
             onClick={() => { this.props.openPostDetail(post) }}
             to={ {pathname: `/${post.category}/${post.id}`} }

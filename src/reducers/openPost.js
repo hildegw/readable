@@ -12,7 +12,6 @@ const openPost = (state = {}, action) => {
         openPost: openPost
       }
     case REMOVE_POST:
-      console.log('in openPost:')
       return {
         ...state,
         openPost: undefined

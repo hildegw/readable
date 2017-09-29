@@ -1,6 +1,5 @@
 import {
   RECEIVE_POSTS,
-  RECEIVE_CATEGORIES,
   ADD_POST,
   REMOVE_POST,
   UPDATE_VOTE
@@ -21,7 +20,6 @@ const posts = (state = {}, action) => {
       }
     case REMOVE_POST:
       const newStatePosts = state.posts.filter((item) => item.id !== post.id)
-      console.log(newStatePosts)
       return {
         ...state,
         posts: newStatePosts
